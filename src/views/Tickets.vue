@@ -3,7 +3,7 @@
 </script>
 
 <template>
-About
+Tickets
 </template>
 
 <style scoped>

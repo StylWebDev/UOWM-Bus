@@ -3,7 +3,7 @@
 </script>
 
 <template>
-About
+Schedule
 </template>
 
 <style scoped>
