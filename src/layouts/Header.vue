@@ -1,18 +1,16 @@
 <script setup lang="ts">
 import FlexMinified from "../components/FlexMinified.vue";
 import {Icon} from "@iconify/vue";
-import {ref} from "vue";
-const test = ref<boolean>(true)
-const routes = [
-  {name: 'Home', link: '/'},
-  {name: 'Schedule', link: '/schedule'},
-  {name: 'Tickets', link: '/tickets'},
-  {name: 'About', link: '/about'},
-]
+import {useConfigureStore} from "../stores/configure.ts";
+const config = useConfigureStore();
+
+defineProps<{
+  routes: {name:string; link: string}[]
+}>()
 </script>
 
 <template>
-<FlexMinified justify="evenly" class="py-2.5" items="center">
+<FlexMinified justify="evenly" class="h-[8vh]" items="center">
   <FlexMinified justify="center" class=" w-[50%]">
     <FlexMinified items="center" gap-x="2">
       <img class="size-12" src="https://static.uowm.gr/logos/uowm-logo.png" alt="logo">
@@ -32,8 +30,8 @@ const routes = [
       </router-link>
     </FlexMinified>
   </FlexMinified>
-  <button @click="test=!test" class="hidden max-md:block w-[20%]">
-      <Icon v-if="test" icon="line-md:close-to-menu-alt-transition" class="size-8"  />
+  <button @click="config.menu=!config.menu" class="hidden max-md:block w-[20%]">
+      <Icon v-if="!config.menu" icon="line-md:close-to-menu-alt-transition" class="size-8"  />
       <Icon v-else icon="line-md:menu-to-close-alt-transition" class="size-8 text-fuchsia-500"  />
   </button>
 </FlexMinified>
