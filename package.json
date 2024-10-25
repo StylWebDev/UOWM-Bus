@@ -12,7 +12,6 @@
     "@primevue/themes": "^4.1.1",
     "@selemondev/vue3-marquee": "^0.0.8",
     "pinia": "^2.2.4",
-    "primevue": "^4.1.1",
     "vue": "^3.5.12",
     "vue-i18n": "^10.0.4",
     "vue-router": "^4.4.5"
