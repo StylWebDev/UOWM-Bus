@@ -3,30 +3,34 @@ import FlexMinified from "../../components/FlexMinified.vue";
 interface Props {
   color?: string;
   text?: string;
+  borderColor?: string;
+  shadow?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   color: "bg-neutral-800",
-  text: 'text-white'
+  text: 'text-white',
+  borderColor: 'border-white',
+  shadow: false,
 })
 </script>
 
 <template>
-<FlexMinified :class="[props.color, props.text]"
-              class=" rounded-lg rounded-b-xl"
+<FlexMinified :class="[props.color, props.text, props.borderColor, { 'shadow-lg shadow-neutral-900' : shadow }]"
+              class=" rounded-lg rounded-b-xl border"
               :column="true"
               gap-y="2"
 >
   <div class="w-[100%]">
     <slot name="img"/>
   </div>
-  <h4 class="ml-2 text-xl rainbow font-bold">
+  <h4 class="mx-2 text-xl rainbow font-bold">
     <slot name="title"/>
   </h4>
-  <div class="ml-2 opacity-75">
+  <div class="mx-2 opacity-75">
     <slot name="subtitle"/>
   </div>
-  <p class="text-sm ml-2">
+  <p class="text-sm mx-2">
     <slot name="content"/>
   </p>
   <FlexMinified class="pb-2.5 pt-1" justify="center" gap-x="2">
