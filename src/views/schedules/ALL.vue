@@ -51,7 +51,7 @@ const { trans } = useConfigureStore()
       </template>
       <template #footer>
         <RouterLink
-                to="/schedule/mesopotamia"
+                :to="`/schedule/mesopotamia?day=${new Date().getDay()+1}`"
                 :class="trans"
                 class="bg-cyan-600 font-semibold text-neutral-50
              text-base px-4 py-1 rounded hover:brightness-150"
