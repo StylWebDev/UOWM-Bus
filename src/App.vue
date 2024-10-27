@@ -16,8 +16,13 @@ const routes = [
   <Header :routes="routes" class="z-50 bg-eggplant-950"/>
   <Menu :routes="routes" class="z-50 fixed top-[8vh] h-[92vh] bg-eggplant-950 transition-transform duration-700 ease-ii-out sm:hidden"
         :class="(configureStore.menu) ? `translate-x-0` : `translate-x-full`"/>
-  <div class="h-[84vh] overflow-auto py-8">
-    <RouterView/>
+  <div class="h-[84vh] overflow-auto py-8 max-sm:bg-eggplant-950/80">
+    <Suspense>
+      <template #default>
+        <RouterView/>
+      </template>
+    </Suspense>
+
   </div>
   <Footer class=" bg-eggplant-950 w-screen h-[8vh]"/>
 </template>

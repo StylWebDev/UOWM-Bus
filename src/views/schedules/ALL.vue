@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import Card from "../theme/Card.vue";
 import {useConfigureStore} from "../../stores/configure.ts";
 import GridMinified from "../../components/GridMinified.vue";
@@ -51,7 +51,7 @@ const { trans } = useConfigureStore()
       </template>
       <template #footer>
         <RouterLink
-                :to="`/schedule/mesopotamia?day=${new Date().getDay()+1}`"
+                :to="`/schedule/${i}`"
                 :class="trans"
                 class="bg-cyan-600 font-semibold text-neutral-50
              text-base px-4 py-1 rounded hover:brightness-150"

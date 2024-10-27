@@ -18,16 +18,8 @@ const routes = [
                 component: () => import('../views/schedules/ALL.vue')
             },
             {
-                path: 'aei',
-                component: () => import('../views/schedules/AEI.vue')
-            },
-            {
-                path: 'maniakoi',
-                component: () => import('../views/schedules/MAN.vue')
-            },
-            {
-                path: 'mesopotamia',
-                component: () => import('../views/schedules/MES.vue')
+                path: ':id([1-3])',
+                component: () => import('../views/schedules/Destination.vue')
             }
         ]
     },
