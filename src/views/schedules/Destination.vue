@@ -25,12 +25,14 @@ const timeTable = ref(specData.value.start)
 
 const secondTimeTable = ref(specData.value.end)
 
-/*const arrivalTime = computed(() => {
+const arrivalTime = computed(() => {
   return (typeof timeTable.value.find((time: string, _: any) => parseInt(time.slice(0,2)) >= new Date().getHours() && parseInt(time.slice(3,5)) <= new Date().getMinutes()) != 'undefined')
       ? timeTable.value.find((time: string, index: number, arr: string[]) => parseInt(time.slice(0,2)) >= new Date().getHours() && parseInt(time.slice(3,5)) <= new Date().getMinutes()
-      &&  (parseInt(arr[index + 1].slice(0,2)) > new Date().getHours() || parseInt(arr[index + 1].slice(3,5)) >= new Date().getMinutes())
+      &&  (arr[index+1] != undefined &&
+                  (parseInt(arr[index + 1].slice(0,2)) > new Date().getHours() || parseInt(arr[index + 1].slice(3,5)) >= new Date().getMinutes())
+              )
       )
-      : `-`
+      : timeTable.value[0]
 })
 
 const returnTime = computed(() => {
@@ -43,8 +45,8 @@ const returnTime = computed(() => {
           && parseInt(time.slice(3,5)) >= new Date().getMinutes())
     )
 
-  return ` `
-})*/
+  return secondTimeTable.value[0]
+})
 
 
 </script>
@@ -72,50 +74,27 @@ const returnTime = computed(() => {
            class="rounded-lg mt-3 bg-red-500 border-2 border-eggplant-100 w-full"
            alt="mesopotamia image">
 
-<!--      <FlexMinified :column="true" items="center"
+      <FlexMinified :column="true" items="center"
                     class=" lg:col-span-3 my-3 max-sm:border border-t-white/50 border-transparent w-full "
       ><span class="mb-3 text-center  text-xl font-bold text-red-500 "><Icon icon="stash:circle-dot-duotone" class="inline animate-pulse" /> Live Αφίξεις </span>
 
         <FlexMinified :column="true"
                       class="w-full text-sm"
-                      v-if="
-          (parseInt(returnTime.slice(0,2)) === parseInt(arrivalTime.slice(0,2))) && (new Date().getMinutes() < parseInt(returnTime.slice(3,5)))
-          ||  (parseInt(returnTime.slice(0,2)) > parseInt(arrivalTime.slice(0,2))) && (new Date().getMinutes() > parseInt(returnTime.slice(3,5)))"
 
         >
           <FlexMinified gap-x="4" justify="around" items="center" class="bg-emerald-500 rounded-lg  text-center animate-pulse">
             <h5 class="bg-emerald-800 h-full rounded-l-lg w-full font-semibold py-1.5">Τρέχων: Μετάβση</h5>
-            <p class="w-full text-gray-600 ">Ώρα Αναχώρησης: {{arrivalTime}}</p>
-            <p class="w-full text-gray-600 ">Άφιξη σε: {{(returnTime = "-") ? timeTable[ (timeTable.findIndex( (value: string) => value === arrivalTime) === timeTable.length-1) ? 0 : timeTable.findIndex((value: string) => value === arrivalTime) + 1] : returnTime }}</p>
+            <p class="w-full text-gray-600 ">Ώρα Αναχώρησης: </p>
+            <p class="w-full text-gray-600 ">Άφιξη σε: </p>
 
           </FlexMinified>
           <FlexMinified gap-x="4" justify="around" items="center" class="mt-4 rounded-lg  bg-orange-500 text-center  ">
-            <h5 class="bg-orange-800 h-full rounded-l-lg py-1.5 w-full font-semibold">Επόμενο: {{ (returnTime === `-`) ? `Μετάβαση` : `Επιστροφή` }}</h5>
-            <p class="w-full text-gray-100 ">Ώρα Αναχώρησης: {{ (returnTime === `-`) ? timeTable[ (timeTable.findIndex((value: string) => value === arrivalTime) === timeTable.length-1) ? 0 : timeTable.findIndex((value: string) => value === arrivalTime) + 1] : returnTime}}</p>
-            <p class="w-full text-gray-100 ">Ώρα Άφιξης: {{ (returnTime === `-`) ? timeTable[ (timeTable.findIndex((value: string) => value === arrivalTime) === timeTable.length-1) ? 0 : timeTable.findIndex((value: string) => value === arrivalTime) + 2] : timeTable[ (timeTable.findIndex((value: string) => value === arrivalTime) === timeTable.length-1) ? 0 : timeTable.findIndex((value: string) => value === arrivalTime) + 1] }}
-            </p>
+            <h5 class="bg-orange-800 h-full rounded-l-lg py-1.5 w-full font-semibold">Επόμενο: </h5>
+            <p class="w-full text-gray-100 ">Ώρα Αναχώρησης: </p>
+            <p class="w-full text-gray-100 ">Ώρα Άφιξης: </p>
           </FlexMinified>
         </FlexMinified>
-
-        <FlexMinified v-else
-                      :column="true"
-                      class="w-full sm:w-[100%] text-sm"
-        >
-          <FlexMinified gap-x="4" justify="around" items="center" class="bg-emerald-500 rounded-lg  text-center animate-pulse">
-            <h5 class="bg-emerald-800 h-full text-green-300 rounded-l-lg w-full font-semibold py-1.5">Τρέχων: Επιστροφή</h5>
-            <p class="w-full text-gray-600 ">Ώρα Αναχώρησης: {{returnTime}}</p>
-            <p class="w-full text-gray-600 ">Άφιξη σε: {{ timeTable[ (timeTable.findIndex((value: string) => value === arrivalTime) === timeTable.length-1) ? 0 : timeTable.findIndex((value: string) => value === arrivalTime) + 1]}}</p>
-
-          </FlexMinified>
-
-          <FlexMinified gap-x="4" justify="around" items="center" class="mt-4 rounded-lg  bg-orange-500 text-center">
-            <h5 class="bg-orange-800 h-full text-orange-200 rounded-l-lg py-1.5 w-full font-semibold">Επόμενο: Μετάβαση</h5>
-            <p class="w-full text-gray-100 ">Ώρα Αναχώρησης: {{ timeTable[ (timeTable.findIndex((value: string) => value === arrivalTime) === timeTable.length-1) ? 0 : timeTable.findIndex((value: string) => value === arrivalTime) + 1]}}</p>
-            <p class="w-full text-gray-100 ">Άφιξη σε: {{secondTimeTable[ (secondTimeTable.findIndex((value: string) => value === returnTime) === secondTimeTable.length-1) ? 0 : secondTimeTable.findIndex((value: string) => value === returnTime) + 1]}}"</p>
-          </FlexMinified>
-        </FlexMinified>
-      </FlexMinified>-->
-
+      </FlexMinified>
     </FlexMinified>
 
 
@@ -149,7 +128,7 @@ const returnTime = computed(() => {
             ? parseInt(time.slice(3,5)) <= parseInt(timeTable[(index != undefined) ? index-1 : 0].slice(3,5))
             : parseInt(time.slice(3,5)) >= parseInt(timeTable[(index != undefined) ? index-1 : 0].slice(3,5)))
             && parseInt(time.slice(0,2)) >= parseInt(timeTable[(index != undefined) ? index-1 : 0].slice(0,2))
-
+            && (new Date().getHours() < 23 && new Date().getHours() >5)
             ? `bg-emerald-400 text-gray-600 animate-pulse`
                 : null"
               >
@@ -161,6 +140,7 @@ const returnTime = computed(() => {
               secondTimeTable[index] != undefined
             && parseInt(secondTimeTable[index].slice(0,2)) >= new Date().getHours()
             && parseInt(secondTimeTable[index].slice(3,5)) <= new Date().getMinutes())
+            && (new Date().getHours() < 23 && new Date().getHours() >5)
             ? `bg-emerald-400 text-gray-600 animate-pulse`
                 : null"
               >
@@ -168,8 +148,6 @@ const returnTime = computed(() => {
               </div>
             </FlexMinified>
           </div>
-
-
 
           <div v-else class="text-neutral-200 rounded-b-2xl text-center block w-full max-md:h-[35vh] mb-5 md:h-[45vh] lg:h-[36vh] xl:h-[35vh] 2xl:h-[40vh] min-[1800px]:h-[57vh] min-[2200px]:h-[50vh] overflow-y-scroll">
              <FlexMinified class="border-b w-full bg-eggplant-500 border-gray-700" justify="around"
@@ -184,6 +162,7 @@ const returnTime = computed(() => {
                       ? parseInt(timeTable[index].slice(3,5)) <= parseInt(timeTable[(index != undefined) ? index-1 : 0].slice(3,5))
                       : parseInt(timeTable[index].slice(3,5)) >= parseInt(timeTable[(index != undefined) ? index-1 : 0].slice(3,5)))
                       && parseInt(timeTable[index].slice(0,2)) >= parseInt(timeTable[(index != undefined) ? index-1 : 0].slice(0,2))
+                      && (new Date().getHours() < 23 && new Date().getHours() >5)
                       ?  `bg-emerald-400 text-gray-600 animate-pulse`
                       : null"
                 >
@@ -195,7 +174,7 @@ const returnTime = computed(() => {
                   style="z-index: 1"
                   :class="( parseInt(time.slice(0,2)) >= new Date().getHours()
                   && parseInt(time.slice(3,5)) <= new Date().getMinutes())
-
+                  && (new Date().getHours() < 23 && new Date().getHours() >5)
                   ? `bg-emerald-400 text-gray-600 animate-pulse`
                   : null"
                 >
