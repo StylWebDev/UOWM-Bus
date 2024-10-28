@@ -8,8 +8,14 @@ import VanillaTilt from "vanilla-tilt";
 import {onMounted} from "vue";
 
 onMounted(() => {
-  VanillaTilt.init(document.querySelectorAll(".card"), {max: 1.3, glare: true, "max-glare": 0.1} )
+  VanillaTilt.init(document.querySelectorAll(".card") as unknown as HTMLElement, {max: 1.3, glare: true, "max-glare": 0.1} )
 })
+
+import {useDataStore} from "../../stores/data.ts";
+const {getData} = useDataStore()
+
+
+const areas = (await getData(Number(52100))).areas;
 
 const { trans } = useConfigureStore()
 </script>
@@ -26,11 +32,11 @@ const { trans } = useConfigureStore()
   <GridMinified columns="1" sm-columns="2" md-columns="2" xl-columns="3"
                 class="mt-5 items-center justify-items-center">
     <Card
-        v-for="i in 3" :key="i"
+        v-for="(area,index) in areas" :key="index"
         color="bg-neutral-800"
         border-color="border-white/35"
         :shadow="true"
-        class="card cursor-default h-fit w-[80vw] min-[400px]:w-[65vw] min-[430px]:w-[60vw] sm:w-[40vw] md:w-[38vw] lg:w-[33vw] xl:w-[45vh] 2xl:w-[20vw] mt-5"
+        class="card cursor-default h-fit w-[80vw] min-[400px]:w-[65vw] min-[430px]:w-[60vw] sm:w-[40vw] md:w-[38vw] lg:w-[33vw] xl:w-[45vh] 2xl:w-[20vw]  mt-5"
     >
       <template #img>
         <img src="https://astikoktelkastorias.gr/wp-content/uploads/2023/10/mesopotamia-2.png"
@@ -38,24 +44,23 @@ const { trans } = useConfigureStore()
              alt="mesopotamia image">
       </template>
       <template #title>
-        Μεσοποταμία
+        {{area.place.start.el.location}} - {{area.place.end.el.location}}
       </template>
       <template #subtitle>
-        Ζώνη Β
+        Ζώνη {{area.zone}}
       </template>
       <template #content>
         <p class="m-0">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
-          quas!
+          {{area["desc_el"]}}
         </p>
       </template>
       <template #footer>
         <RouterLink
-                :to="`/schedule/${i}`"
+                :to="`/schedule/${index+1}`"
                 :class="trans"
                 class="bg-cyan-600 font-semibold text-neutral-50
              text-base px-4 py-1 rounded hover:brightness-150"
-        >Show More</RouterLink>
+        >Περισσότερα</RouterLink>
       </template>
     </Card>
   </GridMinified>

@@ -11,10 +11,9 @@ export const useDataStore = defineStore('data', () => {
     }
 
     const addTime = (timeStamp: string, mins: number): string => {
-        let totalMins = mins + Number(timeStamp.slice(3,5))
+        let totalMins = Number(mins) + Number(timeStamp.slice(3,5))
         let totalHours = Number(timeStamp.slice(0,2))
-
-        if (totalMins > 60) {
+        if (totalMins >= 60) {
             (totalHours === 23) ? totalHours=0 : totalHours++;
             totalMins= totalMins - 60;
             if (totalHours > 10) {
