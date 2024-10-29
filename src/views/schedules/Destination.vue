@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import {useConfigureStore} from "../../stores/configure.ts";
 import FlexMinified from "../../components/FlexMinified.vue";
 import {Icon} from "@iconify/vue";
 import GridMinified from "../../components/GridMinified.vue";
@@ -7,7 +6,6 @@ import {computed, ref} from "vue";
 
 import {useRoute} from "vue-router"
 const {params} = useRoute()
-const {trans} = useConfigureStore()
 
 import {useDataStore} from "../../stores/data.ts";
 const {getData, addTime} = useDataStore()
@@ -27,15 +25,29 @@ const timeTable = ref(specData.value.start)
 
 const secondTimeTable = ref(specData.value.end)
 
+const lastStartTime = ref(timeTable.value[timeTable.value.length - 1])
+
+const stopSchedule = ref(
+    (Number(secondTimeTable.value[secondTimeTable.value.length - 1].slice(0,2)) < new Date().getHours() || ( Number(secondTimeTable.value[secondTimeTable.value.length - 1].slice(0,2)) === new Date().getHours() && Number(addTime(secondTimeTable.value[secondTimeTable.value.length - 1], data.mins).slice(3,5)) < new Date().getMinutes() ))
+    || (Number(params.id) === 1 && new Date().getHours() < 7 && new Date().getMinutes() < 55) ||  (Number(params.id) > 1 && new Date().getHours() < 6 && new Date().getMinutes() < 45)
+)
+
 const arrivalTime = computed(() => {
-  return (typeof timeTable.value.find((time: string, _: any) => parseInt(time.slice(0,2)) >= new Date().getHours() && parseInt(time.slice(3,5)) <= new Date().getMinutes()) != 'undefined')
-      ? timeTable.value.find((time: string, index: number, arr: string[]) => parseInt(time.slice(0,2)) >= new Date().getHours() && parseInt(time.slice(3,5)) <= new Date().getMinutes()
-      &&  (arr[index+1] != undefined &&
-                  (parseInt(arr[index + 1].slice(0,2)) > new Date().getHours() || parseInt(arr[index + 1].slice(3,5)) >= new Date().getMinutes())
-              )
+  return (Number(lastStartTime.value.slice(0,2))> new Date().getHours() || (Number(lastStartTime.value.slice(0,2)) === new Date().getHours() && Number(lastStartTime.value.slice(0,2)) < new Date().getMinutes()) )
+      ? timeTable.value.find((time: string, index: number, arr: string[]) => (index === arr.length - 1)
+          ? arr[index]
+          : parseInt(time.slice(0,2)) >= new Date().getHours() && parseInt(time.slice(3,5)) <= new Date().getMinutes()
+          &&  (arr[index+1] != undefined &&
+              (parseInt(arr[index + 1].slice(0,2)) > new Date().getHours() || parseInt(arr[index + 1].slice(3,5)) >= new Date().getMinutes())
+          )
       )
-      : timeTable.value[0]
-})
+      : timeTable.value[timeTable.value.length - 1]
+});
+
+const secondArrivalTime =
+    ref((timeTable.value[timeTable.value.findIndex((value: string) => value === arrivalTime.value) + 1] != undefined)
+              ? timeTable.value[timeTable.value.findIndex((value: string) => value === arrivalTime.value) + 1] : timeTable.value[0] )
+
 
 const returnTime = computed(() => {
   if (arrivalTime.value !== undefined) return secondTimeTable.value.find((time: string, _:any) =>
@@ -49,10 +61,25 @@ const returnTime = computed(() => {
   return secondTimeTable.value[0]
 })
 
-const stopSchedule = ref(
-    (Number(secondTimeTable.value[secondTimeTable.value.length - 1].slice(0,2)) < new Date().getHours() || ( Number(secondTimeTable.value[secondTimeTable.value.length - 1].slice(0,2)) === new Date().getHours() && Number(addTime(secondTimeTable.value[secondTimeTable.value.length - 1], data.mins).slice(3,5)) < new Date().getMinutes() ))
-    || (Number(params.id) === 1 && new Date().getHours() < 7 && new Date().getMinutes() < 55) ||  (Number(params.id) > 1 && new Date().getHours() < 6 && new Date().getMinutes() < 45)
-)
+const startTime = computed(() => {
+  return (new Date().getHours() <= Number(returnTime.value.slice(0,2)) && new Date().getHours() <= Number(secondArrivalTime.value.slice(0,2))
+      && (new Date().getMinutes() >= Number(returnTime.value.slice(3,5))  || new Date().getMinutes() <= Number(secondArrivalTime.value.slice(3,5)) ) ) ? returnTime.value : arrivalTime.value
+})
+
+const startText = computed(() => {
+  return (new Date().getHours() <= Number(returnTime.value.slice(0,2)) && new Date().getHours() <= Number(secondArrivalTime.value.slice(0,2))
+      && (new Date().getMinutes() >= Number(returnTime.value.slice(3,5))  || new Date().getMinutes() <= Number(secondArrivalTime.value.slice(3,5)) ) ) ? `Επιστροφή` : `Μετάβαση`
+})
+
+const endTime = computed(() => {
+  return (new Date().getHours() <= Number(returnTime.value.slice(0,2)) && new Date().getHours() <= Number(secondArrivalTime.value.slice(0,2))
+      && ( new Date().getMinutes() >= Number(returnTime.value.slice(3,5))  && new Date().getMinutes() <= Number(secondArrivalTime.value.slice(3,5)) ) || ( new Date().getMinutes() < Number(returnTime.value.slice(3,5))  && new Date().getMinutes() <= Number(secondArrivalTime.value.slice(3,5)) )) ? secondArrivalTime.value : returnTime.value
+})
+
+const endText = computed(() => {
+  return (new Date().getHours() <= Number(returnTime.value.slice(0,2)) && new Date().getHours() <= Number(secondArrivalTime.value.slice(0,2))
+      && ( new Date().getMinutes() >= Number(returnTime.value.slice(3,5))  && new Date().getMinutes() <= Number(secondArrivalTime.value.slice(3,5)) ) || ( new Date().getMinutes() < Number(returnTime.value.slice(3,5))  && new Date().getMinutes() <= Number(secondArrivalTime.value.slice(3,5)) )) ? `Μετάβαση` : `Επιστροφή`
+})
 
 </script>
 <template>
@@ -87,15 +114,15 @@ const stopSchedule = ref(
 
         >
           <FlexMinified gap-x="4" justify="around" items="center" :class="stopSchedule ? `bg-orange-500` : `bg-emerald-500`" class="rounded-lg  text-center">
-            <h5 :class="stopSchedule ? `bg-orange-800` : `bg-emerald-800`" class="h-full rounded-l-lg w-full font-semibold py-1.5">{{(!stopSchedule) ? `Τρέχων:` : `Επόμενο:`}} Μετάβαση</h5>
-            <p :class="stopSchedule ? `text-gray-100` : `text-gray-600`" class="w-full  ">Ώρα Αναχώρησης: {{(stopSchedule) ? timeTable[0] : arrivalTime}}</p>
-            <p :class="stopSchedule ? `text-gray-100` : `text-gray-600`" class="w-full  ">Ώρα Άφιξης: {{(stopSchedule) ? addTime(timeTable[0], data.mins) : addTime(arrivalTime, data.mins)}}</p>
+            <h5 :class="stopSchedule ? `bg-orange-800` : `bg-emerald-800`" class="h-full rounded-l-lg w-full font-semibold py-1.5">{{(!stopSchedule) ? `Τρέχων:` : `Επόμενο:`}} {{startText}}</h5>
+            <p :class="stopSchedule ? `text-gray-100` : `text-gray-600`" class="w-full  ">Ώρα Αναχώρησης: {{(stopSchedule) ? timeTable[0] : startTime}}</p>
+            <p :class="stopSchedule ? `text-gray-100` : `text-gray-600`" class="w-full  ">Ώρα Άφιξης: {{(stopSchedule) ? addTime(timeTable[0], data.mins) : addTime(startTime, data.mins)}}</p>
 
           </FlexMinified>
           <FlexMinified gap-x="4" justify="around" items="center" class="mt-4 rounded-lg  bg-orange-500 text-center  ">
-            <h5 class="bg-orange-800 h-full rounded-l-lg py-1.5 w-full font-semibold">Επόμενο: Επιστροφή</h5>
-            <p class="w-full text-gray-100 ">Ώρα Αναχώρησης: {{(stopSchedule) ? secondTimeTable[0] : returnTime}}</p>
-            <p class="w-full text-gray-100 ">Ώρα Άφιξης: {{(stopSchedule) ? addTime(secondTimeTable[0], data.mins) : addTime(arrivalTime, data.mins)}}</p>
+            <h5 class="bg-orange-800 h-full rounded-l-lg py-1.5 w-full font-semibold">Επόμενο: {{endText}}</h5>
+            <p class="w-full text-gray-100 ">Ώρα Αναχώρησης: {{(stopSchedule) ? secondTimeTable[0] : endTime}}</p>
+            <p class="w-full text-gray-100 ">Ώρα Άφιξης: {{(stopSchedule) ? addTime(secondTimeTable[0], data.mins) : addTime(endTime, data.mins)}}</p>
           </FlexMinified>
         </FlexMinified>
       </FlexMinified>
@@ -125,69 +152,44 @@ const stopSchedule = ref(
                 :key="index"
             >
               <div  class="px-6 py-4 font-medium whitespace-nowrap w-full "
-                   :class="( parseInt(time.slice(0,2)) === new Date().getHours()
-            && parseInt(time.slice(3,5)) <= new Date().getMinutes())
-            && (new Date().getMinutes() < parseInt(timeTable[(index != undefined) ? index-1 : 0].slice(3,5))
-            ? parseInt(time.slice(3,5)) <= parseInt(timeTable[(index != undefined) ? index-1 : 0].slice(3,5))
-            : parseInt(time.slice(3,5)) >= parseInt(timeTable[(index != undefined) ? index-1 : 0].slice(3,5)))
-            && parseInt(time.slice(0,2)) >= parseInt(timeTable[(index != undefined) ? index-1 : 0].slice(0,2))
-            && (new Date().getHours() < 23 && new Date().getHours() >5)
+                   :class="( time === startTime)
             ? `bg-emerald-400 text-gray-600 animate-pulse`
                 : null"
               >
-                <span class="hover:scale-110 block" :class="trans">{{time }}</span>
+                {{time }}
               </div>
 
               <div class="px-6 py-4 w-full"
-                  :class="(
-              secondTimeTable[index] != undefined
-            && parseInt(secondTimeTable[index].slice(0,2)) >= new Date().getHours()
-            && parseInt(secondTimeTable[index].slice(3,5)) <= new Date().getMinutes())
-            && (new Date().getHours() < 23 && new Date().getHours() >5)
+                  :class="( secondTimeTable[index] === startTime )
             ? `bg-emerald-400 text-gray-600 animate-pulse`
                 : null"
               >
-                <span class="hover:scale-110 block" :class="trans">
                 {{(secondTimeTable[index] === undefined) ? '-' : secondTimeTable[index] }}
-                </span>
               </div>
             </FlexMinified>
           </div>
 
-          <div v-else class="text-neutral-200 rounded-b-2xl text-center block w-full max-md:h-[35vh] mb-5 md:h-[45vh] lg:h-[36vh] xl:h-[35vh] 2xl:h-[40vh] min-[1800px]:h-[57vh] min-[2200px]:h-[50vh] overflow-y-scroll">
+          <div v-else class="text-neutral-200 rounded-b-2xl text-center block w-full max-md:h-[35vh] mb-5 md:h-[45vh] lg:h-[36vh] xl:h-[35vh] 2xl:h-[40vh] min-[1800px]:h-[57vh] min-[2200px]:h-[50vh] overflow-y-scroll overflow-x-hidden">
              <FlexMinified class="border-b w-full bg-eggplant-500 border-gray-700" justify="around"
               v-for="(time,index) in secondTimeTable"
               :key="index"
               >
                 <div  class="px-6 py-4 w-full font-medium whitespace-nowrap"
-                      :class="( timeTable[index] != undefined
-                      && parseInt(timeTable[index].slice(0,2)) === new Date().getHours()
-                      && parseInt(timeTable[index].slice(3,5)) <= new Date().getMinutes())
-                      && (new Date().getMinutes() < parseInt(timeTable[(index != undefined) ? index-1 : 0].slice(3,5))
-                      ? parseInt(timeTable[index].slice(3,5)) <= parseInt(timeTable[(index != undefined) ? index-1 : 0].slice(3,5))
-                      : parseInt(timeTable[index].slice(3,5)) >= parseInt(timeTable[(index != undefined) ? index-1 : 0].slice(3,5)))
-                      && parseInt(timeTable[index].slice(0,2)) >= parseInt(timeTable[(index != undefined) ? index-1 : 0].slice(0,2))
-                      && (new Date().getHours() < 23 && new Date().getHours() >5)
+                      :class="(timeTable[index] === startTime)
                       ?  `bg-emerald-400 text-gray-600 animate-pulse`
                       : null"
                 >
-                  <span class="block hover:scale-110" :class="trans">
                     {{(timeTable[index] === undefined) ? '-' : timeTable[index] }}
-                  </span>
                 </div>
 
 
                 <div class="px-6 py-4 w-full"
                   style="z-index: 1"
-                  :class="( parseInt(time.slice(0,2)) >= new Date().getHours()
-                  && parseInt(time.slice(3,5)) <= new Date().getMinutes())
-                  && (new Date().getHours() < 23 && new Date().getHours() >5)
+                  :class="(time === startTime)
                   ? `bg-emerald-400 text-gray-600 animate-pulse`
                   : null"
                 >
-                  <span class="block hover:scale-105" :class="trans">
                   {{time}}
-                  </span>
             </div>
           </FlexMinified>
           </div>
