@@ -93,7 +93,7 @@ const endText = computed(() => {
   </FlexMinified>
 
   <GridMinified columns="1" lg-columns="3" gap-x="5"
-                class="sm:bg-eggplant-950/80 md:rounded-xl mt-5 md:mx-10 px-5 pt-4"
+                class="bg-eggplant-950/80 md:rounded-xl mt-5 md:mx-10 px-5 pt-4 sm:border max-sm:border-y border-white/30"
   >
     <FlexMinified class=""
         :column="true"
@@ -106,7 +106,7 @@ const endText = computed(() => {
            alt="mesopotamia image">
 
       <FlexMinified :column="true" items="center"
-                    class=" lg:col-span-3 my-3 max-sm:border border-t-white/50 border-transparent w-full "
+                    class=" lg:col-span-3 my-5 max-sm:border border-t-white/50 border-transparent w-full "
       ><span class="mb-3 text-center  text-xl font-bold text-red-500 "><Icon icon="stash:circle-dot-duotone" class="inline animate-pulse" /> Live Αφίξεις </span>
 
         <FlexMinified :column="true"
