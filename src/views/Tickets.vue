@@ -36,8 +36,9 @@ const tickets = ref([zoneA, zoneB]);
       </FlexMinified>
       <FlexMinified :column="true" class=" bg-eggplant-700 sm:rounded-b-2xl  text-pink-100 overflow-hidden" justify="center">
         <FlexMinified v-for="(area,index) in areas" :key="index+1" class="border-b border-b-white/40 py-1">
-          <p class="w-full text-center">{{area.place.start.el.location}} - {{area.place.end.el.location}}</p>
-          <p class="w-full text-center font-bold" :class="(area.zone === 'A') ? 'text-blue-400' : 'text-red-500'">Ζώνη {{area.zone}}</p>
+          <RouterLink :to="`/schedule/${index+1}`"
+                      class="w-full  text-center hover:text-pink-500 font-bold transition-colors duration-300 ease-linear">{{area.place.start.el.location}} - {{area.place.end.el.location}}</RouterLink>
+          <p class="w-full text-center font-bold saturate-200" :class="(area.zone === 'A') ? 'text-blue-400' : 'text-red-500'">Ζώνη {{area.zone}}</p>
         </FlexMinified>
       </FlexMinified>
     </div>

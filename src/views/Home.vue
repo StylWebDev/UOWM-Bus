@@ -9,14 +9,14 @@ const {trans} = useConfigureStore()
 <template>
 <FlexMinified items="center" justify="between" class="mx-5 h-full max-xl:justify-center max-xl:flex-col xl:flex-row">
 
-  <FlexMinified :column="true" class="w-full max-xl:items-center" gap-y="7">
+  <FlexMinified :column="true" class="w-full max-xl:items-center" gap-y="4">
     <FlexMinified :column="true" items="center"
-                  class="xl:flex-row text-5xl min-[2000px]:text-7xl sm:self-start font-bold w-full rainbow max-xl:text-center">
-      <img src="../assets/logo.png" alt="logo" class="max-md:size-24 size-40 xl:size-16 mr-4">
+                  class="max-[406px]:text-2xl xl:flex-row text-5xl min-[2000px]:text-7xl sm:self-start font-bold w-full rainbow max-xl:text-center">
+      <img src="../assets/logo.png" alt="logo" class="max-[406px]:size-16 max-md:size-24 size-40 xl:size-16 mr-4">
       <span class="align-middle">UOWM Student Bus</span>
     </FlexMinified>
 
-    <p class="max-sm:text-xl text-xl  max-xl:text-center font-light min-[2000px]:text-2xl">
+    <p class="max-[406px]:text-base max-sm:text-xl text-xl  max-xl:text-center font-light min-[2000px]:text-2xl">
       Η ιστοσελίδα UOWMBus παρέχει πύλη πληροφοριών για τις συγκοινωνίες του <strong>Πανεπιστημίου Δυτικής Μακεδονίας (ΠΔΜ)</strong> στη πόλη της Καστοριάς.
       Η πλατφόρμα περιλεμάβνει το  πρόγραμμα των δρομολογίων λεωφορείων που εξυπηρετούν τις πανεπιστημιακές σχολές, καθώς και δρομολόγια που συνδέουν την πόλη της Καστοριάς με άλλες κοντινές περιοχές.<br>
       <br class="xl:hidden">
@@ -27,10 +27,10 @@ const {trans} = useConfigureStore()
       </span>
     </p>
     <FlexMinified
-        class="gap-x-10 font-semibold text-xl min-[2000px]:text-2xl"
+        class="gap-x-10 font-semibold text-xl min-[2000px]:text-2xl max-[406px]:text-base"
     >
-      <RouterLink class="px-4 py-1 bg-black rounded-full hover:bg-white hover:text-black hover:animate-bounce" to="/schedule" :class="trans">Δρομολόγια</RouterLink>
-      <RouterLink class="px-4 py-1 bg-blue-500 rounded-full hover:bg-white hover:text-black hover:animate-bounce" :class="trans" to="/tickets">Εισητήρια</RouterLink>
+      <RouterLink class="px-4 py-1 bg-black rounded-full hover:bg-white hover:text-black" to="/schedule" :class="trans">Δρομολόγια</RouterLink>
+      <RouterLink class="px-4 py-1 bg-blue-500 rounded-full hover:bg-white hover:text-black" :class="trans" to="/tickets">Εισητήρια</RouterLink>
     </FlexMinified>
   </FlexMinified>
   <FlexMinified justify="center" class="w-full max-xl:hidden">
