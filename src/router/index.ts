@@ -15,11 +15,11 @@ const routes = [
         children: [
             {
                 path: '',
-                component: () => import('../views/schedules/ALL.vue')
+                component: () => import('../views/schedules/Overview.vue')
             },
             {
                 path: ':id([1-3])',
-                component: () => import('../views/schedules/Destination.vue')
+                component: () => import('../views/schedules/Track.vue')
             }
         ]
     },

@@ -1,5 +1,6 @@
 import {defineStore} from "pinia";
 import {useRouter} from "vue-router"
+import {ref} from "vue";
 
 export const useDataStore = defineStore('data', () => {
     const router = useRouter();
@@ -30,5 +31,8 @@ export const useDataStore = defineStore('data', () => {
         return timeStamp.slice(0,3) + `${(totalMins >= 10) ? totalMins : `0${totalMins}`}`
     }
 
-    return {getData, addTime, getTickets}
+    const startTime = ref<string>(``)
+
+
+    return {getData, addTime, getTickets, startTime}
 })

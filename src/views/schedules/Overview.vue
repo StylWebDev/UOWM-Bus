@@ -22,8 +22,8 @@ const { trans } = useConfigureStore()
 
 <template>
   <FlexMinified :column="true" items="center">
-    <h3 class="flex justify-center gap-x-1 items-center text-center font-bold text-3xl rainbow">
-      <Icon icon="healthicons:i-schedule-school-date-time" class="size-12 " />
+    <h3 class="flex justify-center gap-x-1 items-center text-center font-bold text-3xl md:text-4xl rainbow">
+      <Icon icon="healthicons:i-schedule-school-date-time" class="size-12 2xl:size-16" />
       <span class="block">ΔΡΟΜΟΛΟΓΙΑ</span>
     </h3>
     <div class="h-0.5 w-[70vw] text-center rounded-full bg-rainbow"/>
@@ -36,11 +36,11 @@ const { trans } = useConfigureStore()
         color="bg-neutral-800"
         border-color="border-white/35"
         :shadow="true"
-        class="card cursor-default h-fit w-[80vw] min-[400px]:w-[65vw] min-[430px]:w-[60vw] sm:w-[40vw] md:w-[38vw] lg:w-[33vw] xl:w-[45vh] 2xl:w-[20vw]  mt-5"
+        class="card cursor-default h-fit w-[85vw] min-[430px]:w-[75vw] sm:w-[40vw] md:w-[38vw] lg:w-[40vw] xl:w-[45vh] 2xl:w-[25vw]  mt-5"
     >
       <template #img>
         <img src="https://astikoktelkastorias.gr/wp-content/uploads/2023/10/mesopotamia-2.png"
-             class="rounded-t-lg bg-red-500"
+             class="rounded-t-lg bg-red-500 size-full"
              alt="mesopotamia image">
       </template>
       <template #title>

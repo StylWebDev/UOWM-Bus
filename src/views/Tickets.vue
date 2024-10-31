@@ -31,13 +31,13 @@ const tickets = ref([zoneA, zoneB]);
     </FlexMinified>
     <div class="w-fit border border-white/50 sm:rounded-2xl">
       <FlexMinified class="bg-eggplant-950/85 w-screen  sm:w-[80vw] lg:w-[70vw]  py-1 sm:rounded-t-xl text-pink-500 text-xl font-extrabold over">
-        <p class="w-full text-center">Δρομολόγιο</p>
-        <p class="w-full text-center">Ζώνη</p>
+        <p class="w-full text-center"><Icon icon="streamline:arrow-roadmap-solid" class="inline size-6"/> Δρομολόγια</p>
+        <p class="w-full text-center"><Icon icon="material-symbols-light:detection-and-zone-sharp" class="inline size-8"/> Ζώνες</p>
       </FlexMinified>
-      <FlexMinified :column="true" class=" bg-eggplant-700  sm:rounded-b-2xl text-xl text-pink-100 overflow-hidden" justify="center">
+      <FlexMinified :column="true" class=" bg-eggplant-700 sm:rounded-b-2xl  text-pink-100 overflow-hidden" justify="center">
         <FlexMinified v-for="(area,index) in areas" :key="index+1" class="border-b border-b-white/40 py-1">
           <p class="w-full text-center">{{area.place.start.el.location}} - {{area.place.end.el.location}}</p>
-          <p class="w-full text-center">Ζώνη {{area.zone}}</p>
+          <p class="w-full text-center font-bold" :class="(area.zone === 'A') ? 'text-blue-400' : 'text-red-500'">Ζώνη {{area.zone}}</p>
         </FlexMinified>
       </FlexMinified>
     </div>
@@ -53,7 +53,7 @@ const tickets = ref([zoneA, zoneB]);
             :class="(index===0) ? `text-blue-500` : `text-red-500`"
         >
           <Icon :icon="(index === 0) ? `mynaui:letter-a-waves-solid` : `mynaui:letter-b-waves-solid`"
-                class="inline size-10 animate-pulse"
+                class="inline size-10"
           />
           {{ticket.name_el}}
         </h4>
@@ -66,38 +66,38 @@ const tickets = ref([zoneA, zoneB]);
 
         <FlexMinified justify="around" gap-y="4" class="font-semibold max-sm:flex-col max-sm:items-center text-center sm:gap-x-20 ">
           <div :class="(index===0) ? `text-sky-500` : `text-emerald-500`">
-            <h5 class="text-lg font-semibold text-center mb-2.5 align-middle" :class="(index===0) ? `text-yellow-500` : `text-pink-500`">
+            <h5 class="text-2xl sm:text-lg font-semibold text-center mb-2.5 align-middle" :class="(index===0) ? `text-yellow-500` : `text-pink-500`">
               <Icon icon="mdi:ticket-confirmation" class="inline size-8"/>
               Τύπος: Κανονικό
             </h5>
-            <img :src="ticket.category.norm.url" alt="ZoneA_Norm" class="block rounded">
+            <img :src="ticket.category.norm.url" alt="ZoneA_Norm" class="block rounded max-sm:w-96">
             <hgroup class="mt-1.5 text-emerald-300">
-              <h6 >
+              <h6 class="text-xl font-bold">
                 <Icon icon="ic:baseline-price-change" class="inline size-8"/>
                 Τιμές:
               </h6>
-              <p>Αυτόματου Πωλητή: <span class="text-yellow-300 font-normal">{{ticket.category.norm.inside}}€</span></p>
-              <p>Λεωφορείου: <span class="text-yellow-300 font-normal">{{ticket.category.norm.outside}}€</span></p>
+              <p>Αυτόματου Πωλητή: <span class="text-yellow-300 font-light">{{ticket.category.norm.inside}}€</span></p>
+              <p>Λεωφορείου: <span class="text-yellow-300 font-light">{{ticket.category.norm.outside}}€</span></p>
             </hgroup>
           </div>
 
-          <div :class="(index===0) ? `text-sky-500` : `text-emerald-500`">
-            <h5 class="text-lg font-semibold text-center mb-2.5 align-middle" :class="(index ===0) ? `text-orange-500` : `text-sky-500`">
+          <div :class="(index===0) ? `text-sky-500` : `text-emerald-500`" class="max-sm:border-t max-sm:border-t-white/30 max-sm:pt-5">
+            <h5 class="text-2xl sm:text-lg font-semibold text-center mb-2.5 align-middle" :class="(index ===0) ? `text-orange-500` : `text-sky-500`">
               <Icon icon="mdi:ticket-percent" class="inline size-8"/>
               Τύπος: Μειωμένο
             </h5>
-            <img :src="ticket.category.low.url" alt="ZoneA_Low" class="block w-72 rounded">
+            <img :src="ticket.category.low.url" alt="ZoneA_Low" class="block w-72 rounded max-sm:w-96">
             <hgroup class="mt-1.5 text-emerald-300">
-              <h6 >
+              <h6 class="text-xl font-bold">
                 <Icon icon="ic:baseline-price-change" class="inline size-8"/>
                 Τιμές:
               </h6>
-              <p>Αυτόματου Πωλητή: <span class="text-yellow-300 font-normal">{{ticket.category.low.inside}}€</span></p>
-              <p>Λεωφορείου: <span class="text-yellow-300 font-normal">{{ticket.category.low.outside}}€</span></p>
+              <p>Αυτόματου Πωλητή: <span class="text-yellow-300 font-light">{{ticket.category.low.inside}}€</span></p>
+              <p>Λεωφορείου: <span class="text-yellow-300 font-light">{{ticket.category.low.outside}}€</span></p>
             </hgroup>
           </div>
         </FlexMinified>
-        <h3 class="px-2.5 mt-5 bg-yellow-200/30 border rounded border-orange-300 text-sm self-center animate-pulse capitalize w-fit text-center text-orange-300 max-sm:mx-3"
+        <h3 class="px-2.5 mt-5 bg-yellow-200/30 font-semibold border rounded border-orange-300 text-sm self-center animate-pulse capitalize w-fit text-center text-orange-300 max-sm:mx-3"
             :class="trans"
         >
           <Icon icon="line-md:alert-twotone-loop" class="inline size-6"></Icon>

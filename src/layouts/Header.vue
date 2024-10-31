@@ -10,7 +10,7 @@ defineProps<{
 </script>
 
 <template>
-<FlexMinified justify="evenly" class="sticky top-0 h-[8vh]" items="center">
+<FlexMinified justify="evenly" class="sticky top-0 " items="center">
   <FlexMinified justify="center" class=" w-[50%]">
     <FlexMinified items="center" gap-x="2">
       <img class="size-12" src="../assets/logo.png" alt="logo">
