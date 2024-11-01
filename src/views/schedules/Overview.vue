@@ -58,8 +58,8 @@ const { trans } = useConfigureStore()
         <RouterLink
                 :to="`/schedule/${index+1}`"
                 :class="trans"
-                class="bg-cyan-600 font-semibold text-neutral-50
-             text-base px-4 py-1 rounded hover:brightness-150"
+                class="bg-cyan-600 font-semibold text-neutral-50 ease-linear
+             text-base px-4 py-1 rounded hover:bg-white hover:text-black"
         >Περισσότερα</RouterLink>
       </template>
     </Card>

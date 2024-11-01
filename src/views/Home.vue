@@ -7,9 +7,9 @@ const {trans} = useConfigureStore()
 </script>
 
 <template>
-<FlexMinified items="center" justify="between" class="mx-5 h-full max-xl:justify-center max-xl:flex-col xl:flex-row">
+<FlexMinified items="center" justify="between" class=" h-full max-xl:justify-center max-xl:flex-col xl:flex-row">
 
-  <FlexMinified :column="true" class="w-full max-xl:items-center" gap-y="4">
+  <FlexMinified :column="true" class="w-full sm:pl-8 max-xl:items-center" gap-y="4">
     <FlexMinified :column="true" items="center"
                   class="max-[406px]:text-2xl xl:flex-row text-5xl min-[2000px]:text-7xl sm:self-start font-bold w-full rainbow max-xl:text-center">
       <img src="../assets/logo.png" alt="logo" class="max-[406px]:size-16 max-md:size-24 size-40 xl:size-16 mr-4">
@@ -33,7 +33,7 @@ const {trans} = useConfigureStore()
       <RouterLink class="px-4 py-1 bg-blue-500 rounded-full hover:bg-white hover:text-black" :class="trans" to="/tickets">Εισητήρια</RouterLink>
     </FlexMinified>
   </FlexMinified>
-  <FlexMinified justify="center" class="w-full max-xl:hidden">
+  <FlexMinified justify="end" class="w-full max-xl:hidden">
     <img src="../assets/busImg.webp" alt="logo" class="block size-[50%] xl:size-[75%] brightness-75 saturate-200 contrast-150 pointer-events-none ">
 
   </FlexMinified>

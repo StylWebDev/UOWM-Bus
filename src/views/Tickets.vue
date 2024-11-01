@@ -24,7 +24,7 @@ const tickets = ref([zoneA, zoneB]);
     <FlexMinified  :column="true" items="center">
       <h3 class="flex justify-center gap-x-1 items-center text-center font-bold text-3xl rainbow">
         <Icon icon="material-symbols:transit-ticket-rounded" class="inline size-12 " />
-        <span class="block">Εισητήρια</span>
+        <span class="block uppercase">Εισητήρια</span>
       </h3>
       <div class="h-0.5 max-sm:w-full w-[70vw] text-center rounded-full bg-rainbow"/>
 
