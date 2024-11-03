@@ -3,35 +3,36 @@ import {Icon} from "@iconify/vue";
 import FlexMinified from "../FlexMinified.vue";
 import {computed, onMounted, ref} from "vue";
 import {useDataStore} from "../../stores/data.ts";
-import Map from "./Map.vue";
 
-const {addTime} = useDataStore()
+const {addTime, dateToTimeStamp} = useDataStore()
 const dataStore = useDataStore()
 
 const props = defineProps<{
   resolvedSchedule: string,
+  mapURL: string,
   timeTable: string[],
   secondTimeTable: string[],
   mins: number,
   id: string,
+  test: boolean
 }>()
+
+
+const date = ref<string>(dateToTimeStamp(new Date().getHours(), new Date().getMinutes()))
+
 const stopSchedule = ref(
     (Number(props.secondTimeTable[props.secondTimeTable.length - 1].slice(0,2)) < new Date().getHours() || ( Number(props.secondTimeTable[props.secondTimeTable.length - 1].slice(0,2)) === new Date().getHours() && Number(addTime(props.secondTimeTable[props.secondTimeTable.length - 1], props.mins).slice(3,5)) < new Date().getMinutes() ))
     || (Number(props.id) === 1 && new Date().getHours() < 7 && new Date().getMinutes() < 55) ||  (Number(props.id) > 1 && new Date().getHours() < 6 && new Date().getMinutes() < 45)
 )
+
 const lastStartTime = ref(props.timeTable[props.timeTable.length - 1])
 
 //Calculating Arrival and return times
 
 const arrivalTime = computed(() => {
-  return (Number(lastStartTime.value.slice(0,2))> new Date().getHours() || (Number(lastStartTime.value.slice(0,2)) === new Date().getHours() && Number(lastStartTime.value.slice(0,2)) < new Date().getMinutes()) )
-      ? props.timeTable.find((time: string, index: number, arr: string[]) => (index === arr.length - 1)
-          ? arr[index]
-          : parseInt(time.slice(0,2)) >= new Date().getHours() && parseInt(time.slice(3,5)) <= new Date().getMinutes()
-          &&  (arr[index+1] != undefined &&
-              (parseInt(arr[index + 1].slice(0,2)) > new Date().getHours() || parseInt(arr[index + 1].slice(3,5)) >= new Date().getMinutes())
-          )
-      )
+  if (props.test) return props.timeTable[0];
+  return (lastStartTime.value > date.value )
+      ? props.timeTable.findLast((time: string, index: number, arr: string[]) => (index === 0) ? arr[0] :  time <= date.value)
       : props.timeTable[props.timeTable.length - 1]
 });
 
@@ -40,36 +41,30 @@ const secondArrivalTime =
         ? props.timeTable[props.timeTable.findIndex((value: string) => value === arrivalTime.value) + 1] : props.timeTable[0] )
 
 const returnTime = computed(() => {
-  if (arrivalTime.value !== undefined) return props.secondTimeTable.find((time: string, _:any) =>
-      (parseInt(time.slice(0,2)) === parseInt(arrivalTime.value!.slice(0,2))
-          && (parseInt(time.slice(3,5)) >= new Date().getMinutes() ||  parseInt(time.slice(3,5)) > parseInt(arrivalTime.value!.slice(3,5))) )
-      || (parseInt(time.slice(0,2)) > new Date().getHours()
-          && parseInt(time.slice(3,5)) < new Date().getMinutes())
-      || (parseInt(time.slice(0,2)) > new Date().getHours()
-          && parseInt(time.slice(3,5)) >= new Date().getMinutes())
-  )
+  if (arrivalTime.value !== undefined) return props.secondTimeTable.find((time: string, _:any) => time >= arrivalTime.value!)
   return props.secondTimeTable[0]
 })
 
 //start time text
 const startTime = computed(() => {
-  return (new Date().getHours() <= Number(returnTime.value!.slice(0,2)) && new Date().getHours() <= Number(secondArrivalTime.value.slice(0,2))
-      && (new Date().getMinutes() >= Number(returnTime.value!.slice(3,5))  || new Date().getMinutes() <= Number(secondArrivalTime.value.slice(3,5)) ) ) ? returnTime.value : arrivalTime.value
+  if (props.test) return arrivalTime.value!
+  return (date.value >= arrivalTime.value! && date.value < returnTime.value!) ?  arrivalTime.value : returnTime.value
 })
+
 const startText = computed(() => {
-  return (new Date().getHours() <= Number(returnTime.value!.slice(0,2)) && new Date().getHours() <= Number(secondArrivalTime.value.slice(0,2))
-      && (new Date().getMinutes() >= Number(returnTime.value!.slice(3,5))  || new Date().getMinutes() <= Number(secondArrivalTime.value.slice(3,5)) ) ) ? `Επιστροφή` : `Μετάβαση`
+  if (props.test) return `Μετάβαση`
+  return (date.value >= arrivalTime.value! && date.value < returnTime.value!) ?  `Μετάβαση` : `Επιστροφή`
 })
 
 
 //end time and text
 const endTime = computed(() => {
-  return (new Date().getHours() <= Number(returnTime.value!.slice(0,2)) && new Date().getHours() <= Number(secondArrivalTime.value.slice(0,2))
-      && ( new Date().getMinutes() >= Number(returnTime.value!.slice(3,5))  && new Date().getMinutes() <= Number(secondArrivalTime.value.slice(3,5)) ) || ( new Date().getMinutes() < Number(returnTime.value!.slice(3,5))  && new Date().getMinutes() <= Number(secondArrivalTime.value.slice(3,5)) )) ? secondArrivalTime.value : returnTime.value
+  if (props.test) return returnTime.value!
+  return (date.value >= returnTime.value! && date.value < secondArrivalTime.value!) ? secondArrivalTime.value : returnTime.value
 })
 const endText = computed(() => {
-  return (new Date().getHours() <= Number(returnTime.value!.slice(0,2)) && new Date().getHours() <= Number(secondArrivalTime.value.slice(0,2))
-      && ( new Date().getMinutes() >= Number(returnTime.value!.slice(3,5))  && new Date().getMinutes() <= Number(secondArrivalTime.value.slice(3,5)) ) || ( new Date().getMinutes() < Number(returnTime.value!.slice(3,5))  && new Date().getMinutes() <= Number(secondArrivalTime.value.slice(3,5)) )) ? `Μετάβαση` : `Επιστροφή`
+  if (props.test) return `Επιστροφή`
+  return (date.value >= returnTime.value! && date.value < secondArrivalTime.value!) ? `Μετάβαση` : `Επιστροφή`
 })
 
 onMounted(() => {
@@ -84,7 +79,7 @@ onMounted(() => {
   >
     <h3 class="text-xl font-bold text-pink-500">Διαδρομή</h3>
     <p class="text-pink-300 font-semibold text-center">{{resolvedSchedule}}</p>
-    <Map/>
+    <iframe :src="mapURL" class="w-full rounded-2xl" height="480"></iframe>
     <FlexMinified :column="true" items="center"
                   class=" lg:col-span-3 my-5 max-sm:border border-t-white/50 border-transparent w-full "
     ><span class="mb-3 text-center  text-xl font-bold text-red-500 "><Icon icon="stash:circle-dot-duotone" class="inline animate-pulse" /> Live Αφίξεις </span>
@@ -93,11 +88,10 @@ onMounted(() => {
                     class="w-full text-sm"
 
       >
-        <FlexMinified gap-x="4" justify="around" items="center" :class="stopSchedule ? `bg-orange-500` : `bg-emerald-500`" class="rounded-lg  text-center">
-          <h5 :class="stopSchedule ? `bg-orange-800` : `bg-emerald-800`" class="h-full rounded-l-lg w-full font-semibold py-1.5">{{(!stopSchedule) ? `Τρέχων:` : `Επόμενο:`}} {{startText}}</h5>
-          <p :class="stopSchedule ? `text-gray-100` : `text-gray-600`" class="w-full  ">Ώρα Αναχώρησης: {{(stopSchedule) ? timeTable[0] : startTime}}</p>
-          <p :class="stopSchedule ? `text-gray-100` : `text-gray-600`" class="w-full  ">Ώρα Άφιξης: {{(stopSchedule) ? addTime(timeTable[0], mins) : addTime(startTime!, mins)}}</p>
-
+        <FlexMinified gap-x="4" justify="around" items="center" :class="stopSchedule || test ? `bg-orange-500` : `bg-emerald-500`" class="rounded-lg  text-center">
+          <h5 :class="stopSchedule || test ? `bg-orange-800` : `bg-emerald-800`" class="h-full rounded-l-lg w-full font-semibold py-1.5">{{(!stopSchedule && !test) ? `Τρέχων:` : `Επόμενο:`}} {{startText}}</h5>
+          <p :class="stopSchedule || test ? `text-gray-100` : `text-gray-600`" class="w-full  ">Ώρα Αναχώρησης: {{(stopSchedule) ? timeTable[0] : startTime}}</p>
+          <p :class="stopSchedule || test ? `text-gray-100` : `text-gray-600`" class="w-full  pr-2">Ώρα Άφιξης: {{(stopSchedule) ? addTime(timeTable[0], mins) : addTime(startTime!, mins)}}</p>
         </FlexMinified>
         <FlexMinified gap-x="4" justify="around" items="center" class="mt-4 rounded-lg  bg-orange-500 text-center  ">
           <h5 class="bg-orange-800 h-full rounded-l-lg py-1.5 w-full font-semibold">Επόμενο: {{endText}}</h5>

@@ -11,8 +11,8 @@ const  sections= ref([
 </script>
 
 <template>
-  <Transition appear enter-from-class="scale-0 opacity-0" appear-active-class="transition-all duration-500 ease-in">
-    <FlexMinified :column="true" justify="center" items="center" class="gap-y-4 z-50 ">
+  <Transition appear enter-from-class=" opacity-0 scale-50" appear-active-class="transition-all duration-700 ease-linear">
+    <FlexMinified :column="true" justify="center" items="center" class="gap-y-4 ">
       <a
           v-for="(section,index) in sections"
           target="_blank"

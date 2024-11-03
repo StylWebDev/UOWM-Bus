@@ -2,6 +2,9 @@
 import FlexMinified from "../components/FlexMinified.vue";
 import {Icon} from "@iconify/vue";
 import {useConfigureStore} from "../stores/configure.ts";
+import {useRoute} from "vue-router";
+
+const route = useRoute()
 const config = useConfigureStore();
 
 defineProps<{
@@ -12,10 +15,12 @@ defineProps<{
 <template>
 <FlexMinified justify="evenly" class="sticky top-0 " items="center">
   <FlexMinified justify="center" class=" w-[50%]">
-    <FlexMinified items="center" gap-x="2">
-      <img class="size-12" src="../assets/logo.png" alt="logo">
-      <h1 class="font-bold text-white text-2xl">UOWMBus</h1>
-    </FlexMinified>
+    <RouterLink to="/" class="flex items-center gap-x-2 text-white "
+                :class="[{'cursor-default': route.fullPath === '/'} ,{'hover:text-blue-700 hover:hue-rotate-90 hover:text-shadow shadow-blue-700' : route.fullPath!=='/'} ,config.trans]"
+    >
+      <img class="size-12" src="../assets/logo.webp" alt="logo">
+      <h1 class="font-bold  text-2xl">UOWMBus</h1>
+    </RouterLink>
   </FlexMinified>
   <FlexMinified class="max-md:hidden w-[50%]" justify="center">
     <FlexMinified class="max-md:hidden font-semibold text-lg" gap-x="2">

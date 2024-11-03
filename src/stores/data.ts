@@ -31,8 +31,19 @@ export const useDataStore = defineStore('data', () => {
         return timeStamp.slice(0,3) + `${(totalMins >= 10) ? totalMins : `0${totalMins}`}`
     }
 
+    const dateToTimeStamp = (hours: number, mins: number) :string => {
+        if (hours >= 24 || mins >= 60 || hours<0 || mins<0) return 'Wrong Arguments';
+        if (mins < 10) {
+            if (hours > 9) {
+                return `${hours}:0${mins}`;
+            }
+            return `0${hours}:0${mins}`;
+        }
+        return (hours > 9) ?  `${hours}:${mins}` : `0${hours}:${mins}`;
+    }
+
     const startTime = ref<string>(``)
 
 
-    return {getData, addTime, getTickets, startTime}
+    return {getData, addTime, getTickets, startTime, dateToTimeStamp}
 })
