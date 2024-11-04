@@ -20,10 +20,6 @@ const props = defineProps<{
 
 const date = ref<string>(dateToTimeStamp(new Date().getHours(), new Date().getMinutes()))
 
-const stopSchedule = ref(
-    (Number(props.secondTimeTable[props.secondTimeTable.length - 1].slice(0,2)) < new Date().getHours() || ( Number(props.secondTimeTable[props.secondTimeTable.length - 1].slice(0,2)) === new Date().getHours() && Number(addTime(props.secondTimeTable[props.secondTimeTable.length - 1], props.mins).slice(3,5)) < new Date().getMinutes() ))
-    || (Number(props.id) === 1 && new Date().getHours() < 7 && new Date().getMinutes() < 55) ||  (Number(props.id) > 1 && new Date().getHours() < 6 && new Date().getMinutes() < 45)
-)
 
 const lastStartTime = ref(props.timeTable[props.timeTable.length - 1])
 
@@ -70,6 +66,13 @@ const endText = computed(() => {
 onMounted(() => {
   dataStore.startTime = startTime.value!
 })
+
+const stopSchedule = ref(
+     (addTime(props.secondTimeTable[props.secondTimeTable.length-1], props.mins) < date.value)
+)
+const stopSchedule2 = ref(
+    (props.secondTimeTable[props.secondTimeTable.length-1] < date.value )
+)
 </script>
 
 <template>
@@ -94,9 +97,9 @@ onMounted(() => {
           <p :class="stopSchedule || test ? `text-gray-100` : `text-gray-600`" class="w-full  pr-2">Ώρα Άφιξης: {{(stopSchedule) ? addTime(timeTable[0], mins) : addTime(startTime!, mins)}}</p>
         </FlexMinified>
         <FlexMinified gap-x="4" justify="around" items="center" class="mt-4 rounded-lg  bg-orange-500 text-center  ">
-          <h5 class="bg-orange-800 h-full rounded-l-lg py-1.5 w-full font-semibold">Επόμενο: {{endText}}</h5>
-          <p class="w-full text-gray-100 ">Ώρα Αναχώρησης: {{(stopSchedule) ? secondTimeTable[0] : endTime}}</p>
-          <p class="w-full text-gray-100 ">Ώρα Άφιξης: {{(stopSchedule) ? addTime(secondTimeTable[0], mins) : addTime(endTime!, mins)}}</p>
+          <h5 class="bg-orange-800 h-full rounded-l-lg py-1.5 w-full font-semibold">Επόμενο: {{(!stopSchedule && stopSchedule2) ? `Μετάβαση` : endText}}</h5>
+          <p class="w-full text-gray-100 ">Ώρα Αναχώρησης: {{(stopSchedule) ? secondTimeTable[0] : (stopSchedule2) ? props.timeTable[0] : endTime}}</p>
+          <p class="w-full text-gray-100 ">Ώρα Άφιξης: {{(stopSchedule) ? addTime(secondTimeTable[0], mins) : (stopSchedule2) ? addTime(timeTable[0], mins) : addTime(endTime!, mins)}}</p>
         </FlexMinified>
       </FlexMinified>
     </FlexMinified>

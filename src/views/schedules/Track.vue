@@ -45,6 +45,6 @@ const secondTimeTable = ref(specData.value.end)
   >
     <Tracking :id="params.id.toString()" :resolved-schedule="data.resolvedSchedule" :time-table="timeTable" :second-time-table="secondTimeTable" :mins="Number(data.mins)" :test="test" :mapURL="data.map_url"/>
 
-    <ScheduleTable :time-table="timeTable" :second-time-table="secondTimeTable" :start-time="(test) ? '00:00' : dataStore.startTime"/>
+    <ScheduleTable :time-table="timeTable" :second-time-table="secondTimeTable" :start-time="(test) ? '00:00' : dataStore.startTime" :mins="Number(data.mins)"/>
   </GridMinified>
 </template>

@@ -1,29 +1,42 @@
 <script setup lang="ts">
 import FlexMinified from "../../FlexMinified.vue";
-import {onMounted} from "vue";
+import {onMounted, ref} from "vue";
+import {useDataStore} from "../../../stores/data.ts";
 
 const props = defineProps<{
   timeTable: string[],
   secondTimeTable: string[],
-  startTime: string
+  startTime: string,
+  mins: number
 }>();
 
+
+const timeTable = ref<string[]>([...props.timeTable])
+const secondTimeTable = ref<string[]>([...props.secondTimeTable])
+
 onMounted(() => {
-  if (props.timeTable.length >= props.secondTimeTable.length) {
-    props.timeTable.forEach((_: string, index: number) => {
-      if (index >= props.secondTimeTable.length) {
-        props.secondTimeTable.push('-')
+  if (timeTable.value.length >= props.secondTimeTable.length) {
+    timeTable.value.forEach((_: string, index: number) => {
+      if (index >= secondTimeTable.value.length) {
+        secondTimeTable.value.push('-')
       }
     })
   }
   else {
-    props.secondTimeTable.forEach((_: string, index: number) => {
-      if (index >= props.timeTable.length) {
-        props.timeTable.push('-')
+    secondTimeTable.value.forEach((_: string, index: number) => {
+      if (index >= timeTable.value.length) {
+        timeTable.value.push('-')
       }
     })
   }
 })
+
+const {addTime, dateToTimeStamp} = useDataStore()
+const date = ref<string>(dateToTimeStamp(new Date().getHours(), new Date().getMinutes()))
+
+const stopSchedule = ref(
+    (addTime(props.secondTimeTable[props.secondTimeTable.length-1], props.mins) < date.value || date.value < props.timeTable[0])
+)
 
 </script>
 
@@ -44,11 +57,11 @@ onMounted(() => {
       <div class="text-neutral-200 rounded-b-2xl text-center block w-full max-md:h-[35vh]  md:h-[45vh] lg:h-[36vh] xl:h-[35vh] 2xl:h-[40vh] min-[1800px]:h-[57vh] min-[2200px]:h-[50vh] overflow-y-auto">
         <FlexMinified class="border-b bg-eggplant-500 border-gray-700"
                       justify="around"
-                      v-for="(time,index) in props.timeTable"
+                      v-for="(time,index) in timeTable"
                       :key="index"
         >
           <div  class="px-6 py-4 font-medium whitespace-nowrap w-full "
-                :class="( time === startTime)
+                :class="( time === startTime && !stopSchedule)
             ? `bg-emerald-400 text-gray-600 animate-pulse`
                 : null"
           >
@@ -56,11 +69,11 @@ onMounted(() => {
           </div>
 
           <div class="px-6 py-4 w-full"
-               :class="( props.secondTimeTable[index] === startTime )
+               :class="( secondTimeTable[index] === startTime  && !stopSchedule)
             ? `bg-emerald-400 text-gray-600 animate-pulse`
                 : null"
           >
-            {{props.secondTimeTable[index]}}
+            {{secondTimeTable[index]}}
           </div>
         </FlexMinified>
       </div>
