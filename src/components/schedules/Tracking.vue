@@ -22,6 +22,7 @@ const date = ref<string>(dateToTimeStamp(new Date().getHours(), new Date().getMi
 
 
 const lastStartTime = ref(props.timeTable[props.timeTable.length - 1])
+const lastStartTime2 = ref(props.secondTimeTable[props.timeTable.length - 1])
 
 //Calculating Arrival and return times
 
@@ -32,8 +33,19 @@ const arrivalTime = computed(() => {
       : props.timeTable[props.timeTable.length - 1]
 });
 
+const arrivalTime2 = computed(() => {
+  if (props.test) return props.secondTimeTable[0];
+  return (lastStartTime2.value > date.value )
+      ? props.secondTimeTable.findLast((time: string, index: number, arr: string[]) => (index === 0) ? arr[0] :  time <= date.value)
+      : props.secondTimeTable[props.secondTimeTable.length - 1]
+});
+
 const secondArrivalTime =
     ref((props.timeTable[props.timeTable.findIndex((value: string) => value === arrivalTime.value) + 1] != undefined)
+        ? props.timeTable[props.timeTable.findIndex((value: string) => value === arrivalTime.value) + 1] : props.timeTable[0] )
+
+const secondArrivalTime2 =
+    ref((props.secondTimeTable[props.timeTable.findIndex((value: string) => value === arrivalTime2.value) + 1] != undefined)
         ? props.timeTable[props.timeTable.findIndex((value: string) => value === arrivalTime.value) + 1] : props.timeTable[0] )
 
 const returnTime = computed(() => {

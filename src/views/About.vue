@@ -10,7 +10,7 @@ import Sections from "../components/about/Sections.vue";
     <Transition appear enter-from-class="opacity-0 -translate-y-full" appear-active-class="transition-all duration-700 ease-linear">
       <FlexMinified  :column="true" items="center">
         <h3 class="flex justify-center gap-x-1 items-center text-center font-bold text-3xl rainbow">
-          <Icon icon="material-symbols:transit-ticket-rounded" class="inline size-12 " />
+          <Icon icon="line-md:compass-twotone-loop" class="inline size-12 " />
           <span class="block uppercase">Σχετικά</span>
         </h3>
         <div class="h-0.5 max-sm:w-full w-[70vw] text-center rounded-full bg-rainbow"/>

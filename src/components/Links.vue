@@ -3,7 +3,7 @@ import Grid from "./GridMinified.vue";
 import {ref} from "vue";
 import {Icon} from "@iconify/vue";
 
-const linkList = ref<any[]>([{href:`https://www.linkedin.com/in/konstantinos-stylianou-a4a95625b/` ,icon:`line-md:linkedin` },{href:`https://github.com/AliBaBas02` ,icon:`line-md:github-loop` },{href:`https://styls.pages.dev` ,icon:`solar:global-bold` }])
+const linkList = ref<any[]>([{href:`https://www.linkedin.com/in/konstantinos-stylianou-a4a95625b/` ,icon:`line-md:linkedin` },{href:`https://github.com/StylWebDev` ,icon:`line-md:github-loop` },{href:`https://styls.pages.dev` ,icon:`solar:global-bold` }])
 </script>
 
 <template>
