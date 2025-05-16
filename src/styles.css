@@ -1,7 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --container-center: true;
+
+  --color-eggplant-50: #b7b7c9;
+  --color-eggplant-100: #8b8ca8;
+  --color-eggplant-200: #636484;
+  --color-eggplant-500: #615878;
+  --color-eggplant-600: #534C6C;
+  --color-eggplant-700: #5A5973;
+  --color-eggplant-800: #373555;
+  --color-eggplant-900: #313050;
+  --color-eggplant-950: #1D1D30;
+
+  --box-shadow-full: 0 0px 20px 0px;
+  --text-shadow-sm: "0 1px 2px var(--tw-shadow-color)";
+  --text-shadow-md: "0 2px 4px var(--tw-shadow-color)";
+  --text-shadow-lg: "0 8px 16px var(--tw-shadow-color)";
+}
 
 :root {
   background: #313050;
