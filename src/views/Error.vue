@@ -16,9 +16,9 @@ import {Icon} from "@iconify/vue";
           </hgroup>
 
         </FlexMinified>
-        <p class="max-sm:hidden text-xl font-semibold rainbow">Λυπούμαστε, αλλά η σελίδα που ψάχνετε ενδεχομένως να έχει μετακινηθεί, διαγραφεί ή να μην υπάρχει.</p>
+        <p class="max-sm:hidden text-xl font-semibold rainbow">{{$t('notFound.p')}}</p>
         <RouterLink class="capitalize text-white block mt-8 w-fit px-4 py-1 bg-black font-semibold rounded-full text-lg  hover:bg-white hover:text-black transition-all duration-500 ease-linear" to="/" >
-          Αρχική σελίδα
+          {{$t('notFound.btn')}}
         </RouterLink>
 
       </FlexMinified>

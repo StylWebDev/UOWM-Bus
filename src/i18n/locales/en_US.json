@@ -40,5 +40,20 @@
     "bus": "On Bus:",
     "info": "Students are entitled to a reduced ticket!"
   },
-  "more": "Learn More"
+  "more": "Learn More",
+  "schedule": {
+    "h3": "Route",
+    "h4": "Bus Schedule",
+    "p1": "Live Arrivals",
+    "time1": "Departure Time",
+    "time2": "Arrival Time",
+    "st1": "Transition",
+    "st2": "Return",
+    "next": "Next",
+    "now": "Current"
+  },
+  "notFound": {
+    "p": "We are sorry, but the page you are looking for may have been moved, deleted or may not exist.",
+    "btn": "Back to Home"
+  }
 }

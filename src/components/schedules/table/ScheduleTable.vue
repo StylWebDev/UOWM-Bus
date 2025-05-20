@@ -42,16 +42,16 @@ const stopSchedule = ref(
 
 <template>
   <FlexMinified :column="true" items="center" class="lg:col-span-2 max-sm:border border-transparent border-t-white/50  ">
-    <h3 class="text-center mb-4  text-xl font-bold text-emerald-500">Πρόγραμμα Λεωφορείου {{`${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`}}</h3>
+    <h3 class="text-center mb-4  text-xl font-bold text-emerald-500">{{ $t('schedule.h4') }} {{`${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`}}</h3>
 
     <FlexMinified :column="true" items="center" class=" w-full border border-white/30 text-sm text-left rtl:text-right text-eggplant-50 bg-eggplant-500/50 mb-5 rounded-t-2xl rounded-b-2xl ">
 
       <FlexMinified justify="around" class="sticky w-full top-0 rounded-t-2xl text-center text-pink-400 text-sm uppercase bg-eggplant-800 font-semibold ">
-        <div class="px-6 py-3">
-          ΜΕΤΑΒΑΣΗ
+        <div class="px-6 py-3 uppercase">
+          {{ $t('schedule.st1') }}
         </div>
-        <div class="px-6 py-3">
-          ΕΠΙΣΤΡΟΦΗ
+        <div class="px-6 py-3 uppercase">
+          {{ $t('schedule.st2') }}
         </div>
       </FlexMinified>
       <div class="text-neutral-200 rounded-b-2xl text-center block w-full max-md:h-[35vh] md:h-[700px] xl:h-[600px] overflow-y-auto">
