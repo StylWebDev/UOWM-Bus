@@ -9,7 +9,7 @@ const {trans} = useConfigureStore();
       :class="trans"
   >
     <Icon icon="line-md:alert-twotone-loop" class="inline size-6"></Icon>
-    Οι Φοιτητές Δικαιούνται Μειωμένο Εισητήριο!
+    {{$t('ticket.info')}}
   </h3>
 </template>
 

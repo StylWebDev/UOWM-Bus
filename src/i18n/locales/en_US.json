@@ -18,5 +18,27 @@
   "footer": {
     "p1": "Constantine Stylianou",
     "p2": "Socials"
-  }
+  },
+  "info": {
+    "h3": "About",
+    "p1": "This website was created purely for practice and non-profit purposes!",
+    "p2_1": "For more information about the",
+    "p2_2": "or to find more routes of the",
+    "p2_3": ", visit the links below:",
+    "p2_4": " οr to talk with the",
+    "tab2": "Kastoria Urban Buses",
+    "uni": "University",
+    "tab1": "University of Western Macedonia",
+    "tab3": "Contact Website"
+  },
+  "ticket" : {
+    "h3": "Tickets",
+    "type1" : "Type: Casual",
+    "type2" : "Type: Reduced",
+    "price": "Price",
+    "auto": "From Auto Seller:",
+    "bus": "On Bus:",
+    "info": "Students are entitled to a reduced ticket!"
+  },
+  "more": "Learn More"
 }

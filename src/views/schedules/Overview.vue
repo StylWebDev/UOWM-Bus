@@ -25,7 +25,7 @@ const { trans } = useConfigureStore()
     <FlexMinified :column="true" items="center">
       <h3 class="flex justify-center gap-x-1 items-center text-center font-bold text-3xl md:text-4xl rainbow">
         <Icon icon="healthicons:i-schedule-school-date-time" class="size-12 2xl:size-16" />
-        <span class="block">ΔΡΟΜΟΛΟΓΙΑ</span>
+        <span class="block uppercase">{{($i18n.locale.toString() === 'el') ? "Δρομολόγια" : "Routes"}}</span>
       </h3>
       <div class="h-0.5 w-[70vw] text-center rounded-full bg-rainbow"/>
     </FlexMinified>
@@ -48,14 +48,14 @@ const { trans } = useConfigureStore()
                :alt="area.place.end.el.location + `_image`">
         </template>
         <template #title>
-          {{area.place.start.el.location}} - {{area.place.end.el.location}}
+          {{  ($i18n.locale.toString() === 'el') ? area.place.start.el.location : area.place.start.en.location }} - {{  ($i18n.locale.toString() === 'el') ? area.place.end.el.location : area.place.end.en.location }}
         </template>
         <template #subtitle>
-          Ζώνη {{area.zone}}
+        {{  ($i18n.locale.toString() === 'el') ? `Ζώνη` : `Zone` }} {{area.zone}}
         </template>
         <template #content>
           <p class="m-0">
-            {{area["desc_el"]}}
+            {{($i18n.locale.toString() === 'el') ? area["desc_el"] : area["desc_en"]}}
           </p>
         </template>
         <template #footer>
@@ -64,7 +64,7 @@ const { trans } = useConfigureStore()
               :class="trans"
               class="bg-cyan-600 font-semibold text-neutral-50 ease-linear
              text-base px-4 py-1 rounded hover:bg-white hover:text-black hover:scale-110"
-          >Περισσότερα</RouterLink>
+          >{{$t('more')}}</RouterLink>
         </template>
       </Card>
     </TransitionGroup>
