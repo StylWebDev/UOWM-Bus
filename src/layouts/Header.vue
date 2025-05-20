@@ -3,6 +3,7 @@ import FlexMinified from "../components/FlexMinified.vue";
 import {Icon} from "@iconify/vue";
 import {useConfigureStore} from "../stores/configure.ts";
 import {useRoute} from "vue-router";
+import LangMenu from "../components/LangMenu.vue";
 
 const route = useRoute()
 const config = useConfigureStore();
@@ -23,7 +24,7 @@ defineProps<{
     </RouterLink>
   </FlexMinified>
   <FlexMinified class="max-md:hidden w-[50%]" justify="center">
-    <FlexMinified class="max-md:hidden font-semibold text-lg" gap-x="2">
+    <FlexMinified class="max-md:hidden font-semibold text-lg items-center" gap-x="2">
       <router-link v-for="(route, index) in routes"
                    :key="index"  :to="route.link"
                    active-class="text-cyan-400 brightness-125 underline underline-offset-8 decoration-2 after:hidden"
@@ -33,6 +34,8 @@ defineProps<{
       >
         {{route.name}}
       </router-link>
+      <LangMenu class="ml-1.5"/>
+
     </FlexMinified>
   </FlexMinified>
   <button @click="config.menu=!config.menu" class="hidden max-md:block w-[10%]">

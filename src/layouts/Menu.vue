@@ -2,6 +2,7 @@
 import FlexMinified from "../components/FlexMinified.vue";
 import {useConfigureStore} from "../stores/configure.ts";
 import {storeToRefs} from "pinia";
+import LangMenu from "../components/LangMenu.vue";
 
 const {menu} = storeToRefs(useConfigureStore());
 
@@ -22,6 +23,7 @@ defineProps<{
     >
       {{route.name}}
     </RouterLink>
+    <LangMenu class="ml-1.5 mt-4"/>
   </FlexMinified>
 </FlexMinified>
 </template>
