@@ -16,21 +16,21 @@ const {trans} = useConfigureStore()
       </FlexMinified>
 
       <p class="max-[411px]:text-base max-sm:text-xl text-xl  max-xl:text-center font-light min-[2000px]:text-2xl">
-        Η ιστοσελίδα UOWMBus παρέχει πύλη πληροφοριών για τις συγκοινωνίες του <strong>Πανεπιστημίου Δυτικής Μακεδονίας (ΠΔΜ)</strong> στη πόλη της Καστοριάς.
-        Η πλατφόρμα περιλεμάβνει το  πρόγραμμα των δρομολογίων λεωφορείων που εξυπηρετούν τις πανεπιστημιακές σχολές, καθώς και δρομολόγια που συνδέουν την πόλη της Καστοριάς με άλλες κοντινές περιοχές.<br>
+        {{$t('home.p1_1')}} <strong>{{$t('home.uni')}}</strong> {{$t('home.p1_2')}}.
+        {{$t('home.p2')}}<br>
         <br class="xl:hidden">
-        Επιπλέον, θα βρείτε πληροφορίες για τις ώρες αναχώρησης/άφιξης των λεωφορίων, με ενημερώσεις για τυχόν αλλαγές ή καθυστερήσεις.
+        {{$t('home.p3')}}
         <span class="max-sm:hidden">
         <br><br>
-      Το UOWMBus έχει σχεδιαστεί ώστε να προσφέρει μία απλή και γρήγορη εμπειρία για φοιτητές, καθηγητές και εργαζόμενους του πανεπιστημίου, δίνοντάς τους τη δυνατότητα να προγραμματίζουν εύκολα τις μετακινήσεις τους.
+          {{$t('home.p4')}}
       </span>
       </p>
 
       <FlexMinified
           class="gap-x-10 font-semibold text-xl min-[2000px]:text-2xl max-[411px]:text-base"
       >
-        <RouterLink class="px-4 py-1 bg-black rounded-full hover:bg-white hover:text-black" to="/schedule" :class="trans">Δρομολόγια</RouterLink>
-        <RouterLink class="px-4 py-1 bg-blue-500 rounded-full hover:bg-white hover:text-black" :class="trans" to="/tickets">Εισητήρια</RouterLink>
+        <RouterLink class="px-4 py-1 bg-black rounded-md hover:bg-white hover:text-black" to="/schedule" :class="trans">{{$t('home.btn1')}}</RouterLink>
+        <RouterLink class="px-4 py-1 bg-blue-500 rounded-md hover:bg-white hover:text-black" :class="trans" to="/tickets">{{$t('home.btn2')}}</RouterLink>
       </FlexMinified>
     </FlexMinified>
   </Transition>

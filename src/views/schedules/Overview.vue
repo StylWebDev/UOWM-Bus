@@ -39,11 +39,12 @@ const { trans } = useConfigureStore()
           color="bg-neutral-800"
           border-color="border-white/35"
           :shadow="true"
-          class=" cursor-default h-fit w-[85vw] min-[430px]:w-[75vw] sm:w-[40vw] md:w-[38vw] lg:w-[40vw] xl:w-[45vh] 2xl:w-[25vw]   mt-5"
+          class=" cursor-default h-fit w-[85vw] min-[430px]:w-[75vw] sm:w-[46vw] md:w-[46vw] lg:w-[40vw] xl:w-[45vh] 2xl:w-[25vw]  mt-5"
+          :class="(index==2) ? `sm:col-span-2 xl:col-span-1` : ``"
       >
         <template #img>
           <img :src="area.map_img"
-               class="rounded-t-lg bg-red-500 size-full h-[40vh]"
+               class="rounded-t-lg bg-red-500 size-full h-[40vh] object-cover"
                :alt="area.place.end.el.location + `_image`">
         </template>
         <template #title>

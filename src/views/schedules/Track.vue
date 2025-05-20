@@ -41,7 +41,7 @@ const secondTimeTable = ref(specData.value.end)
   </FlexMinified>
 
   <GridMinified columns="1" lg-columns="3" gap-x="5"
-                class="bg-eggplant-950/80 md:rounded-xl mt-5 md:mx-10 px-5 pt-4 sm:border max-sm:border-y border-white/30"
+                class=" overflow-hidden bg-eggplant-950/80 md:rounded-xl mt-5 md:mx-10 px-5 pt-4 sm:border max-sm:border-y border-white/30"
   >
     <Tracking :id="params.id.toString()" :resolved-schedule="data.resolvedSchedule" :time-table="timeTable" :second-time-table="secondTimeTable" :mins="Number(data.mins)" :test="test" :mapURL="data.map_url"/>
 

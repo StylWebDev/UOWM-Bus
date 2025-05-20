@@ -1,0 +1,22 @@
+{
+  "home": {
+    "p1_1": "The UOWMBus website provides an information gateway for transportation for the",
+    "p1_2": "in the city of Kastoria",
+    "uni": "University of Western Macedonia (UoWM)",
+    "p2": "The platform includes the schedule of bus routes that serve the university faculties, as well as routes connecting the city of Kastoria with nearby areas.",
+    "p3": "Additionally, you will find information about bus departure/arrival times, along with updates on any changes or delays.",
+    "p4": "UOWMBus is designed to offer a simple and fast experience for students, professors, and university staff, giving them the ability to easily plan their transportation.",
+    "btn1": "Routes",
+    "btn2": "Tickets"
+  },
+  "header": {
+    "route1": "Home",
+    "route2": "Schedules",
+    "route3": "Tickets",
+    "route4": "Info"
+  },
+  "footer": {
+    "p1": "Constantine Stylianou",
+    "p2": "Socials"
+  }
+}

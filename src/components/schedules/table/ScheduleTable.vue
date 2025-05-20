@@ -54,7 +54,7 @@ const stopSchedule = ref(
           ΕΠΙΣΤΡΟΦΗ
         </div>
       </FlexMinified>
-      <div class="text-neutral-200 rounded-b-2xl text-center block w-full max-md:h-[35vh]  md:h-[45vh] lg:h-[36vh] xl:h-[35vh] 2xl:h-[40vh] min-[1800px]:h-[57vh] min-[2200px]:h-[50vh] overflow-y-auto">
+      <div class="text-neutral-200 rounded-b-2xl text-center block w-full max-md:h-[35vh] md:h-[700px] xl:h-[600px] overflow-y-auto">
         <FlexMinified class="border-b bg-eggplant-500 border-gray-700"
                       justify="around"
                       v-for="(time,index) in timeTable"
@@ -82,5 +82,4 @@ const stopSchedule = ref(
 </template>
 
 <style scoped>
-
 </style>

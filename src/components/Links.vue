@@ -1,20 +1,23 @@
-<script setup lang="ts">
-import Grid from "./GridMinified.vue";
+<script setup>
 import {ref} from "vue";
 import {Icon} from "@iconify/vue";
-
-const linkList = ref<any[]>([{href:`https://www.linkedin.com/in/konstantinos-stylianou-a4a95625b/` ,icon:`line-md:linkedin` },{href:`https://github.com/StylWebDev` ,icon:`line-md:github-loop` },{href:`https://styls.pages.dev` ,icon:`solar:global-bold` }])
+import StracturesFlex from "./FlexMinified.vue";
+const linkList = ref([
+  {name: 'LinkedIn', href:`https://www.linkedin.com/in/konstantinos-stylianou-a4a95625b/` ,icon:`line-md:linkedin` },
+  {name: 'Github', href:`https://github.com/AliBaBas02` ,icon:`line-md:github-loop` },
+  {name: 'Email', href:`mailto:kostasstilianou@gmail.com` ,icon:`line-md:email-alt-twotone` },
+  {name:`StylsDev`, href: 'https://styls.pages.dev' , icon:`material-symbols:globe` }
+])
 </script>
 
 <template>
-    <Grid columns="5" class="justify-items-center grid-flow-row gap-x-1 max-sm:gap-x-8">
-      <a v-for="(link,index) in linkList" :key="index" class="block p-1 bg-neutral-100 bg-opacity-10 rounded-xl hover:scale-110 hover:bg-white hover:text-black transition duration-500 ease-linear" :href="link.href" target="_blank">
-        <Icon width="20px"  :icon="link.icon"/><span class="hidden">‎</span>
-      </a>
-      <a href="mailto:stylsbot@gmail.com" class="block p-1 bg-neutral-100 bg-opacity-10 rounded-xl hover:scale-110 hover:bg-white hover:text-black transition duration-500 ease-linear"  target="_blank">
-        <Icon width="20px"  icon="material-symbols:alternate-email"/><span class="hidden">‎</span>
-      </a>
-    </Grid>
+  <StracturesFlex class="justify-center justify-items-center gap-x-1 ">
+    <a v-for="(link,index) in linkList" :key="index"
+       :aria-label="link.name"
+       class="block p-1  hover:bg-white text-eggplant-800 hover:text-black bg-eggplant-100   bg-opacity-10 rounded-xl hover:scale-110 transition duration-500 ease-in" :href="link.href" target="_blank">
+      <Icon width="20px"  :icon="link.icon"/>
+    </a>
+  </StracturesFlex>
 </template>
 
 <style scoped>
