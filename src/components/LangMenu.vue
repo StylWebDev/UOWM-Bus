@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 import {Icon} from "@iconify/vue";
 const isOpen = ref(false);

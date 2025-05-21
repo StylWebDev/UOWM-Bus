@@ -2,7 +2,33 @@
 import FlexMinified from "../components/FlexMinified.vue";
 
 import {useConfigureStore} from "../stores/configure.ts";
+import {Carousel, Slide} from "vue3-carousel";
+import {onMounted} from "vue";
+import VanillaTilt from "vanilla-tilt";
 const {trans} = useConfigureStore()
+
+const carouselConfig = {
+  itemsToShow: 1,
+  autoplay: 5000,
+  wrapAround: true,
+  mouseDrag: false
+}
+
+const slides = [
+  {id: 1, src: `bus1.webp`, alt: 'img'},
+  {id: 2, src: `bus2.webp`, alt: 'img'},
+  {id: 3, src: `bus3.webp`, alt: 'img'},
+  {id: 4, src: `bus4.webp`, alt: 'img'},
+  {id: 5, src: `bus5.webp`, alt: 'img'},
+  {id: 6, src: `bus6.webp`, alt: 'img'},
+  {id: 7, src: `bus7.webp`, alt: 'img'},
+  {id: 8, src: `bus8.webp`, alt: 'img'}
+]
+
+onMounted(() => {
+  VanillaTilt.init(document.querySelectorAll(".card") as unknown as HTMLElement, {max: 1.3, glare: true, "max-glare": 0.1} )
+})
+
 </script>
 
 <template>
@@ -35,8 +61,12 @@ const {trans} = useConfigureStore()
     </FlexMinified>
   </Transition>
   <Transition appear enter-from-class="translate-x-full opacity-0" appear-active-class="transition-all duration-1000 ease-linear">
-    <FlexMinified justify="end" class="w-full max-xl:hidden">
-      <img src="../assets/busImg.webp" alt="logo" class=" block size-[50%] xl:size-[75%] brightness-75 saturate-200 contrast-150 pointer-events-none ">
+    <FlexMinified justify="end" class="w-full h-auto  pl-20 pr-20 max-xl:hidden ">
+      <Carousel v-bind="carouselConfig" >
+        <Slide v-for="slide in slides" :key="slide.id">
+          <img class="card object-cover opacity-90 rounded-4xl size-[33vw]"  :src="slide.src" :alt="slide.alt + slide.id">
+        </Slide>
+      </Carousel>
     </FlexMinified>
   </Transition>
 </FlexMinified>

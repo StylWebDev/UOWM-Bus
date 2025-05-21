@@ -8,7 +8,7 @@ import VanillaTilt from "vanilla-tilt";
 import {onMounted} from "vue";
 
 onMounted(() => {
-  VanillaTilt.init(document.querySelectorAll(".card") as unknown as HTMLElement, {max: 1.3, glare: true, "max-glare": 0.1} )
+  VanillaTilt.init(document.querySelectorAll(".card") as unknown as HTMLElement, {max: 1.3, glare: true, "max-glare": 0.3} )
 })
 
 import {useDataStore} from "../../stores/data.ts";
@@ -39,12 +39,12 @@ const { trans } = useConfigureStore()
           color="bg-neutral-800"
           border-color="border-white/35"
           :shadow="true"
-          class=" cursor-default h-fit w-[85vw] min-[430px]:w-[75vw] sm:w-[46vw] md:w-[46vw] lg:w-[40vw] xl:w-[45vh] 2xl:w-[25vw]  mt-5"
+          class="card cursor-default h-fit w-[85vw] min-[430px]:w-[75vw] sm:w-[46vw] md:w-[46vw] lg:w-[40vw] xl:w-[45vh] 2xl:w-[25vw]  mt-5"
           :class="(index==2) ? `sm:col-span-2 xl:col-span-1` : ``"
       >
         <template #img>
           <img :src="area.map_img"
-               class="rounded-t-lg bg-red-500 size-full h-[40vh] object-cover"
+               class=" rounded-t-lg bg-red-500 size-full h-[40vh] object-cover"
                :alt="area.place.end.el.location + `_image`">
         </template>
         <template #title>

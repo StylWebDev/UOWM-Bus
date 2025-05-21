@@ -7,6 +7,8 @@ const props = defineProps<{
   timeTable: string[],
   secondTimeTable: string[],
   startTime: string,
+  arrivalTime: string,
+  departureTime: string,
   mins: number
 }>();
 
@@ -14,8 +16,15 @@ const props = defineProps<{
 const timeTable = ref<string[]>([...props.timeTable])
 const secondTimeTable = ref<string[]>([...props.secondTimeTable])
 
+const {addTime, dateToTimeStamp} = useDataStore()
+const date = ref<string>(dateToTimeStamp(new Date().getHours(), new Date().getMinutes()))
+
+const stopSchedule = ref(
+    (addTime(props.secondTimeTable[props.secondTimeTable.length-1], props.mins) < date.value || date.value < props.timeTable[0])
+)
+
 onMounted(() => {
-  if (timeTable.value.length >= props.secondTimeTable.length) {
+  if (timeTable.value.length >= secondTimeTable.value.length) {
     timeTable.value.forEach((_: string, index: number) => {
       if (index >= secondTimeTable.value.length) {
         secondTimeTable.value.push('-')
@@ -30,13 +39,6 @@ onMounted(() => {
     })
   }
 })
-
-const {addTime, dateToTimeStamp} = useDataStore()
-const date = ref<string>(dateToTimeStamp(new Date().getHours(), new Date().getMinutes()))
-
-const stopSchedule = ref(
-    (addTime(props.secondTimeTable[props.secondTimeTable.length-1], props.mins) < date.value || date.value < props.timeTable[0])
-)
 
 </script>
 
@@ -61,7 +63,7 @@ const stopSchedule = ref(
                       :key="index"
         >
           <div  class="px-6 py-4 font-medium whitespace-nowrap w-full "
-                :class="( time === startTime && !stopSchedule)
+                :class="( time === arrivalTime && !stopSchedule)
             ? `bg-emerald-400 text-gray-600 animate-pulse`
                 : null"
           >
@@ -69,8 +71,8 @@ const stopSchedule = ref(
           </div>
 
           <div class="px-6 py-4 w-full"
-               :class="( secondTimeTable[index] === startTime  && !stopSchedule)
-            ? `bg-emerald-400 text-gray-600 animate-pulse`
+               :class="( secondTimeTable[index] === departureTime && !stopSchedule)
+            ? `bg-orange-400 text-gray-600 animate-pulse`
                 : null"
           >
             {{secondTimeTable[index]}}

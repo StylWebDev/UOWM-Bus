@@ -26,6 +26,8 @@ const configureStore = useConfigureStore();
         class="z-50 fixed top-[8vh] max-sm:top-[10vh] max-sm:h-[90vh]  h-[92vh] bg-eggplant-950 transition-transform duration-700 ease-ii-out md:hidden"
         :class="(configureStore.menu) ? `translate-x-0` : `translate-x-full`"
   />
+
+
   <div class="max-sm:h-[80vh] h-[84vh] overflow-auto py-2 sm:py-8">
     <Suspense>
       <template #default>
