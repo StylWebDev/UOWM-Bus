@@ -4,7 +4,7 @@ import {Icon} from "@iconify/vue";
 import StracturesFlex from "./FlexMinified.vue";
 const linkList = ref([
   {name: 'LinkedIn', href:`https://www.linkedin.com/in/konstantinos-stylianou-a4a95625b/` ,icon:`line-md:linkedin` },
-  {name: 'Github', href:`https://github.com/AliBaBas02` ,icon:`line-md:github-loop` },
+  {name: 'Github', href:`https://github.com/StylWebDev` ,icon:`line-md:github-loop` },
   {name: 'Email', href:`mailto:kostasstilianou@gmail.com` ,icon:`line-md:email-alt-twotone` },
   {name:`StylsDev`, href: 'https://styls.pages.dev' , icon:`material-symbols:globe` }
 ])
