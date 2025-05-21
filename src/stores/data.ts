@@ -6,13 +6,13 @@ export const useDataStore = defineStore('data', () => {
     const router = useRouter();
 
     const getData = (id: number) => {
-        return fetch(`http://localhost:3030/schedule/${id}`)
+        return fetch(`https://uowmbusapi.onrender.com/schedule/${id}`)
             .then((res) => res.json())
             .catch((_) => router.push(`/404`))
     }
 
     const getTickets = () => {
-        return fetch(`http://localhost:3030/tickets`)
+        return fetch(`https://uowmbusapi.onrender.com/tickets`)
             .then((res) => res.json())
             .catch((_) => router.push(`/404`))
     }
