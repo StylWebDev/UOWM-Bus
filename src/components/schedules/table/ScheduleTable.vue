@@ -56,7 +56,7 @@ onMounted(() => {
           {{ $t('schedule.st2') }}
         </div>
       </FlexMinified>
-      <div class="text-neutral-200 rounded-b-2xl text-center block w-full max-md:h-[35vh] md:h-[700px] xl:h-[600px] overflow-y-auto">
+      <div class="text-neutral-200 rounded-b-2xl text-center block w-full max-md:h-[35vh] md:h-[700px] lg:h-[800px] xl:h-[700px] overflow-y-auto">
         <FlexMinified class="border-b bg-eggplant-500 border-gray-700"
                       justify="around"
                       v-for="(time,index) in timeTable"

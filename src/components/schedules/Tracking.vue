@@ -9,6 +9,8 @@ const {t} = useI18n();
 
 const props = defineProps<{
   resolvedSchedule: string,
+  nextArrival: string,
+  nextDeparture: string,
   mapURL: string,
   mins: number,
   arrivalTime: string,
@@ -34,16 +36,33 @@ const props = defineProps<{
       <FlexMinified :column="true"
                     class="w-full text-sm">
 
-        <FlexMinified gap-x="4" justify="around" items="center" class="rounded-lg text-center bg-emerald-500">
-          <h5  class="bg-emerald-800 h-full rounded-l-lg w-full font-semibold py-1.5">{{t('schedule.st1')}}</h5>
-          <p  class="w-full text-gray-100 ">{{ t('schedule.time1') }}: {{props.arrivalTime}}</p>
-          <p class="w-full text-gray-100  pr-2">{{ t('schedule.time2') }}: {{addTime(props.arrivalTime, mins)}}</p>
+        <FlexMinified :column="true">
+          <h3 class="text-center font-extrabold mb-1 uppercase text-emerald-400">{{t('schedule.st1')}}</h3>
+          <FlexMinified gap-x="4" justify="around" items="center" class="rounded-t-lg text-center bg-emerald-500">
+            <h5  class="bg-emerald-800 h-full rounded-tl-lg w-full font-semibold py-1.5">{{t('schedule.now')}}</h5>
+            <p  class="w-full text-gray-100 ">{{ t('schedule.time1') }}: {{props.arrivalTime}}</p>
+            <p class="w-full text-gray-100  pr-2">{{ t('schedule.time2') }}: {{addTime(props.arrivalTime, mins)}}</p>
+          </FlexMinified>
+          <FlexMinified gap-x="4" justify="around" items="center" class="rounded-b-lg text-center bg-lime-700">
+            <h5  class="bg-lime-900 h-full rounded-bl-lg w-full font-semibold py-1.5">{{t('schedule.next')}}</h5>
+            <p  class="w-full text-gray-100 ">{{ t('schedule.time1') }}: {{props.nextArrival}}</p>
+            <p class="w-full text-gray-100  pr-2">{{ t('schedule.time2') }}: {{addTime(props.nextArrival, mins)}}</p>
+          </FlexMinified>
         </FlexMinified>
-        <FlexMinified gap-x="4" justify="around" items="center" class="mt-4 rounded-lg  bg-orange-500 text-center  ">
-          <h5 class="bg-orange-800 h-full rounded-l-lg py-1.5 w-full font-semibold">{{t('schedule.st2')}}</h5>
-          <p class="w-full text-gray-100 ">{{ t('schedule.time1') }}: {{props.departureTime}}</p>
-          <p class="w-full text-gray-100 ">{{ t('schedule.time2') }}: {{addTime(props.departureTime, mins)}}</p>
-        </FlexMinified>
+
+          <FlexMinified :column="true" class="mt-4">
+            <h3 class="text-center font-extrabold mb-1 uppercase text-orange-400">{{t('schedule.st2')}}</h3>
+            <FlexMinified gap-x="4" justify="around" items="center" class=" rounded-t-lg  bg-orange-500 text-center  ">
+              <h5 class="bg-orange-800 h-full rounded-tl-lg py-1.5 w-full font-semibold">{{t('schedule.now')}}</h5>
+              <p class="w-full text-gray-100 ">{{ t('schedule.time1') }}: {{props.departureTime}}</p>
+              <p class="w-full text-gray-100 ">{{ t('schedule.time2') }}: {{addTime(props.departureTime, mins)}}</p>
+            </FlexMinified>
+            <FlexMinified gap-x="4" justify="around" items="center" class=" rounded-b-lg  bg-amber-700 text-center  ">
+              <h5 class="bg-amber-900 h-full rounded-bl-lg py-1.5 w-full font-semibold">{{t('schedule.next')}}</h5>
+              <p class="w-full text-gray-100 ">{{ t('schedule.time1') }}: {{props.nextDeparture}}</p>
+              <p class="w-full text-gray-100 ">{{ t('schedule.time2') }}: {{addTime(props.nextDeparture, mins)}}</p>
+            </FlexMinified>
+          </FlexMinified>
       </FlexMinified>
     </FlexMinified>
   </FlexMinified>

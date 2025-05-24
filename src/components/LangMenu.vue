@@ -7,7 +7,7 @@ const isOpen = ref(false);
 <template>
   <div class="relative inline-block text-left">
     <div>
-      <button @click="isOpen = !isOpen" class="max-md:bg-eggplant-700 border-white max-md:focus:text-white max-md:border max-md:focus:border-none max-md:focus:bg-black max-md:px-2 flex justify-center gap-1 items-center w-full rounded-md shadow-sm  py-2 px-1  text-sm font-medium text-yellow-500   focus:outline-none cursor-pointer" >
+      <button @click="isOpen = !isOpen" class="max-md:bg-eggplant-700 border-white max-md:focus:text-white max-md:border max-md:focus:border-none  focus:contrast-200 max-md:focus:bg-black max-md:px-2 flex justify-center gap-1 items-center w-full rounded-md shadow-sm  py-2 px-1  text-sm font-medium text-yellow-500   focus:outline-none cursor-pointer" >
         <Icon :icon="($i18n.locale.toString() === 'el') ? `emojione:flag-for-greece` : `emojione:flag-for-united-states`" class="inline size-7 hover:contrast-200 hover:invert-100 transition-all duration-300 ease-in" />
         <span class="md:hidden font-semibold text-yellow-500 text-xl">{{($i18n.locale.toString()==='el') ? `EL` : `EN` }}</span>
       </button>

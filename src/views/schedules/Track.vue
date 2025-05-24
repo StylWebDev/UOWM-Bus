@@ -51,6 +51,15 @@ const departureTime = computed(() => {
       ? secondTimeTable.value.findLast((time: string, index: number, arr: string[]) => (index === 0) ? arr[0] :  time <= date.value)
       : secondTimeTable.value[0]
 });
+
+const nextArrival = computed(() => {
+  return  timeTable.value.find((time: string) => arrivalTime.value! < time)
+})
+
+const nextDeparture = computed(() => {
+  return  secondTimeTable.value.find((time: string) => departureTime.value! < time)
+})
+
 </script>
 
 <template>
@@ -72,6 +81,8 @@ const departureTime = computed(() => {
               :arrivalTime="arrivalTime!.toString()"
               :departureTime="departureTime!.toString()"
               :mins="Number(data.mins)" :test="test"
+              :nextArrival="nextArrival!"
+              :nextDeparture="nextDeparture!"
               :mapURL="data.map_url"/>
 
     <ScheduleTable
