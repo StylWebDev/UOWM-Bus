@@ -32,6 +32,7 @@ onMounted(() => {
 </script>
 
 <template>
+
 <FlexMinified items="center" justify="between" class="sm:h-full max-xl:justify-center max-xl:flex-col xl:flex-row">
   <Transition appear enter-from-class="scale-0 opacity-0" appear-active-class="transition-all duration-700 ease-in">
     <FlexMinified :column="true" class="w-full sm:pl-8 max-xl:items-center" gap-y="4">
@@ -43,20 +44,23 @@ onMounted(() => {
 
       <p class="max-[411px]:text-base max-sm:text-xl text-xl  max-xl:text-center font-light min-[2000px]:text-2xl">
         {{$t('home.p1_1')}} <strong>{{$t('home.uni')}}</strong> {{$t('home.p1_2')}}.
-        {{$t('home.p2')}}<br>
+        <span class="max-sm:hidden">{{$t('home.p2')}}</span><br>
         <br class="xl:hidden">
-        {{$t('home.p3')}}
-        <span class="max-sm:hidden">
+        <span class="max-md:hidden"> {{$t('home.p3')}}</span>
+        <span class="max-md:hidden">
         <br><br>
           {{$t('home.p4')}}
       </span>
       </p>
 
       <FlexMinified
-          class="gap-x-10 font-semibold text-xl min-[2000px]:text-2xl max-[411px]:text-base"
+          :column="true"
+          :md-row="true"
+          class="gap-x-10 gap-y-2 font-semibold text-xl min-[2000px]:text-2xl max-[411px]:text-base max-md:w-full w-fit"
       >
-        <RouterLink class="px-4 py-1 bg-black rounded-md hover:bg-white hover:text-black" to="/schedule" :class="trans">{{$t('home.btn1')}}</RouterLink>
-        <RouterLink class="px-4 py-1 bg-blue-500 rounded-md hover:bg-white hover:text-black" :class="trans" to="/tickets">{{$t('home.btn2')}}</RouterLink>
+        <RouterLink class="max-md:px-0 max-md:py-6 max-md:w-full px-4 py-1 bg-black md:rounded-md text-center hover:bg-white hover:text-black" to="/schedule" :class="trans">
+          {{$t('home.btn1')}}</RouterLink>
+        <RouterLink class="max-md:px-0 max-md:py-6 max-md:w-full px-4 py-1 bg-blue-500 md:rounded-md hover:bg-white text-center hover:text-black" :class="trans" to="/tickets">{{$t('home.btn2')}}</RouterLink>
       </FlexMinified>
     </FlexMinified>
   </Transition>
@@ -70,4 +74,7 @@ onMounted(() => {
     </FlexMinified>
   </Transition>
 </FlexMinified>
+
+
+
 </template>
