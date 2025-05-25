@@ -7,6 +7,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UOWMBus</title>
       <link href="src/styles.css" rel="stylesheet">
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5VdZsapRqxxq9Dg9Z0c2zXbEXnF-rLo&amp;libraries=places,geometry"></script>
+      <script src="https://unpkg.com/@googlemaps/markerclusterer@2.0.15/dist/index.min.js"></script>
+      <script type="text/javascript">
+          const agencyCode = 115;
+          const themeColor = '#3A62B1';
+          const textColor = '#FFFFFF';
+          const apiUrl = 'https://rest.citybus.gr';
+          const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDgzMjA2MjB9.rWO-4nd9Tqh3gWOdWfp8AqnzALCcwUrsjbDsuRXcPGk';
+          const language = 'el';
+          const maxLiveDepartureMinutes = 30;
+          const latSW = 40.440979;
+          const lngSW = 21.041117;
+          const latNE = 40.580043;
+          const lngNE = 21.363929;
+
+          let selectedDay = 0;
+
+          const txtLine = 'Γραμμή';
+          const txtLineLow = 'γραμμή';
+          const txtLines = 'γραμμες';
+          const txtAllLines = 'Όλες οι γραμμές';
+          const txtLineStart = 'Αφετηρία γραμμής';
+          const txtLineEnd = 'Τέρμα γραμμής';
+          const txtSelectOneLine = 'Πρέπει να επιλέξετε τουλάχιστον μια γραμμή.';
+          const txtMO = 'ΔΕ';
+          const txtTU = 'ΤΡ';
+          const txtWE = 'ΤΕ';
+          const txtTH = 'ΠΕ';
+          const txtFR = 'ΠΑ';
+          const txtSA = 'ΣΑ';
+          const txtSU = 'ΚΥ';
+          const txtRoutes = 'διαδρομές';
+          const txtRouteLow = 'διαδρομή';
+          const txtAllRoutes = 'Όλες οι διαδρομές';
+          const txtSelectOneRoute = 'Πρέπει να επιλέξετε τουλάχιστον μια διαδρομή.';
+          const txtNoneSelected = 'Δεν έχει επιλεγεί';
+          const txtMinute = 'λεπτό';
+          const txtMinutes = 'λεπτά';
+      </script>
   </head>
   <body>
     <div id="app"></div>
