@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 import LocationsMap from "../../components/LocationsMap.vue";
 import {useRoute} from "vue-router";
 import {Icon} from "@iconify/vue";
@@ -14,7 +13,7 @@ const {params, query} = useRoute();
       <FlexMinified  :column="true" items="center">
         <h3 class="flex justify-center gap-x-1 items-center text-center font-bold text-2xl rainbow">
           <Icon icon="mdi:map-outline" class="inline size-10 " />
-          <span class="block uppercase text-center">{{($i18n.locale === 'el') ? params.busStop.split('-')[0] : greekUtils.toGreeklish(params.busStop.split('-')[0])}} <span class="capitalize max-md:hidden"> - Stop ID:{{params.busStop.split('-')[1]}}</span> </span>
+          <span class="block uppercase text-center">{{($i18n.locale === 'el') ? (params.busStop as string).split('-')[0] : greekUtils.toGreeklish((params.busStop  as string).split('-')[0])}} <span class="capitalize max-md:hidden"> - Stop ID:{{(params.busStop as string).split('-')[1]}}</span> </span>
         </h3>
         <div class="h-0.5 max-sm:w-full w-[70vw] text-center rounded-full bg-rainbow"/>
       </FlexMinified>
