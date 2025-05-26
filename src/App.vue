@@ -35,7 +35,7 @@ onMounted(() => {
   />
 
 
-  <div class="max-sm:h-[80vh] h-[84vh] overflow-auto sm:py-8">
+  <div class="max-sm:h-[80vh] h-[84vh] overflow-auto  sm:py-8">
     <Suspense>
       <template #default>
         <RouterView/>

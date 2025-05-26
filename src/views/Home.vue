@@ -35,7 +35,7 @@ onMounted(() => {
 
 <FlexMinified items="center" justify="between" class="sm:h-full max-xl:justify-center max-xl:flex-col xl:flex-row">
   <Transition appear enter-from-class="scale-0 opacity-0" appear-active-class="transition-all duration-700 ease-in">
-    <FlexMinified :column="true" class="w-full sm:pl-8 max-xl:items-center" gap-y="4">
+    <FlexMinified :column="true" class="w-full sm:pl-8 max-xl:items-center mt-2" gap-y="4">
       <FlexMinified :column="true" items="center"
                     class="max-[411px]:text-2xl xl:flex-row text-5xl min-[2000px]:text-7xl sm:self-start font-bold w-full rainbow max-xl:text-center">
         <img src="../assets/logo.webp" alt="logo" class="max-[406px]:size-16 max-md:size-24 size-40 xl:size-16 mr-4">
@@ -61,6 +61,7 @@ onMounted(() => {
         <RouterLink class="max-md:px-0 max-md:py-6 max-md:w-full px-4 py-1 bg-black md:rounded-md text-center hover:bg-white hover:text-black" to="/schedule" :class="trans">
           {{$t('home.btn1')}}</RouterLink>
         <RouterLink class="max-md:px-0 max-md:py-6 max-md:w-full px-4 py-1 bg-blue-500 md:rounded-md hover:bg-white text-center hover:text-black" :class="trans" to="/tickets">{{$t('home.btn2')}}</RouterLink>
+        <RouterLink class="max-md:px-0 max-md:py-6 max-md:w-full px-4 py-1 bg-emerald-500 md:rounded-md hover:bg-white text-center hover:text-black" :class="trans" to="/busstops">{{$t('header.route5')}}</RouterLink>
       </FlexMinified>
     </FlexMinified>
   </Transition>
