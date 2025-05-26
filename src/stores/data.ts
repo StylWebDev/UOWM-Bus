@@ -17,6 +17,12 @@ export const useDataStore = defineStore('data', () => {
             .catch((_) => router.push(`/404`))
     }
 
+    const getBusStops = () => {
+        return fetch(`https://uowmbusapi.onrender.com/stops`)
+        .then((res) => res.json())
+        .catch((_) => router.push(`/404`))
+    }
+
     const addTime = (timeStamp: string, mins: number): string => {
         let totalMins = Number(mins) + Number(timeStamp.slice(3,5))
         let totalHours = Number(timeStamp.slice(0,2))
@@ -45,5 +51,5 @@ export const useDataStore = defineStore('data', () => {
     const startTime = ref<string>(``)
 
 
-    return {getData, addTime, getTickets, startTime, dateToTimeStamp}
+    return {getData, addTime, getTickets, startTime, dateToTimeStamp, getBusStops}
 })

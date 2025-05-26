@@ -3,22 +3,29 @@ import Header from "./layouts/Header.vue";
 import Menu from "./layouts/Menu.vue"
 import {useConfigureStore} from "./stores/configure.ts";
 import Footer from "./layouts/Footer.vue";
+import {onMounted} from "vue";
 
 const configureStore = useConfigureStore();
+
+onMounted(() => {
+  configureStore.checkLang();
+})
 </script>
 
 <template>
   <Header
       :routes="[
         {name: $t('header.route1'), link: '/'},
+        {name: $t('header.route5'), link: '/busstops'},
         {name: $t('header.route2'), link: '/schedule'},
         {name: $t('header.route3'), link: '/tickets'},
-        {name: $t('header.route4'), link: '/about'},
+        {name: $t('header.route4'), link: '/about'}
       ]"
       class="z-50 bg-eggplant-950 max-sm:h-[10vh] h-[8vh]"
   />
   <Menu :routes="[
             {name: $t('header.route1'), link: '/'},
+            {name: $t('header.route5'), link: '/busstops'},
             {name: $t('header.route2'), link: '/schedule'},
             {name: $t('header.route3'), link: '/tickets'},
             {name: $t('header.route4'), link: '/about'},
@@ -28,7 +35,7 @@ const configureStore = useConfigureStore();
   />
 
 
-  <div class="max-sm:h-[80vh] h-[84vh] overflow-auto py-2 sm:py-8">
+  <div class="max-sm:h-[80vh] h-[84vh] overflow-auto sm:py-8">
     <Suspense>
       <template #default>
         <RouterView/>

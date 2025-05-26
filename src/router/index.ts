@@ -24,8 +24,18 @@ const routes = [
         ]
     },
     {
-      path: '/locations',
-      component: () => import('../views/Locations.vue')
+      path: '/busstops',
+        component: () => import('../views/Locations.vue'),
+        children: [
+            {
+                path: '',
+                component: () => import('../views/Locations/Stops.vue'),
+            },
+            {
+                path: 'map/:busStop',
+                component: () => import('../views/Locations/Map.vue'),
+            }
+        ]
 
     },
     {

@@ -13,7 +13,8 @@
     "route1": "Home",
     "route2": "Schedules",
     "route3": "Tickets",
-    "route4": "Info"
+    "route4": "Info",
+    "route5": "Stops"
   },
   "footer": {
     "p1": "Constantine Stylianou",

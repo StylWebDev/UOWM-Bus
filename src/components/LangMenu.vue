@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import {Icon} from "@iconify/vue";
+import {useConfigureStore} from "../stores/configure.ts";
 const isOpen = ref(false);
+const configureStore = useConfigureStore();
 
 </script>
 <template>
@@ -18,14 +20,14 @@ const isOpen = ref(false);
     >
       <div class="py-1">
         <button
-            @click="$i18n.locale='en'; isOpen=!isOpen"
+            @click="$i18n.locale='en'; configureStore.setLan(); isOpen=!isOpen"
             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-center cursor-pointer "
         >
           <Icon icon="emojione:flag-for-united-states" class="inline " />
           English
         </button>
         <button
-            @click="$i18n.locale='el';  isOpen=!isOpen"
+            @click="$i18n.locale='el'; configureStore.setLan(); isOpen=!isOpen"
             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-center cursor-pointer"
         >
           <Icon icon="emojione:flag-for-greece" class="inline" />

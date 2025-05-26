@@ -3,6 +3,7 @@
 import {Icon} from "@iconify/vue";
 import FlexMinified from "../components/FlexMinified.vue";
 import Sections from "../components/about/Sections.vue";
+
 </script>
 
 <template>

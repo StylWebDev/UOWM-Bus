@@ -1,10 +1,8 @@
 <script setup lang="ts">
-
-import LocationsMap from "../components/LocationsMap.vue";
 </script>
 
 <template>
-<LocationsMap/>
+  <RouterView/>
 </template>
 
 <style scoped>
