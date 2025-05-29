@@ -2,11 +2,40 @@
 import FlexMinified from "./FlexMinified.vue";
 import {useDataStore} from "../stores/data.ts";
 import greekUtils from "greek-utils";
-import {ref} from "vue";
+import { ref} from "vue";
 import {Icon} from "@iconify/vue";
 
 const {getBusStops} = useDataStore();
-const busStops = ref((await getBusStops()).stops);
+const busStops = ref<{name: string, code: string, buses: string[], coordinates: {latitude: number, longitude: number}}[]>((await getBusStops()).stops);
+
+const getDistanceFromLatLonInKm = (lat1: number,lon1: number,lat2: number,lon2: number): number => {
+  let R = 6371; // Radius of the earth in km
+  let dLat = deg2rad(lat2-lat1);  // deg2rad below
+  let dLon = deg2rad(lon2-lon1);
+  let a =
+      Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+      Math.sin(dLon/2) * Math.sin(dLon/2)
+  ;
+  let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  return parseFloat((R * c).toFixed(2));
+}
+
+function deg2rad(deg: number): number {
+  return deg * (Math.PI/180)
+}
+
+const userCoords = ref<any>(null);
+
+const getLocation = () => {
+  navigator.geolocation.getCurrentPosition((position) => {
+    userCoords.value =  {lon: position.coords.longitude, lat: position.coords.latitude};
+    busStops.value.sort((a, b) => getDistanceFromLatLonInKm(a.coordinates.latitude,a.coordinates.longitude, userCoords.value.lat, userCoords.value.lon) - getDistanceFromLatLonInKm(b.coordinates.latitude,b.coordinates.longitude, userCoords.value.lat, userCoords.value.lon));
+
+  }, () => {
+    userCoords.value = null;
+  });
+}
 
 </script>
 
@@ -27,6 +56,7 @@ const busStops = ref((await getBusStops()).stops);
           <div class="p-0.5 text-xs text-center rounded-full bg-red-600 font-semibold "
                v-for="(busID,index) in stop.buses" :key="index">{{busID}}</div>
         </FlexMinified>
+        <p v-if="userCoords!==null" class="text-xs text-emerald-400">{{$t('distance')}}: {{getDistanceFromLatLonInKm(stop.coordinates.latitude,stop.coordinates.longitude, userCoords.lat, userCoords.lon )}}km</p>
       </FlexMinified>
       <RouterLink class="block py-1 px-2 bg-sky-600 hover:bg-white hover:text-black transition-all  duration-200 ease-in rounded-md"
          :to="`busstops/map/${stop.name}-${stop.code}?lng=${stop.coordinates.longitude}&lat=${stop.coordinates.latitude}`" aria-label="ShowOnMap" >
@@ -35,6 +65,11 @@ const busStops = ref((await getBusStops()).stops);
       </RouterLink>
     </FlexMinified>
   </FlexMinified>
+  <button
+      v-if="!userCoords"
+      @click="getLocation"
+      class="absolute bottom-[15vh] right-[5vw] border-3 border-neutral-800 hover:border-white bg-white hover:bg-emerald-600 hover:text-white text-neutral-800 p-3  rounded-full hover:brightness-125 transition-all duration-300 ease-in cursor-pointer">
+    <Icon icon="line-md:map-marker-alt-twotone-loop" class="size-7"/></button>
 </template>
 
 <style scoped>

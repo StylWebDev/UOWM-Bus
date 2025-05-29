@@ -56,5 +56,6 @@
   "notFound": {
     "p": "We are sorry, but the page you are looking for may have been moved, deleted or may not exist.",
     "btn": "Back to Home"
-  }
+  },
+  "distance": "Distance"
 }
