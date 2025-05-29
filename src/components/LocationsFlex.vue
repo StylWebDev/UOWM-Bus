@@ -2,7 +2,7 @@
 import FlexMinified from "./FlexMinified.vue";
 import {useDataStore} from "../stores/data.ts";
 import greekUtils from "greek-utils";
-import { ref} from "vue";
+import {onMounted, ref} from "vue";
 import {Icon} from "@iconify/vue";
 
 const {getBusStops} = useDataStore();
@@ -27,15 +27,26 @@ function deg2rad(deg: number): number {
 
 const userCoords = ref<any>(null);
 
+const geo = ref<boolean>(true);
+
 const getLocation = () => {
   navigator.geolocation.getCurrentPosition((position) => {
     userCoords.value =  {lon: position.coords.longitude, lat: position.coords.latitude};
     busStops.value.sort((a, b) => getDistanceFromLatLonInKm(a.coordinates.latitude,a.coordinates.longitude, userCoords.value.lat, userCoords.value.lon) - getDistanceFromLatLonInKm(b.coordinates.latitude,b.coordinates.longitude, userCoords.value.lat, userCoords.value.lon));
-
+    geo.value = false
+    if (!document.cookie) document.cookie = "geo=1";
   }, () => {
     userCoords.value = null;
   });
 }
+
+onMounted(() => {
+  if (document.cookie.split('=')[1] === '1') {
+    geo.value = false;
+    getLocation();
+  }
+
+})
 
 </script>
 
