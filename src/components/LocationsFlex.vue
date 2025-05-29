@@ -68,7 +68,7 @@ const getLocation = () => {
   <button
       v-if="!userCoords"
       @click="getLocation"
-      class="absolute bottom-[15vh] right-[5vw] border-3 border-neutral-800 hover:border-white bg-white hover:bg-emerald-600 hover:text-white text-neutral-800 p-3  rounded-full hover:brightness-125 transition-all duration-300 ease-in cursor-pointer">
+      class="absolute bottom-[15vh] right-[5vw] bg-red-500 hover:bg-emerald-600 hover:text-white focus:text-white focus:bg-emerald-600 text-neutral-800 p-3  rounded-full hover:brightness-125 transition-all duration-300 ease-in cursor-pointer">
     <Icon icon="line-md:map-marker-alt-twotone-loop" class="size-7"/></button>
 </template>
 
