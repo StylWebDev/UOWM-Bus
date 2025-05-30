@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@maptiler/sdk": "^3.3.0",
     "@tailwindcss/vite": "^4.1.7",
     "@types/vanilla-tilt": "^1.4.1",
     "greek-utils": "^1.1.2",

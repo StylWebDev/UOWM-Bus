@@ -44,7 +44,7 @@ const { trans } = useConfigureStore()
       >
         <template #img>
           <img :src="area.map_img"
-               class=" rounded-t-lg bg-red-500 size-full h-[40vh] object-cover"
+               class=" rounded-t-lg  size-full h-[40vh] object-cover"
                :alt="area.place.end.el.location + `_image`">
         </template>
         <template #title>

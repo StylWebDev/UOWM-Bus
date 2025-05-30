@@ -6,7 +6,7 @@ import FlexMinified from "../../components/FlexMinified.vue";
 </script>
 
 <template>
-  <FlexMinified :column="true" items="center" gap-y="4" class="lg:gap-y-3 max-md:bg-eggplant-950">
+  <FlexMinified :column="true" items="center" gap-y="4" class="lg:gap-y-3 ">
     <Transition appear enter-from-class="opacity-0 -translate-y-full" appear-active-class="transition-all duration-700 ease-linear">
       <FlexMinified  :column="true" items="center">
         <h3 class="flex justify-center gap-x-1 items-center text-center font-bold text-3xl rainbow">

@@ -4,6 +4,9 @@ import Menu from "./layouts/Menu.vue"
 import {useConfigureStore} from "./stores/configure.ts";
 import Footer from "./layouts/Footer.vue";
 import {onMounted} from "vue";
+import {useRoute} from "vue-router";
+
+const route = useRoute();
 
 const configureStore = useConfigureStore();
 
@@ -35,7 +38,8 @@ onMounted(() => {
   />
 
 
-  <div class="max-sm:h-[80vh] h-[84vh] overflow-auto  sm:py-8">
+
+  <div class="max-sm:h-[80vh] h-[84vh] overflow-auto  sm:py-8 " :class="(route.path === '/busstops') ? `max:md:bg-eggplant-950` : ``">
     <Suspense>
       <template #default>
         <RouterView/>
