@@ -47,7 +47,7 @@ onMounted(() => {
     </Suspense>
 
   </div>
-  <Footer class=" bg-eggplant-950 w-screen  max-sm:h-[10vh] h-[8vh]"/>
+  <Footer class=" bg-eggplant-950 w-screen pb-4 max-sm:h-[10vh] h-[8vh]"/>
 </template>
 
 <style scoped>
