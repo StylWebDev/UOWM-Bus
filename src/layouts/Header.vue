@@ -1,10 +1,4 @@
 <script setup lang="ts">
-import FlexMinified from "../components/FlexMinified.vue";
-import {Icon} from "@iconify/vue";
-import {useConfigureStore} from "../stores/configure.ts";
-import {useRoute} from "vue-router";
-import LangMenu from "../components/LangMenu.vue";
-
 const route = useRoute()
 const config = useConfigureStore();
 

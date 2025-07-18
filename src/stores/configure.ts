@@ -1,7 +1,3 @@
-import {defineStore} from "pinia";
-import {ref} from "vue";
-import {useI18n} from "vue-i18n";
-
 export const useConfigureStore = defineStore('configure', () => {
     const {locale} = useI18n();
     const menu = ref<boolean>(false)
@@ -27,5 +23,16 @@ export const useConfigureStore = defineStore('configure', () => {
         localStorage.setItem('lang', locale.value);
     }
 
-    return {menu, trans, setLan, checkLang}
+    const slides = ref([
+        {id: 1, src: `bus1.webp`, alt: 'img'},
+        {id: 2, src: `bus2.webp`, alt: 'img'},
+        {id: 3, src: `bus3.webp`, alt: 'img'},
+        {id: 4, src: `bus4.webp`, alt: 'img'},
+        {id: 5, src: `bus5.webp`, alt: 'img'},
+        {id: 6, src: `bus6.webp`, alt: 'img'},
+        {id: 7, src: `bus7.webp`, alt: 'img'},
+        {id: 8, src: `bus8.webp`, alt: 'img'}
+    ])
+
+    return {menu, trans, setLan, checkLang, slides}
 })

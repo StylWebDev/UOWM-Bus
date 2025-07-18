@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import {useRoute} from "vue-router";
-import {Icon} from "@iconify/vue";
 import greekUtils from 'greek-utils'
-import {useDataStore} from "../../stores/data.ts";
-import {computed, ref} from "vue";
 const {params, query} = useRoute();
 
 const {getBusStops} = useDataStore();

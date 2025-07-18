@@ -1,12 +1,7 @@
 <script setup lang="ts">
-interface Props {
-  color?: string;
-  text?: string;
-  borderColor?: string;
-  shadow?: boolean;
-}
+import {Card} from "../../types.ts";
 
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Card>(), {
   color: "bg-neutral-800",
   text: 'text-white',
   borderColor: 'border-white',

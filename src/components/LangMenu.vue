@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import {Icon} from "@iconify/vue";
-const isOpen = ref(false);
+const isOpen = ref<boolean>(false);
 const configureStore = useConfigureStore();
-
 </script>
 <template>
   <div class="relative inline-block text-left">

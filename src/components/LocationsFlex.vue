@@ -1,46 +1,10 @@
 <script setup lang="ts">
-import {useDataStore} from "../stores/data.ts";
 import greekUtils from "greek-utils";
-import {computed, onMounted, ref} from "vue";
-import {Icon} from "@iconify/vue";
-
-const {getBusStops} = useDataStore();
+const {getBusStops, getDistanceFromLatLonInKm, normalizeGreek} = useDataStore();
 const busStops = ref<{name: string, code: string, buses: string[], coordinates: {latitude: number, longitude: number}}[]>((await getBusStops()).stops);
 
-const getDistanceFromLatLonInKm = (lat1: number,lon1: number,lat2: number,lon2: number): number => {
-  let R = 6371; // Radius of the earth in km
-  let dLat = deg2rad(lat2-lat1);  // deg2rad below
-  let dLon = deg2rad(lon2-lon1);
-  let a =
-      Math.sin(dLat/2) * Math.sin(dLat/2) +
-      Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-      Math.sin(dLon/2) * Math.sin(dLon/2)
-  ;
-  let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-  return parseFloat((R * c).toFixed(2));
-}
-
-function deg2rad(deg: number): number {
-  return deg * (Math.PI/180)
-}
-
-
-function normalizeGreek(text: string): string {
-  text = text.replace(/Ά|Α|ά/g, 'α')
-      .replace(/Έ|Ε|έ/g, 'ε')
-      .replace(/Ή|Η|ή/g, 'η')
-      .replace(/Ί|Ϊ|Ι|ί|ΐ|ϊ/g, 'ι')
-      .replace(/Ό|Ο|ό/g, 'ο')
-      .replace(/Ύ|Ϋ|Υ|ύ|ΰ|ϋ/g, 'υ')
-      .replace(/Ώ|Ω|ώ/g, 'ω')
-      .replace(/Σ|ς/g, 'σ');
-  return text;
-}
-
 const userCoords = ref<any>(null);
-
 const geo = ref<boolean>(true);
-
 const getLocation = () => {
   navigator.geolocation.getCurrentPosition((position) => {
     userCoords.value =  {lon: position.coords.longitude, lat: position.coords.latitude};
@@ -57,7 +21,6 @@ onMounted(() => {
     geo.value = false;
     getLocation();
   }
-
 })
 
 const filteredStops = computed(() => {

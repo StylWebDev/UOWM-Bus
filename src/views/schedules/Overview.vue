@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import {useConfigureStore} from "../../stores/configure.ts";
-import {Icon} from "@iconify/vue";
 import VanillaTilt from "vanilla-tilt";
-import {onMounted} from "vue";
 
 onMounted(() => {
   VanillaTilt.init(document.querySelectorAll(".card") as unknown as HTMLElement, {max: 1.3, glare: true, "max-glare": 0.3} )

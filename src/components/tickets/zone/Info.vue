@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import {Icon} from "@iconify/vue";
-import {useConfigureStore} from "../../../stores/configure.ts";
 const {trans} = useConfigureStore();
 </script>
 

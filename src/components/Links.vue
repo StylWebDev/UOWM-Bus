@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import {Icon} from "@iconify/vue";
-const linkList = ref([
+import {LinkList} from "../types.ts";
+const linkList = ref<LinkList[]>([
   {name: 'LinkedIn', href:`https://www.linkedin.com/in/konstantinos-stylianou-a4a95625b/` ,icon:`line-md:linkedin` },
   {name: 'Github', href:`https://github.com/StylWebDev` ,icon:`line-md:github-loop` },
   {name: 'Email', href:`mailto:kostasstilianou@gmail.com` ,icon:`line-md:email-alt-twotone` },

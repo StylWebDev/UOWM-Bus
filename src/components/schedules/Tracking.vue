@@ -1,22 +1,10 @@
 <script setup lang="ts">
-import {Icon} from "@iconify/vue";
-import {useDataStore} from "../../stores/data.ts";
-import {useI18n} from "vue-i18n";
+import {Tracking} from "../../types.ts";
 
 const {addTime} = useDataStore()
 const {t} = useI18n();
 
-const props = defineProps<{
-  resolvedSchedule: string,
-  nextArrival: string,
-  nextDeparture: string,
-  mapURL: string,
-  mins: number,
-  arrivalTime: string,
-  departureTime: string,
-  id: string,
-  test: boolean
-}>()
+const props = defineProps<Tracking>()
 
 </script>
 

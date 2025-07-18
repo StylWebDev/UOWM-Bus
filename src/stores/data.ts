@@ -1,7 +1,3 @@
-import {defineStore} from "pinia";
-import {useRouter} from "vue-router"
-import {ref} from "vue";
-
 export const useDataStore = defineStore('data', () => {
     const router = useRouter();
 
@@ -50,6 +46,32 @@ export const useDataStore = defineStore('data', () => {
 
     const startTime = ref<string>(``)
 
+    const getDistanceFromLatLonInKm = (lat1: number,lon1: number,lat2: number,lon2: number): number => {
+        let R = 6371; // Radius of the earth in km
+        let dLat = deg2rad(lat2-lat1);  // deg2rad below
+        let dLon = deg2rad(lon2-lon1);
+        let a =
+            Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+            Math.sin(dLon/2) * Math.sin(dLon/2)
+        ;
+        let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        return parseFloat((R * c).toFixed(2));
+    }
 
-    return {getData, addTime, getTickets, startTime, dateToTimeStamp, getBusStops}
+    const deg2rad = (deg: number): number => deg * (Math.PI/180);
+
+     const normalizeGreek = (text: string): string => {
+        text = text.replace(/Ά|Α|ά/g, 'α')
+            .replace(/Έ|Ε|έ/g, 'ε')
+            .replace(/Ή|Η|ή/g, 'η')
+            .replace(/Ί|Ϊ|Ι|ί|ΐ|ϊ/g, 'ι')
+            .replace(/Ό|Ο|ό/g, 'ο')
+            .replace(/Ύ|Ϋ|Υ|ύ|ΰ|ϋ/g, 'υ')
+            .replace(/Ώ|Ω|ώ/g, 'ω')
+            .replace(/Σ|ς/g, 'σ');
+        return text;
+    }
+
+    return {getData, addTime, getTickets, startTime, dateToTimeStamp, getBusStops, deg2rad, getDistanceFromLatLonInKm, normalizeGreek}
 })

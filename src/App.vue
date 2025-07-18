@@ -1,13 +1,5 @@
 <script setup lang="ts">
-import Header from "./layouts/Header.vue";
-import Menu from "./layouts/Menu.vue"
-import {useConfigureStore} from "./stores/configure.ts";
-import Footer from "./layouts/Footer.vue";
-import {onMounted} from "vue";
-import {useRoute} from "vue-router";
-
 const route = useRoute();
-
 const configureStore = useConfigureStore();
 
 onMounted(() => {

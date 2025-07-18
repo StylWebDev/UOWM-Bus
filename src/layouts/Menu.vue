@@ -1,9 +1,4 @@
 <script setup lang="ts">
-import FlexMinified from "../components/FlexMinified.vue";
-import {useConfigureStore} from "../stores/configure.ts";
-import {storeToRefs} from "pinia";
-import LangMenu from "../components/LangMenu.vue";
-
 const {menu} = storeToRefs(useConfigureStore());
 
 defineProps<{

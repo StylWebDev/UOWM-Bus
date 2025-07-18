@@ -1,10 +1,8 @@
 <script setup lang="ts">
-
 defineProps<{
  long: number;
  lati: number;
 }>();
-
 
 const GKEY = import.meta.env.VITE_GKEY
 </script>

@@ -27,6 +27,7 @@ export default defineConfig({
               "pinia",
               "vue-router",
               "vue-i18n",
+
           ],
           dirs: [
               './src/stores'

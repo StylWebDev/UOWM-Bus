@@ -1,11 +1,7 @@
 <script setup lang="ts">
-import {computed, ref} from "vue";
-import {Icon} from "@iconify/vue";
 
-import {useRoute} from "vue-router"
 const {params} = useRoute()
 
-import {useDataStore} from "../../stores/data.ts";
 const {getData} = useDataStore();
 const dataStore = useDataStore();
 

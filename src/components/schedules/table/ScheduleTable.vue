@@ -1,16 +1,7 @@
 <script setup lang="ts">
-import {onMounted, ref} from "vue";
-import {useDataStore} from "../../../stores/data.ts";
+import {TimingTable} from "../../../types.ts";
 
-const props = defineProps<{
-  timeTable: string[],
-  secondTimeTable: string[],
-  startTime: string,
-  arrivalTime: string,
-  departureTime: string,
-  mins: number
-}>();
-
+const props = defineProps<TimingTable>();
 
 const timeTable = ref<string[]>([...props.timeTable])
 const secondTimeTable = ref<string[]>([...props.secondTimeTable])
