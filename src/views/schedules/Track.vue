@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import {computed, ref} from "vue";
-import FlexMinified from "../../components/FlexMinified.vue";
 import {Icon} from "@iconify/vue";
-import GridMinified from "../../components/GridMinified.vue";
-import Tracking from "../../components/schedules/Tracking.vue";
-import ScheduleTable from "../../components/schedules/table/ScheduleTable.vue";
 
 import {useRoute} from "vue-router"
 const {params} = useRoute()

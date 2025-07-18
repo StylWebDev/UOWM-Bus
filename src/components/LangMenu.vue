@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import {Icon} from "@iconify/vue";
-import {useConfigureStore} from "../stores/configure.ts";
 const isOpen = ref(false);
 const configureStore = useConfigureStore();
 

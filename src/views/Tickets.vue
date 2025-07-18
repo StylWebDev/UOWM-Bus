@@ -1,12 +1,7 @@
 <script setup lang="ts">
-
-import FlexMinified from "../components/FlexMinified.vue";
 import {Icon} from "@iconify/vue";
 import {useDataStore} from "../stores/data.ts";
 import {reactive, ref} from "vue";
-import ZonePerArea from "../components/tickets/ZonePerArea.vue";
-import Zone from "../components/tickets/Zone.vue";
-
 
 const {getTickets, getData} = useDataStore();
 const areas = (await getData(Number(52100))).areas;
@@ -16,7 +11,6 @@ const data = await getTickets();
 const zoneA = reactive(data.zoneA);
 const zoneB = reactive(data.zoneB);
 const tickets = ref([zoneA, zoneB]);
-
 </script>
 
 <template>

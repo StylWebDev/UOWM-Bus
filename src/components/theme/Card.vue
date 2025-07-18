@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import FlexMinified from "../../components/FlexMinified.vue";
 interface Props {
   color?: string;
   text?: string;

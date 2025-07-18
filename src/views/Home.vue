@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import FlexMinified from "../components/FlexMinified.vue";
-
 import {useConfigureStore} from "../stores/configure.ts";
 import {Carousel, Slide} from "vue3-carousel";
 import {onMounted} from "vue";

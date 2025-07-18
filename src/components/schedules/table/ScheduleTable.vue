@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import FlexMinified from "../../FlexMinified.vue";
 import {onMounted, ref} from "vue";
 import {useDataStore} from "../../../stores/data.ts";
 

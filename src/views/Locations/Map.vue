@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import LocationsMap from "../../components/LocationsMap.vue";
 import {useRoute} from "vue-router";
 import {Icon} from "@iconify/vue";
-import FlexMinified from "../../components/FlexMinified.vue";
 import greekUtils from 'greek-utils'
 import {useDataStore} from "../../stores/data.ts";
 import {computed, ref} from "vue";

@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import Card from "../theme/Card.vue";
 import {useConfigureStore} from "../../stores/configure.ts";
-import GridMinified from "../../components/GridMinified.vue";
 import {Icon} from "@iconify/vue";
-import FlexMinified from "../..//components/FlexMinified.vue";
 import VanillaTilt from "vanilla-tilt";
 import {onMounted} from "vue";
 

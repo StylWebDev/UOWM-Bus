@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import {Icon} from "@iconify/vue";
-import FlexMinified from "../FlexMinified.vue";
 import {useDataStore} from "../../stores/data.ts";
 import {useI18n} from "vue-i18n";
 

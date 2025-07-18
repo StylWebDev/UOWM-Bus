@@ -1,6 +1,4 @@
 <script setup lang="ts">
-
-import FlexMinified from "../components/FlexMinified.vue";
 import {Icon} from "@iconify/vue";
 </script>
 

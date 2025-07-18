@@ -1,8 +1,5 @@
 <script setup lang="ts">
-
-import LocationsFlex from "../../components/LocationsFlex.vue";
 import {Icon} from "@iconify/vue";
-import FlexMinified from "../../components/FlexMinified.vue";
 </script>
 
 <template>

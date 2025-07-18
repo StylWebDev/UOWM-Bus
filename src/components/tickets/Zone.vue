@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import FlexMinified from "../FlexMinified.vue";
-import Label from "./zone/Label.vue";
-import Info from "./zone/Info.vue";
-import Ticket from "./zone/Ticket.vue";
 
 defineProps<{
   tickets: any[]

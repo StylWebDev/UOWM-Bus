@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import FlexMinified from "./FlexMinified.vue";
 import {useDataStore} from "../stores/data.ts";
 import greekUtils from "greek-utils";
 import {computed, onMounted, ref} from "vue";
