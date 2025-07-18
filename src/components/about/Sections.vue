@@ -24,7 +24,7 @@ import FlexMinified from "../FlexMinified.vue";
           <div class="sm:flex gap-x-4 sm:justify-center max-sm:flex-col max-sm:justify-items-center items-center w-full">
             <img :src="section.logo" :alt="section.name + `_logo`" class=" block  size-14 "
                  :class="{'size-14': index===1}">
-            <span class="align-middle brightness-150 text-center"> {{section.name}}</span>
+            <span class="align-middle max-sm:block max-sm:mt-2 brightness-150 text-center"> {{section.name}}</span>
           </div>
         <Icon class="absolute size-24 -right-12 max-[350px]:top-24 z-10  top-6 max-sm:top-16" :icon="section.icon2"/>
       </a>
