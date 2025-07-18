@@ -58,9 +58,9 @@ onMounted(() => {
                     gap-x="5"
                     items="center"
                     v-for="(stop,index) in busStops" :key="stop.code"
-                    :class="(index%2===0) ? `bg-eggplant-950` : `bg-neutral-900/85`"
+                    :class="(index%2===0) ? `bg-neutral-900/85` : `bg-eggplant-950`"
       >
-        <p class="w-20 py-7 text-center font-extrabold black  bg-eggplant-100 rounded-full">{{ stop.code }}</p>
+        <p class="w-20 py-7 text-center font-extrabold black border-2 border-sky-500  bg-eggplant-100 rounded-full">{{ stop.code }}</p>
         <FlexMinified :column="true" gap-y="1" class="w-40">
           <h2 class="font-semibold uppercase">{{($i18n.locale === 'el') ? stop.name : greekUtils.toGreeklish(stop.name)}}</h2>
           <FlexMinified :row="true" gap-x="1" gap-y="0.5" :wrap="true">

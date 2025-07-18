@@ -1,8 +1,10 @@
 <script setup lang="ts">
+
 defineProps<{
  long: number;
  lati: number;
 }>();
+
 
 const GKEY = import.meta.env.VITE_GKEY
 </script>
@@ -10,7 +12,7 @@ const GKEY = import.meta.env.VITE_GKEY
 <template>
   <iframe
       referrerpolicy="no-referrer"
-      class="w-[95vw] rounded-2xl h-[70vh]"
+      class="max-md:w-full w-[95vw] md:rounded-2xl h-[70vh]"
       :src="`https://www.google.com/maps/embed/v1/place?key=${GKEY}&q=${lati+','+long}`"/>
 </template>
 
