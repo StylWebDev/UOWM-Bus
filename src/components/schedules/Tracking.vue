@@ -5,7 +5,7 @@ const {addTime} = useDataStore()
 const {t} = useI18n();
 
 const props = defineProps<Tracking>()
-
+import { Icon } from "@iconify/vue";
 </script>
 
 <template>

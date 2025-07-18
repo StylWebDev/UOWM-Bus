@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+import { Icon } from "@iconify/vue";
 const {params} = useRoute()
 
 const {getData} = useDataStore();

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import {TimingTable} from "../../../types.ts";
-
 const props = defineProps<TimingTable>();
 
 const timeTable = ref<string[]>([...props.timeTable])

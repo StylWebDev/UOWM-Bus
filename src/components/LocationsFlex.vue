@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import greekUtils from "greek-utils";
+import { Icon } from "@iconify/vue";
 const {getBusStops, getDistanceFromLatLonInKm, normalizeGreek} = useDataStore();
 const busStops = ref<{name: string, code: string, buses: string[], coordinates: {latitude: number, longitude: number}}[]>((await getBusStops()).stops);
 
@@ -32,22 +33,24 @@ const textSearch = ref("")
 
 <template>
   <FlexMinified :column="true" items="center" class="w-full" md-gap-y="2">
-    <div class="w-92 mb-4">
-      <label for="default-search" class="mb-2 text-sm font-medium sr-only text-white">Search</label>
-      <div class="relative">
-        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-          <svg class="w-4 h-4 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-          </svg>
+    <Transition enter-from-class="opacity-0 scale-0" enter-active-class="transition-all duration-700 ease-in" leave-to-class="opacity-0 scale-0"  leave-active-class="transition-all duration-700 ease-in" appear >
+      <div class="w-92 mb-4">
+        <label for="default-search" class="mb-2 text-sm font-medium sr-only text-white">Search</label>
+        <div class="relative">
+          <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+            <svg class="w-4 h-4 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+            </svg>
+          </div>
+          <input v-model="textSearch"
+                 type="text" id="default-search"
+                 class="block w-full p-4 ps-10 text-sm  border  rounded-lg   max-md:bg-eggplant-900 bg-eggplant-950/80 border-gray-400 placeholder-gray-400 text-white focus:ring-fuchsia-500 focus:border-fuchsia-500"
+                 :placeholder="($i18n.locale === `el`) ? `Αναζήτηση Στάσεων` : `Search Bus Stops`"
+                 required />
         </div>
-        <input v-model="textSearch"
-               type="text" id="default-search"
-               class="block w-full p-4 ps-10 text-sm  border  rounded-lg   max-md:bg-eggplant-900 bg-eggplant-950/80 border-gray-400 placeholder-gray-400 text-white focus:ring-fuchsia-500 focus:border-fuchsia-500"
-               :placeholder="($i18n.locale === `el`) ? `Αναζήτηση Στάσεων` : `Search Bus Stops`"
-               required />
       </div>
-    </div>
-    <TransitionGroup enter-from-class="opacity-0 scale-0" enter-active-class="transition-all duration-700 ease-in" leave-to-class="opacity-0 scale-0"  leave-active-class="transition-all duration-700 ease-in" appear >
+    </Transition>
+    <TransitionGroup move-class="transition-all ease-in-out duration-500" enter-from-class="opacity-0 scale-0" enter-active-class="transition-all duration-700 ease-in" leave-to-class="opacity-0 scale-0"  leave-active-class="transition-all duration-700 ease-in" appear >
       <FlexMinified class=" w-full md:w-[80vw] xl:w-[75vw] min-[2000px]:w-[60vw] md:px-10 py-2 md:rounded-lg md:border border-white/40"
                     justify="evenly"
                     gap-x="5"

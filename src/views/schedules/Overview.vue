@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import VanillaTilt from "vanilla-tilt";
-
+import { Icon } from "@iconify/vue";
 onMounted(() => {
   VanillaTilt.init(document.querySelectorAll(".card") as unknown as HTMLElement, {max: 1.3, glare: true, "max-glare": 0.3} )
 })
