@@ -25,6 +25,19 @@ function deg2rad(deg: number): number {
   return deg * (Math.PI/180)
 }
 
+
+function normalizeGreek(text: string): string {
+  text = text.replace(/Ά|Α|ά/g, 'α')
+      .replace(/Έ|Ε|έ/g, 'ε')
+      .replace(/Ή|Η|ή/g, 'η')
+      .replace(/Ί|Ϊ|Ι|ί|ΐ|ϊ/g, 'ι')
+      .replace(/Ό|Ο|ό/g, 'ο')
+      .replace(/Ύ|Ϋ|Υ|ύ|ΰ|ϋ/g, 'υ')
+      .replace(/Ώ|Ω|ώ/g, 'ω')
+      .replace(/Σ|ς/g, 'σ');
+  return text;
+}
+
 const userCoords = ref<any>(null);
 
 const geo = ref<boolean>(true);
@@ -49,7 +62,7 @@ onMounted(() => {
 })
 
 const filteredStops = computed(() => {
-  return busStops.value.filter((stops) => stops.name.startsWith(greekUtils.toGreek(textSearch.value.toUpperCase())));
+  return busStops.value.filter((stops) => stops.name.startsWith(greekUtils.toGreek(normalizeGreek(textSearch.value).toUpperCase())));
 })
 
 const textSearch = ref("")
