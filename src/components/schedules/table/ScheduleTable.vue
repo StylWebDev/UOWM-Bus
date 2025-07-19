@@ -9,8 +9,10 @@ const {addTime, dateToTimeStamp} = useDataStore()
 const date = ref<string>(dateToTimeStamp(new Date().getHours(), new Date().getMinutes()))
 
 const stopSchedule = ref(
-    (addTime(props.secondTimeTable[props.secondTimeTable.length-1], props.mins) < date.value || date.value < props.timeTable[0])
+    (addTime(props.secondTimeTable[props.secondTimeTable.length-1], props.mins) < date.value || (date.value < props.timeTable[0] || date.value < props.secondTimeTable[0]))
 )
+
+const route = useRoute()
 
 onMounted(() => {
   if (timeTable.value.length >= secondTimeTable.value.length) {
@@ -29,11 +31,15 @@ onMounted(() => {
   }
 })
 
+const isAEI = computed<number>( () => {
+  if (route.params.id === '1') return  (new Date().getDay() == 6 ) ? 2 : (new Date().getDay() == 7 ) ? 1 : 0;
+  return 0;
+})
 </script>
 
 <template>
   <FlexMinified :column="true" items="center" class="lg:col-span-2 max-sm:border border-transparent border-t-white/50  ">
-    <h3 class="text-center mb-4  text-xl font-bold text-emerald-500">{{ $t('schedule.h4') }} {{`${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`}}</h3>
+    <h3 class="text-center mb-4  text-xl font-bold text-emerald-500">{{ $t('schedule.h4') }} {{`${new Date().getDate() + isAEI }/${new Date().getMonth()}/${new Date().getFullYear()}`}}</h3>
 
     <FlexMinified :column="true" items="center" class=" w-full border border-white/30 text-sm text-left rtl:text-right text-eggplant-50 bg-eggplant-500/50 mb-5 rounded-t-2xl rounded-b-2xl ">
 
