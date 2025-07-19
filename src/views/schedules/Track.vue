@@ -1,12 +1,8 @@
 <script setup lang="ts">
-import { Icon } from "@iconify/vue";
 const {params} = useRoute()
-
 const {getData} = useDataStore();
 const dataStore = useDataStore();
-
 const data = await getData(Number(params.id));
-
 const { dateToTimeStamp} = useDataStore()
 
 const specData = computed(() => {

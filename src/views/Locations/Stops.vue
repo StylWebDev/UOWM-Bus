@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Icon } from "@iconify/vue";
 </script>
 
 <template>
@@ -15,7 +14,9 @@ import { Icon } from "@iconify/vue";
     </Transition>
 
     <Transition appear enter-from-class="opacity-0 scale-50" appear-active-class="transition-all duration-700 ease-linear">
-      <LocationsFlex/>
+      <div>
+        <LocationsFlex/>
+      </div>
     </Transition>
   </FlexMinified>
 </template>

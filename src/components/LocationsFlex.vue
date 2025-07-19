@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import greekUtils from "greek-utils";
-import { Icon } from "@iconify/vue";
+import {toGreeklish} from "greek-utils";
 const {getBusStops, getDistanceFromLatLonInKm, normalizeGreek} = useDataStore();
 const busStops = ref<{name: string, code: string, buses: string[], coordinates: {latitude: number, longitude: number}}[]>((await getBusStops()).stops);
 
@@ -25,7 +24,7 @@ onMounted(() => {
 })
 
 const filteredStops = computed(() => {
-  return busStops.value.filter((stops) => stops.name.startsWith(greekUtils.toGreek(normalizeGreek(textSearch.value).toUpperCase())));
+  return busStops.value.filter((stops) => stops.name.startsWith(toGreek(normalizeGreek(textSearch.value).toUpperCase())));
 })
 
 const textSearch = ref("")
@@ -60,7 +59,7 @@ const textSearch = ref("")
       >
         <p class="w-20 py-7 text-center font-extrabold black border-2 border-sky-500  bg-eggplant-100 rounded-full">{{ stop.code }}</p>
         <FlexMinified :column="true" gap-y="1" class="w-40">
-          <h2 class="font-semibold uppercase">{{($i18n.locale === 'el') ? stop.name : greekUtils.toGreeklish(stop.name)}}</h2>
+          <h2 class="font-semibold uppercase">{{($i18n.locale === 'el') ? stop.name : toGreeklish(stop.name)}}</h2>
           <FlexMinified :row="true" gap-x="1" gap-y="0.5" :wrap="true">
             <Icon icon="mdi:bus-multiple" class="text-sky-600"/>
             <div class="p-0.5 text-xs text-center rounded-full bg-red-600 font-semibold "

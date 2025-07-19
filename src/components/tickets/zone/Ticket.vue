@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Icon } from "@iconify/vue";
 defineProps<{
   ticket: any,
   index: number

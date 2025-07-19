@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Icon } from "@iconify/vue";
 const {getTickets, getData} = useDataStore();
 const areas = (await getData(Number(52100))).areas;
 

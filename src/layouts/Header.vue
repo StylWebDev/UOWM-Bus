@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { Icon } from "@iconify/vue";
 const route = useRoute()
 const config = useConfigureStore();
-
 defineProps<{
   routes: {name:string; link: string}[]
 }>()

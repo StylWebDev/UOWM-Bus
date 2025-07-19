@@ -8,6 +8,7 @@ export {}
 declare global {
   const EffectScope: typeof import('vue')['EffectScope']
   const Icon: typeof import('@iconify')['Icon']
+  const VanillaTilt: typeof import('vanilla-tilt')['default']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']

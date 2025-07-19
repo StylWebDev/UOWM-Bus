@@ -11,7 +11,10 @@ export default defineConfig({
       {
         dirs: ['./src/components', './src/layouts'],
         extensions: ['vue'],
-        deep: true
+        deep: true,
+          resolvers: [(compName) => {
+            if (compName.startsWith('Icon')) return {name: compName, from: "@iconify/vue"}
+          }]
       }
   ),
       Import({
@@ -27,6 +30,13 @@ export default defineConfig({
               "pinia",
               "vue-router",
               "vue-i18n",
+              {
+                  "greek-utils": [
+                      "toGreek",
+                      "toGreeklish"
+                  ],
+                  "vanilla-tilt": [["default", "VanillaTilt"]]
+              }
           ],
           dirs: [
               './src/stores'

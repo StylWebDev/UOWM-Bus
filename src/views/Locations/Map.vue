@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import greekUtils from 'greek-utils'
 const {params, query} = useRoute();
-import { Icon } from "@iconify/vue";
-
 const {getBusStops} = useDataStore();
 const busStops = ref<{name: string, code: string, buses: string[], coordinates: {latitude: number, longitude: number}}[]>((await getBusStops()).stops);
 

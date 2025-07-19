@@ -36,6 +36,15 @@ onMounted(() => {
       <template #default>
         <RouterView/>
       </template>
+      <template #fallback>
+        <FlexMinified
+            column
+            justify="center"
+            items="center"
+            class="w-full" >
+              Loading...
+        </FlexMinified>
+      </template>
     </Suspense>
 
   </div>
