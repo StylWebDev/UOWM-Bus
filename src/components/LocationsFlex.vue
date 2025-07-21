@@ -33,7 +33,7 @@ const textSearch = ref("")
 <template>
   <FlexMinified :column="true" items="center" class="w-full" md-gap-y="2">
     <Transition enter-from-class="opacity-0 scale-0" enter-active-class="transition-all duration-700 ease-in" leave-to-class="opacity-0 scale-0"  leave-active-class="transition-all duration-700 ease-in" appear >
-      <div class="w-92 mb-4">
+      <div class="max-sm:w-[92vw] w-92 mb-4">
         <label for="default-search" class="mb-2 text-sm font-medium sr-only text-white">Search</label>
         <div class="relative">
           <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
