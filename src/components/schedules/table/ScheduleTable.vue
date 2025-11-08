@@ -5,12 +5,12 @@ const props = defineProps<TimingTable>();
 const timeTable = ref<string[]>([...props.timeTable])
 const secondTimeTable = ref<string[]>([...props.secondTimeTable])
 
-const {addTime, dateToTimeStamp} = useDataStore()
-const date = ref<string>(dateToTimeStamp(new Date().getHours(), new Date().getMinutes()))
-
-const stopSchedule = ref(
-    (addTime(props.secondTimeTable[props.secondTimeTable.length-1], props.mins) < date.value || (date.value < props.timeTable[0] || date.value < props.secondTimeTable[0]))
-)
+// const {addTime, dateToTimeStamp} = useDataStore()
+// const date = ref<string>(dateToTimeStamp(new Date().getHours(), new Date().getMinutes()))
+//
+// const stopSchedule = ref(
+//     (addTime(props.secondTimeTable[props.secondTimeTable.length-1], props.mins) < date.value || (date.value < props.timeTable[0] || date.value < props.secondTimeTable[0]))
+// )
 
 const route = useRoute()
 
