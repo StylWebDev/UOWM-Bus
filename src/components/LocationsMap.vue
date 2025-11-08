@@ -14,7 +14,7 @@ const url= ref<string>(`https://www.google.com/maps/embed/v1/place?key=${GKEY}&q
 
 onMounted(() => {
   if (long && lati ) {
-    if (userLon && userLat) url.value =`https://www.google.com/maps/embed/v1/directions?key=${GKEY}&origin=${userLat+','+userLon}&destination=${lati+','+long}&zoom=13&avoid=tolls|highways`;
+    if (userLon && userLat) url.value =`https://www.google.com/maps/embed/v1/directions?key=${GKEY}&origin=${userLat+','+userLon}&destination=${lati+','+long}&avoid=tolls|highways`;
   } else router.push(`/busstops`)
 })
 
