@@ -8,12 +8,12 @@ const { dateToTimeStamp} = useDataStore()
 const specData = computed(() => {
   return (new Date().getDay() === 0 && parseInt(params.id.toString()) !== 1)
   ? data.sunday
-  : (new Date().getDay() === 6  && parseInt(params.id.toString()) !== 1)
+  : (new Date().getDay() === 6  && parseInt(params.id.toString()) !== 1 && parseInt(params.id.toString()) !== 4)
   ? data.saturday
   : data.everyday
 })
 
-const test = ref((new Date().getDay() === 0 || new Date().getDay() === 6) && params.id === `1`)
+const test = ref((new Date().getDay() === 0 || new Date().getDay() === 6) && (params.id === `1` || params.id === `4`))
 
 const timeTable = ref<string[]>(specData.value.start)
 

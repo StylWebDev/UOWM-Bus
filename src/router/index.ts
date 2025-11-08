@@ -18,7 +18,7 @@ const routes = [
                 component: () => import('../views/schedules/Overview.vue')
             },
             {
-                path: ':id([1-3])',
+                path: ':id([1-8])',
                 component: () => import('../views/schedules/Track.vue')
             }
         ]

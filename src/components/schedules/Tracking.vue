@@ -6,7 +6,7 @@ const props = defineProps<Tracking>()
 const route = useRoute()
 
 const isAEI = computed<number>( () => {
-  if (route.params.id === '1') return  (new Date().getDay() == 6 ) ? 2 : (new Date().getDay() == 7 ) ? 1 : 0;
+  if (['1','4'].includes(route.params.id.toString())  ) return  (new Date().getDay() == 6 ) ? 2 : (new Date().getDay() == 7 ) ? 1 : 0;
   return 0;
 })
 </script>
@@ -28,12 +28,12 @@ const isAEI = computed<number>( () => {
 
         <FlexMinified :column="true">
           <h3 class="text-center font-extrabold mb-1 uppercase text-emerald-400">{{t('schedule.st1')}}</h3>
-          <FlexMinified gap-x="4" justify="around" items="center" class="rounded-t-lg text-center bg-emerald-500" :class="{'rounded-b-lg': Boolean(isAEI)}">
-            <h5  class="bg-emerald-800 h-full rounded-tl-lg w-full font-semibold py-1.5" :class="{'rounded-bl-lg': Boolean(isAEI)}">{{(isAEI) ? t('schedule.next') :  t('schedule.now')}}</h5>
+          <FlexMinified gap-x="4" justify="around" items="center" class="rounded-t-lg text-center bg-emerald-500" :class="{'rounded-b-lg': Boolean(isAEI) || !props.nextArrival}">
+            <h5  class="bg-emerald-800 h-full rounded-tl-lg w-full font-semibold py-1.5" :class="{'rounded-bl-lg': Boolean(isAEI) || !props.nextArrival}">{{(isAEI || !props.nextArrival) ? t('schedule.next') :  t('schedule.now')}}</h5>
             <p  class="w-full text-gray-100 ">{{ t('schedule.time1') }}: {{props.arrivalTime}}</p>
             <p class="w-full text-gray-100  pr-2">{{ t('schedule.time2') }}: {{addTime(props.arrivalTime, mins)}}</p>
           </FlexMinified>
-          <FlexMinified v-if="!isAEI" gap-x="4" justify="around" items="center" class="rounded-b-lg text-center bg-lime-700">
+          <FlexMinified v-if="!isAEI && props.nextArrival!==undefined" gap-x="4" justify="around" items="center" class="rounded-b-lg text-center bg-lime-700">
             <h5  class="bg-lime-900 h-full rounded-bl-lg w-full font-semibold py-1.5">{{t('schedule.next')}}</h5>
             <p  class="w-full text-gray-100 ">{{ t('schedule.time1') }}: {{props.nextArrival}}</p>
             <p class="w-full text-gray-100  pr-2">{{ t('schedule.time2') }}: {{addTime(props.nextArrival, mins)}}</p>
@@ -42,12 +42,12 @@ const isAEI = computed<number>( () => {
 
           <FlexMinified :column="true" class="mt-4">
             <h3 class="text-center font-extrabold mb-1 uppercase text-orange-400" >{{t('schedule.st2')}}</h3>
-            <FlexMinified gap-x="4" justify="around" items="center" class=" rounded-t-lg  bg-orange-500 text-center  " :class="{'rounded-b-lg': Boolean(isAEI)}">
-              <h5 class="bg-orange-800 h-full rounded-tl-lg py-1.5 w-full font-semibold" :class="{'rounded-bl-lg': Boolean(isAEI)}">{{(isAEI) ? t('schedule.next') :  t('schedule.now')}}</h5>
+            <FlexMinified gap-x="4" justify="around" items="center" class=" rounded-t-lg  bg-orange-500 text-center  " :class="{'rounded-b-lg': Boolean(isAEI) || !props.nextDeparture}">
+              <h5 class="bg-orange-800 h-full rounded-tl-lg py-1.5 w-full font-semibold" :class="{'rounded-bl-lg':  Boolean(isAEI) || !props.nextDeparture}">{{(isAEI || !props.nextDeparture) ? t('schedule.next') :  t('schedule.now')}}</h5>
               <p class="w-full text-gray-100 ">{{ t('schedule.time1') }}: {{props.departureTime}}</p>
               <p class="w-full text-gray-100 ">{{ t('schedule.time2') }}: {{addTime(props.departureTime, mins)}}</p>
             </FlexMinified>
-            <FlexMinified v-if="!isAEI" gap-x="4" justify="around" items="center" class=" rounded-b-lg  bg-amber-700 text-center  ">
+            <FlexMinified v-if="!isAEI && props.nextDeparture!==undefined" gap-x="4" justify="around" items="center" class=" rounded-b-lg  bg-amber-700 text-center  ">
               <h5 class="bg-amber-900 h-full rounded-bl-lg py-1.5 w-full font-semibold">{{t('schedule.next')}}</h5>
               <p class="w-full text-gray-100 ">{{ t('schedule.time1') }}: {{props.nextDeparture}}</p>
               <p class="w-full text-gray-100 ">{{ t('schedule.time2') }}: {{addTime(props.nextDeparture, mins)}}</p>

@@ -32,7 +32,7 @@ onMounted(() => {
 })
 
 const isAEI = computed<number>( () => {
-  if (route.params.id === '1') return  (new Date().getDay() == 6 ) ? 2 : (new Date().getDay() == 7 ) ? 1 : 0;
+  if (['1','4'].includes(route.params.id.toString())) return  (new Date().getDay() == 6 ) ? 2 : (new Date().getDay() == 7 ) ? 1 : 0;
   return 0;
 })
 </script>
@@ -58,7 +58,7 @@ const isAEI = computed<number>( () => {
                       :key="index"
         >
           <div  class="px-6 py-4 font-medium whitespace-nowrap w-full "
-                :class="( time === arrivalTime && !stopSchedule)
+                :class="( (time === arrivalTime ) || timeTable[0] === timeTable[timeTable.length-1])
             ? `bg-emerald-400 text-gray-600 animate-pulse`
                 : null"
           >
@@ -66,7 +66,7 @@ const isAEI = computed<number>( () => {
           </div>
 
           <div class="px-6 py-4 w-full"
-               :class="( secondTimeTable[index] === departureTime && !stopSchedule)
+               :class="( (secondTimeTable[index] === departureTime ) || secondTimeTable[0] === secondTimeTable[secondTimeTable.length-1])
             ? `bg-orange-400 text-gray-600 animate-pulse`
                 : null"
           >

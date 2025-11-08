@@ -4,7 +4,7 @@ export const useDataStore = defineStore('data', () => {
     const router = useRouter();
 
     const getData = (id: number) => {
-        return fetch(`https://uowmbusapi.onrender.com/schedule/${id}`)
+        return fetch(`http://uowmbusapi.onrender.com/schedule/${id}`)
             .then((res) => res.json())
             .catch((_) => router.push(`/404`))
     }
