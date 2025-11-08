@@ -5,10 +5,12 @@ const busStops = ref<{name: string, code: string, buses: string[], coordinates: 
 
 const userCoords = ref<any>(null);
 const geo = ref<boolean>(true);
+const disabled = ref<boolean>(false);
 
 let getPosition: number
 
 const getLocation = () => {
+  disabled.value = true;
   navigator.geolocation.getCurrentPosition((position) => {
     userCoords.value =  {lon: position.coords.longitude, lat: position.coords.latitude};
     busStops.value.sort((a, b) => getDistanceFromLatLonInKm(a.coordinates.latitude,a.coordinates.longitude, userCoords.value.lat, userCoords.value.lon) - getDistanceFromLatLonInKm(b.coordinates.latitude,b.coordinates.longitude, userCoords.value.lat, userCoords.value.lon));
@@ -19,7 +21,7 @@ const getLocation = () => {
       userCoords.value =  {lon: position.coords.longitude, lat: position.coords.latitude};
       busStops.value.sort((a, b) => getDistanceFromLatLonInKm(a.coordinates.latitude,a.coordinates.longitude, userCoords.value.lat, userCoords.value.lon) - getDistanceFromLatLonInKm(b.coordinates.latitude,b.coordinates.longitude, userCoords.value.lat, userCoords.value.lon));
       }, 5000)
-
+    disabled.value = false;
   }, () => {
     userCoords.value = null;
   }, {enableHighAccuracy: true});
@@ -62,7 +64,7 @@ const textSearch = ref("")
         </div>
       </div>
     </Transition>
-    <div class="w-full">
+    <div class="w-full flex flex-col items-center">
       <TransitionGroup move-class="transition-all ease delay-50 duration-500 " enter-from-class="opacity-0 scale-0" enter-active-class="transition-all duration-500  ease " leave-to-class="opacity-0 scale-0 "  leave-active-class=" transition-all duration-500 ease" appear >
         <FlexMinified class=" w-full md:w-[80vw] xl:w-[75vw] min-[2000px]:w-[60vw] md:px-10 py-2 md:rounded-lg md:border border-white/40"
                       justify="evenly"
@@ -83,15 +85,17 @@ const textSearch = ref("")
               <p v-if="userCoords!==null" class="text-xs text-emerald-400">{{$t('distance')}}: {{getDistanceFromLatLonInKm(stop.coordinates.latitude,stop.coordinates.longitude, userCoords.lat, userCoords.lon )}}km</p>
             </Transition>
           </FlexMinified>
-          <RouterLink class="block py-1 px-2 bg-sky-600 hover:bg-white hover:text-black transition-all  duration-200 ease-in rounded-md"
-                      :to="
+          <button :disabled class="disabled:bg-neutral-500 disabled:text-black bg-sky-600 hover:text-black transition-all  duration-200 ease-in hover:bg-white rounded-md">
+            <RouterLink class="block py-1 px-2"
+                        :to="
                           (userCoords===null)
                           ? `busstops/map/${stop.name}-${stop.code}?lng=${stop.coordinates.longitude}&lat=${stop.coordinates.latitude}`
                           : `busstops/map/${stop.name}-${stop.code}?lng=${stop.coordinates.longitude}&lat=${stop.coordinates.latitude}&userLon=${userCoords.lon}&userLat=${userCoords.lat}` "
-                      aria-label="ShowOnMap" >
-            <span class="hidden md:inline font-bold ">{{($i18n.locale==='el') ? 'Χάρτης ' : 'View on '}} </span>
-            <Icon icon="material-symbols:globe-location-pin-sharp" class="inline size-7"/>
-          </RouterLink>
+                        aria-label="ShowOnMap" >
+              <span class="hidden md:inline font-bold ">{{($i18n.locale==='el') ? 'Χάρτης ' : 'View on '}} </span>
+              <Icon icon="material-symbols:globe-location-pin-sharp" class="inline size-7"/>
+            </RouterLink>
+          </button>
         </FlexMinified>
       </TransitionGroup>
     </div>
