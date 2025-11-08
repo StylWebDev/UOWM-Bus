@@ -5,12 +5,12 @@ const props = defineProps<TimingTable>();
 const timeTable = ref<string[]>([...props.timeTable])
 const secondTimeTable = ref<string[]>([...props.secondTimeTable])
 
-// const {addTime, dateToTimeStamp} = useDataStore()
-// const date = ref<string>(dateToTimeStamp(new Date().getHours(), new Date().getMinutes()))
-//
-// const stopSchedule = ref(
-//     (addTime(props.secondTimeTable[props.secondTimeTable.length-1], props.mins) < date.value || (date.value < props.timeTable[0] || date.value < props.secondTimeTable[0]))
-// )
+ const {addTime, dateToTimeStamp} = useDataStore()
+ const date = ref<string>(dateToTimeStamp(new Date().getHours(), new Date().getMinutes()))
+
+ const stopSchedule = ref(
+     (addTime(props.secondTimeTable[props.secondTimeTable.length-1], props.mins) < date.value || (date.value < props.timeTable[0] || date.value < props.secondTimeTable[0]))
+ )
 
 const route = useRoute()
 
@@ -58,7 +58,7 @@ const isAEI = computed<number>( () => {
                       :key="index"
         >
           <div  class="px-6 py-4 font-medium whitespace-nowrap w-full "
-                :class="( (time === arrivalTime ) || timeTable[0] === timeTable[timeTable.length-1])
+                :class="( (time === arrivalTime && !stopSchedule))
             ? `bg-emerald-400 text-gray-600 animate-pulse`
                 : null"
           >
@@ -66,7 +66,7 @@ const isAEI = computed<number>( () => {
           </div>
 
           <div class="px-6 py-4 w-full"
-               :class="( (secondTimeTable[index] === departureTime ) || secondTimeTable[0] === secondTimeTable[secondTimeTable.length-1])
+               :class="( (secondTimeTable[index] === departureTime && !stopSchedule) )
             ? `bg-orange-400 text-gray-600 animate-pulse`
                 : null"
           >
