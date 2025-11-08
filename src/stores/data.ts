@@ -1,3 +1,5 @@
+import {TicketsResponseAPI} from "../types.ts";
+
 export const useDataStore = defineStore('data', () => {
     const router = useRouter();
 
@@ -7,11 +9,16 @@ export const useDataStore = defineStore('data', () => {
             .catch((_) => router.push(`/404`))
     }
 
-    const getTickets = () => {
-        return fetch(`https://uowmbusapi.onrender.com/tickets`)
-            .then((res) => res.json())
-            .catch((_) => router.push(`/404`))
-    }
+    const getTickets = async (): Promise<TicketsResponseAPI> => {
+        try {
+            const res = await fetch(`https://uowmbusapi.onrender.com/tickets`);
+            if (!res.ok) throw new Error("Network response was not ok");
+            return await res.json() as TicketsResponseAPI;
+        } catch (_) {
+            router.push(`/404`);
+            throw new Error("Failed to fetch tickets");
+        }
+    };
 
     const getBusStops = () => {
         return fetch(`https://uowmbusapi.onrender.com/stops`)

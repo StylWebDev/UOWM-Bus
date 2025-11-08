@@ -33,7 +33,8 @@ const stop = computed(() => {
     </Transition>
 
     <Transition appear enter-from-class="opacity-0 scale-50" appear-active-class="transition-all duration-700 ease-linear">
-      <LocationsMap :long="parseFloat(query.lng as string)" :lati="parseFloat(query.lat as string)"/>
+      <LocationsMap v-if="!query.userLat && !query.userLon" :long="parseFloat(query.lng as string)" :lati="parseFloat(query.lat as string)"/>
+      <LocationsMap v-else :long="parseFloat(query.lng as string)" :lati="parseFloat(query.lat as string)" :userLon="parseFloat(query.userLon as string)" :userLat="parseFloat(query.userLat as string)" />
     </Transition>
   </FlexMinified>
 </template>

@@ -5,15 +5,24 @@ const busStops = ref<{name: string, code: string, buses: string[], coordinates: 
 
 const userCoords = ref<any>(null);
 const geo = ref<boolean>(true);
+
+let getPosition: number
+
 const getLocation = () => {
   navigator.geolocation.getCurrentPosition((position) => {
     userCoords.value =  {lon: position.coords.longitude, lat: position.coords.latitude};
     busStops.value.sort((a, b) => getDistanceFromLatLonInKm(a.coordinates.latitude,a.coordinates.longitude, userCoords.value.lat, userCoords.value.lon) - getDistanceFromLatLonInKm(b.coordinates.latitude,b.coordinates.longitude, userCoords.value.lat, userCoords.value.lon));
     geo.value = false
     if (!document.cookie) document.cookie = "geo=1";
+
+    getPosition = setInterval(() => {
+      userCoords.value =  {lon: position.coords.longitude, lat: position.coords.latitude};
+      busStops.value.sort((a, b) => getDistanceFromLatLonInKm(a.coordinates.latitude,a.coordinates.longitude, userCoords.value.lat, userCoords.value.lon) - getDistanceFromLatLonInKm(b.coordinates.latitude,b.coordinates.longitude, userCoords.value.lat, userCoords.value.lon));
+      }, 5000)
+
   }, () => {
     userCoords.value = null;
-  });
+  }, {enableHighAccuracy: true});
 }
 
 onMounted(() => {
@@ -21,6 +30,10 @@ onMounted(() => {
     geo.value = false;
     getLocation();
   }
+})
+
+onUnmounted(() => {
+  clearInterval(getPosition)
 })
 
 const filteredStops = computed(() => {
@@ -49,33 +62,39 @@ const textSearch = ref("")
         </div>
       </div>
     </Transition>
-    <TransitionGroup move-class="transition-all ease-in-out duration-500" enter-from-class="opacity-0 scale-0" enter-active-class="transition-all duration-700 ease-in" leave-to-class="opacity-0 scale-0"  leave-active-class="transition-all duration-700 ease-in" appear >
-      <FlexMinified class=" w-full md:w-[80vw] xl:w-[75vw] min-[2000px]:w-[60vw] md:px-10 py-2 md:rounded-lg md:border border-white/40"
-                    justify="evenly"
-                    gap-x="5"
-                    items="center"
-                    v-for="(stop,index) in filteredStops" :key="stop.code"
-                    :class="(index%2===0) ? `bg-neutral-900/85` : `bg-eggplant-950`"
-      >
-        <p class="w-20 py-7 text-center font-extrabold black border-2 border-sky-500  bg-eggplant-100 rounded-full">{{ stop.code }}</p>
-        <FlexMinified :column="true" gap-y="1" class="w-40">
-          <h2 class="font-semibold uppercase">{{($i18n.locale === 'el') ? stop.name : toGreeklish(stop.name)}}</h2>
-          <FlexMinified :row="true" gap-x="1" gap-y="0.5" :wrap="true">
-            <Icon icon="mdi:bus-multiple" class="text-sky-600"/>
-            <div class="p-0.5 text-xs text-center rounded-full bg-red-600 font-semibold "
-                 v-for="(busID,index) in stop.buses" :key="index">{{busID}}</div>
+    <div>
+      <TransitionGroup move-class="transition-all ease delay-50 duration-500 " enter-from-class="opacity-0 scale-0" enter-active-class="transition-all duration-500  ease " leave-to-class="opacity-0 scale-0 "  leave-active-class=" transition-all duration-500 ease" appear >
+        <FlexMinified class=" w-full md:w-[80vw] xl:w-[75vw] min-[2000px]:w-[60vw] md:px-10 py-2 md:rounded-lg md:border border-white/40"
+                      justify="evenly"
+                      gap-x="5"
+                      items="center"
+                      v-for="(stop,index) in filteredStops" :key="stop.code"
+                      :class="(index%2===0) ? `bg-neutral-900/85` : `bg-eggplant-950`"
+        >
+          <p class="w-20 py-7 text-center font-extrabold black border-2 border-sky-500  bg-eggplant-100 rounded-full">{{ stop.code }}</p>
+          <FlexMinified :column="true" gap-y="1" class="w-40">
+            <h2 class="font-semibold uppercase">{{($i18n.locale === 'el') ? stop.name : toGreeklish(stop.name)}}</h2>
+            <FlexMinified :row="true" gap-x="1" gap-y="0.5" :wrap="true">
+              <Icon icon="mdi:bus-multiple" class="text-sky-600"/>
+              <div class="p-0.5 text-xs text-center rounded-full bg-red-600 font-semibold "
+                   v-for="(busID,index) in stop.buses" :key="index">{{busID}}</div>
+            </FlexMinified>
+            <Transition enter-from-class="opacity-0 " enter-active-class="transition-all duration-500 ease-in" appear>
+              <p v-if="userCoords!==null" class="text-xs text-emerald-400">{{$t('distance')}}: {{getDistanceFromLatLonInKm(stop.coordinates.latitude,stop.coordinates.longitude, userCoords.lat, userCoords.lon )}}km</p>
+            </Transition>
           </FlexMinified>
-          <Transition enter-from-class="opacity-0 " enter-active-class="transition-all duration-500 ease-in" appear>
-            <p v-if="userCoords!==null" class="text-xs text-emerald-400">{{$t('distance')}}: {{getDistanceFromLatLonInKm(stop.coordinates.latitude,stop.coordinates.longitude, userCoords.lat, userCoords.lon )}}km</p>
-          </Transition>
+          <RouterLink class="block py-1 px-2 bg-sky-600 hover:bg-white hover:text-black transition-all  duration-200 ease-in rounded-md"
+                      :to="
+                          (userCoords===null)
+                          ? `busstops/map/${stop.name}-${stop.code}?lng=${stop.coordinates.longitude}&lat=${stop.coordinates.latitude}`
+                          : `busstops/map/${stop.name}-${stop.code}?lng=${stop.coordinates.longitude}&lat=${stop.coordinates.latitude}&userLon=${userCoords.lon}&userLat=${userCoords.lat}` "
+                      aria-label="ShowOnMap" >
+            <span class="hidden md:inline font-bold ">{{($i18n.locale==='el') ? 'Χάρτης ' : 'View on '}} </span>
+            <Icon icon="material-symbols:globe-location-pin-sharp" class="inline size-7"/>
+          </RouterLink>
         </FlexMinified>
-        <RouterLink class="block py-1 px-2 bg-sky-600 hover:bg-white hover:text-black transition-all  duration-200 ease-in rounded-md"
-                    :to="`busstops/map/${stop.name}-${stop.code}?lng=${stop.coordinates.longitude}&lat=${stop.coordinates.latitude}`" aria-label="ShowOnMap" >
-          <span class="hidden md:inline font-bold ">{{($i18n.locale==='el') ? 'Χάρτης ' : 'View on '}} </span>
-          <Icon icon="material-symbols:globe-location-pin-sharp" class="inline size-7"/>
-        </RouterLink>
-      </FlexMinified>
-    </TransitionGroup>
+      </TransitionGroup>
+    </div>
   </FlexMinified>
   <button
       v-if="geo"
