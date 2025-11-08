@@ -87,6 +87,7 @@ const textSearch = ref("")
           </FlexMinified>
           <button :disabled class="disabled:bg-neutral-500 disabled:text-black bg-sky-600 hover:text-black transition-all  duration-200 ease-in hover:bg-white rounded-md">
             <RouterLink class="block py-1 px-2"
+                        :class="disabled && `pointer-events-none`"
                         :to="
                           (userCoords===null)
                           ? `busstops/map/${stop.name}-${stop.code}?lng=${stop.coordinates.longitude}&lat=${stop.coordinates.latitude}`
