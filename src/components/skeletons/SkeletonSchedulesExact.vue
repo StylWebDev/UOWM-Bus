@@ -24,10 +24,10 @@
         <!-- Live Tracking Section -->
         <div class="rounded-2xl bg-gray-100 p-4 flex flex-col gap-3">
           <div class="h-7 w-80 self-center bg-gray-300 rounded"></div>
-          <div class="h-7 w-32 bg-gray-300 rounded"></div>
+
 
           <!-- Two rows for "Μετάβαση" & "Επιστροφή" -->
-          <div class="space-y-2 flex flex-col">
+          <div class="space-y-2 flex flex-col mt-5">
             <div class="h-4 w-40 self-center bg-gray-300 rounded"></div>
             <div
                 class="rounded-xl bg-gray-200 p-3 flex justify-between"
@@ -37,11 +37,15 @@
 
                 <div class="h-4 w-32 bg-gray-300 rounded"></div>
               </div>
-              <div class="h-4 w-20 bg-gray-300 rounded"></div>
+              <div class="space-y-1">
+                <div class="h-4 w-24 bg-gray-300 rounded"></div>
+
+                <div class="h-4 w-32 bg-gray-300 rounded"></div>
+              </div>
             </div>
 
 
-            <div class="h-4 w-40 self-center bg-gray-300 rounded"></div>
+            <div class="h-4 w-40 self-center bg-gray-300 rounded mt-3"></div>
             <div
                 class="rounded-xl bg-gray-200 p-3 flex justify-between"
             >
@@ -50,7 +54,11 @@
 
                 <div class="h-4 w-32 bg-gray-300 rounded"></div>
               </div>
-              <div class="h-4 w-20 bg-gray-300 rounded"></div>
+              <div class="space-y-1">
+                <div class="h-4 w-24 bg-gray-300 rounded"></div>
+
+                <div class="h-4 w-32 bg-gray-300 rounded"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -58,18 +66,21 @@
 
       <!-- Right Section (Schedule Table) -->
       <div class="flex-1 bg-gray-100 rounded-2xl p-4">
+        <div class="flex justify-center">
+          <div class="h-8 w-[60%] bg-gray-300 rounded"></div>
+        </div>
         <!-- Table Header -->
-        <div class="flex justify-between items-center mb-4">
-          <div class="h-5 w-48 bg-gray-300 rounded"></div>
-          <div class="h-5 w-24 bg-gray-300 rounded"></div>
+        <div class="flex justify-around items-centre mb-4 mt-3">
+          <div class="h-5 w-28 sm:w-44 bg-gray-300 rounded"></div>
+          <div class="h-5 w-28 sm:w-44 bg-gray-300 rounded"></div>
         </div>
 
         <!-- Table Rows -->
-        <div class="space-y-2">
+        <div class="space-y-2 ">
           <div
-              v-for="i in 10"
+              v-for="i in 15"
               :key="i"
-              class="flex justify-between items-center bg-gray-200 rounded-xl p-3"
+              class="flex justify-around items-center bg-gray-200 rounded-xl p-3"
           >
             <div class="h-4 w-16 bg-gray-300 rounded"></div>
             <div class="h-4 w-16 bg-gray-300 rounded"></div>

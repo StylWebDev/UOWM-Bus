@@ -27,6 +27,7 @@ declare module 'vue' {
     SkeletonSchedules: typeof import('./src/components/skeletons/SkeletonSchedules.vue')['default']
     SkeletonSchedulesExact: typeof import('./src/components/skeletons/SkeletonSchedulesExact.vue')['default']
     SkeletonStops: typeof import('./src/components/skeletons/SkeletonStops.vue')['default']
+    SkeletonTickets: typeof import('./src/components/skeletons/SkeletonTickets.vue')['default']
     Ticket: typeof import('./src/components/tickets/zone/Ticket.vue')['default']
     TicketLabel: typeof import('./src/components/tickets/zone/TicketLabel.vue')['default']
     Tracking: typeof import('./src/components/schedules/Tracking.vue')['default']

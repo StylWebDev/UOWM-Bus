@@ -32,21 +32,15 @@ onMounted(() => {
 
 
   <div class="max-sm:h-[80vh] h-[84vh] overflow-auto  sm:py-8 " :class="(route.path === '/busstops') ? `max-md:bg-eggplant-950` : ``">
-    <Suspense>
-      <template #default>
-        <RouterView/>
-      </template>
-      <template #fallback>
-        <FlexMinified
-            column
-            justify="center"
-            items="center"
-            class="w-full" >
-              Loading...
-        </FlexMinified>
-      </template>
-    </Suspense>
 
+    <RouterView v-slot="{Component, route}">
+      <Suspense>
+        <Component :is="Component"/>
+        <template #fallback>
+          <SkeletonTickets v-if="route.fullPath.endsWith('tickets')" />
+        </template>
+      </Suspense>
+    </RouterView>
   </div>
   <Footer class=" bg-eggplant-950 w-screen pb-4 max-sm:h-[10vh] h-[8vh]"/>
 </template>
