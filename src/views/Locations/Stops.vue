@@ -7,7 +7,7 @@
       <FlexMinified  :column="true" items="center" class="w-full">
         <h3 class="flex justify-center gap-x-1 items-center text-center font-bold text-3xl rainbow">
           <Icon icon="mdi:bus-stop-covered" class="inline size-12 " />
-          <span class="block uppercase">{{($i18n.locale==='el') ? 'Στασεις Λεωγορείων' : 'Bus Stops'}}</span>
+          <span class="block uppercase">{{($i18n.locale==='el') ? 'Στασεις Λεωφορείων' : 'Bus Stops'}}</span>
         </h3>
         <div class="h-0.5 max-sm:w-[92vw] w-[70vw] text-center rounded-full bg-rainbow"/>
       </FlexMinified>

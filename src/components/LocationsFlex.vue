@@ -66,7 +66,7 @@ const textSearch = ref("")
     </Transition>
     <div class="w-full flex flex-col items-center">
       <TransitionGroup move-class="transition-all ease delay-50 duration-500 " enter-from-class="opacity-0 scale-0" enter-active-class="transition-all duration-500  ease " leave-to-class="opacity-0 scale-0 "  leave-active-class=" transition-all duration-500 ease" appear >
-        <FlexMinified class=" w-full md:w-[80vw] xl:w-[75vw] min-[2000px]:w-[60vw] md:px-10 py-2 md:rounded-lg md:border border-white/40"
+        <FlexMinified class="lg:mb-2 w-full md:w-[80vw] xl:w-[75vw] min-[2000px]:w-[60vw] md:px-10 py-2 md:rounded-lg md:border border-white/40"
                       justify="evenly"
                       gap-x="5"
                       items="center"
