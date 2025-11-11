@@ -15,10 +15,10 @@
       </FlexMinified>
     </Transition>
 
-      <div class="max-sm:w-[92vw] w-92 lg:mb-2 animate-pulse">
+      <div class="max-sm:w-[92vw] w-92 my-3 animate-pulse">
           <div
                  type="text" id="default-search"
-                 class="block w-full p-8 ps-10 text-sm   border  rounded-lg    bg-neutral-100  text-white">
+                 class="block w-full p-7 ps-10 text-sm   border  rounded-lg    bg-neutral-100  text-white">
           </div>
       </div>
     <div class="w-full flex flex-col items-center">
