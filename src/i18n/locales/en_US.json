@@ -12,9 +12,12 @@
   "header": {
     "route1": "Home",
     "route2": "Schedules",
-    "route3": "Tickets",
-    "route4": "Info",
-    "route5": "Stops"
+    "route4": "Tickets",
+    "route5": "Info",
+    "route3": "Stops",
+    "desc2":  "See details of all available routes operated by our public transport system.",
+    "desc3":  "See details of all available stops in the Kastoria area and its suburbs.",
+    "desc4": "See the tickets you can purchase depending on the area you want to travel to."
   },
   "footer": {
     "p1": "Constantine Stylianou",

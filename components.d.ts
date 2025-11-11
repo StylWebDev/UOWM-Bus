@@ -13,6 +13,7 @@ declare module 'vue' {
     Footer: typeof import('./src/layouts/Footer.vue')['default']
     GridMinified: typeof import('./src/components/GridMinified.vue')['default']
     Header: typeof import('./src/layouts/Header.vue')['default']
+    HomeTest: typeof import('./src/components/HomeTest.vue')['default']
     Icon: typeof import('@iconify/vue')['Icon']
     Info: typeof import('./src/components/tickets/zone/Info.vue')['default']
     LangMenu: typeof import('./src/components/LangMenu.vue')['default']
