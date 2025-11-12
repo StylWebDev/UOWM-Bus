@@ -13,7 +13,7 @@ defineProps<{
     <RouterLink v-for="(route, index) in routes"
                 @click="menu=!menu"
                  :key="index"  :to="route.link"
-                 active-class="bg-cyan-700 text-white after:hidden"
+                 exact-active-class="bg-cyan-700 text-white after:hidden"
                  class="block w-screen text-center hover:text-cyan-700 py-4 transition-all text-2xl duration-300 ease-in hover:bg-white"
     >
       {{route.name}}

@@ -7,9 +7,9 @@ defineProps<{
 </script>
 
 <template>
-<FlexMinified justify="evenly" class="sticky top-0 " items="center">
+<FlexMinified justify="evenly" class="fixed top-0 w-full " items="center">
   <FlexMinified justify="center" class=" w-[50%]">
-    <RouterLink to="/" class="flex items-center gap-x-2 text-white "
+    <RouterLink to="/" class="flex items-center gap-x-2 text-white cursor-pointer"
                 :class="[{'cursor-default': route.fullPath === '/'} ,{'hover:text-blue-700 hover:hue-rotate-90 hover:text-shadow shadow-blue-700' : route.fullPath!=='/'} ,config.trans]"
     >
       <img class="size-12" src="../assets/logo.webp" alt="logo">
@@ -31,7 +31,7 @@ defineProps<{
 
     </FlexMinified>
   </FlexMinified>
-  <button @click="config.menu=!config.menu" class="hidden max-lg:block w-[10%]">
+  <button @click="config.menu=!config.menu" type="button" class="hidden max-lg:block w-[10%] cursor-pointer">
       <Icon v-if="!config.menu" icon="line-md:close-to-menu-alt-transition" class="size-8"  />
       <Icon v-else icon="line-md:menu-to-close-alt-transition" class="size-8 text-cyan-700"  />
   </button>
