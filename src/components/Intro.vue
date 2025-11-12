@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {Carousel, Slide} from "vue3-carousel";
-const {trans, slides} = useConfigureStore()
+const {slides} = useConfigureStore()
 
 const carouselConfig = {
   itemsToShow: 1,
