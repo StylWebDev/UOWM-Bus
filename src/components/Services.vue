@@ -27,7 +27,7 @@
    {
      src: 'https://img.freepik.com/free-photo/from-pins-map_23-2147793520.jpg?semt=ais_hybrid&w=740&q=80',
      alt: 'Schedules',
-     to: '/schedules',
+     to: '/schedule',
    },
    {
      src: 'https://localipswichnews.com.au/wp-content/uploads/2022/07/sheltered-bus-stops.jpg',
