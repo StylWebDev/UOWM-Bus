@@ -16,14 +16,14 @@ defineProps<{
       <h1 class="font-bold  text-2xl">UOWMBus</h1>
     </RouterLink>
   </FlexMinified>
-  <FlexMinified class="max-md:hidden w-[50%]" justify="center">
-    <FlexMinified class="max-md:hidden font-semibold text-lg items-center" gap-x="2">
+  <FlexMinified class="max-lg:hidden w-[50%]" justify="center">
+    <FlexMinified class="max-lg:hidden font-semibold text-lg items-center" gap-x="2">
       <router-link v-for="(route, index) in routes"
                    :key="index"  :to="route.link"
-                   active-class="text-cyan-400 brightness-125 underline underline-offset-8 decoration-2 after:hidden"
+                   exact-active-class="text-cyan-400 brightness-125 after:w-[100%]"
                    class="
       block hover:text-cyan-400 transition-all duration-300 ease-in
-      after:block after:h-0.5 after:bg-cyan-400 after:w-[0%] after:hover:w-[100%] after:transition-all after:duration-500 after:ease-in"
+      after:block after:h-1 after:bg-cyan-400 after:w-[0%] after:rounded  hover:after:w-[100%] after:transition-all after:duration-500 after:ease-in"
       >
         {{route.name}}
       </router-link>
@@ -31,7 +31,7 @@ defineProps<{
 
     </FlexMinified>
   </FlexMinified>
-  <button @click="config.menu=!config.menu" class="hidden max-md:block w-[10%]">
+  <button @click="config.menu=!config.menu" class="hidden max-lg:block w-[10%]">
       <Icon v-if="!config.menu" icon="line-md:close-to-menu-alt-transition" class="size-8"  />
       <Icon v-else icon="line-md:menu-to-close-alt-transition" class="size-8 text-cyan-700"  />
   </button>
