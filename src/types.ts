@@ -57,4 +57,10 @@ function exists(type: unknown): type is NonNullable<typeof type> {
     return type !== null && type!== undefined;
 }
 
-export {exists, type TicketsResponseAPI, type LinkList, type Card, type Tracking, type TimingTable };
+interface Timeline {
+    time: string,
+    title: string,
+    description: string,
+}
+
+export {exists, type TicketsResponseAPI, type LinkList, type Card, type Tracking, type TimingTable, type Timeline };

@@ -17,7 +17,7 @@ const carouselConfig = {
       <FlexMinified :column="true" class="w-full sm:pl-8 max-xl:items-center mt-2" gap-y="4">
         <FlexMinified :column="true" items="center"
                       class="max-[411px]:text-2xl xl:flex-row text-5xl min-[2000px]:text-7xl sm:self-start font-bold w-full rainbow max-xl:text-center">
-          <img src="../assets/logo.webp" alt="logo" class="max-[406px]:size-16 max-md:size-24 size-40 xl:size-16 mr-4">
+          <img src="../../assets/logo.webp" alt="logo" class="max-[406px]:size-16 max-md:size-24 size-40 xl:size-16 mr-4">
           <span class="align-middle">UOWM Student Bus</span>
         </FlexMinified>
 
