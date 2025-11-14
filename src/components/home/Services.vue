@@ -60,7 +60,7 @@
         v-for="(section,index) in data"
         :key="index" justify="between"
         :class="(index%2 === 1) ? `flex-row-reverse` : `flex-row`"
-        class=" h-[30vh] w-full mt-10 in-view bg-eggplant-950/75 overflow-hidden md:rounded-xl card shadow-2xl shadow-neutral-800 " id="troll"
+        class=" h-[30vh] w-full mt-10 in-view bg-eggplant-950/70 overflow-hidden md:rounded-xl card shadow-2xl shadow-neutral-800 " id="troll"
     >
       <FlexMinified
           column

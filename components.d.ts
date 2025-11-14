@@ -9,6 +9,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Card: typeof import('./src/components/theme/Card.vue')['default']
+    Counter: typeof import('./src/components/home/Counter.vue')['default']
     FlexMinified: typeof import('./src/components/FlexMinified.vue')['default']
     Footer: typeof import('./src/layouts/Footer.vue')['default']
     GridMinified: typeof import('./src/components/GridMinified.vue')['default']
