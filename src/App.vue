@@ -21,16 +21,16 @@ onMounted(() => {
 </script>
 
 <template>
-  <Header :routes="routes!" class="bg-eggplant-950/80 backdrop-blur-2xl z-50  max-sm:h-[10vh] h-[8vh]"
+  <Header :routes="routes!" class="bg-eggplant-950 z-50 py-2  "
   />
   <Menu :routes="routes!"
-        class="z-50 fixed top-[8vh] max-sm:top-[10vh] max-sm:h-[90vh]  h-[92vh] bg-eggplant-950/80 backdrop-blur-2xl transition-transform duration-700 ease-ii-out lg:hidden"
+        class="z-40 fixed overflow-scroll pt-24 max-sm:h-[95vh]  h-[97vh] bg-eggplant-950/80 backdrop-blur-2xl transition-transform duration-700 ease-ii-out lg:hidden"
         :class="(configureStore.menu) ? `translate-x-0` : `translate-x-full`"
   />
 
 
 
-  <div class="max-sm:h-[80vh] h-[85vh] overflow-auto py-8  my-22 " :class="($route.path === '/busstops') ? `max-md:bg-eggplant-950` : ``">
+  <div class="max-sm:h-[80vh] h-[85vh] overflow-auto pb-8 pt-24  z-10" :class="($route.path === '/busstops') ? `max-md:bg-eggplant-950` : ``">
 
     <RouterView v-slot="{Component}">
       <Suspense>
@@ -45,7 +45,7 @@ onMounted(() => {
       </Suspense>
     </RouterView>
   </div>
-  <Footer class=" bg-eggplant-950/80 backdrop-blur-2xl w-screen fixed bottom-0 pb-4  max-sm:h-[10vh] h-[8vh]"/>
+  <Footer class=" z-50 bg-eggplant-950/80 backdrop-blur-2xl w-screen fixed bottom-0 pb-4  "/>
 </template>
 
 <style scoped>
