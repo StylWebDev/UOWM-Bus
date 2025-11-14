@@ -80,7 +80,7 @@
           <p class="max-sm:text-sm hyphens-auto break-words">{{$t('header.desc'+(index+2))}}</p>
         </hgroup>
         <router-link :to="section.to"
-                     class="max-md:px-1 max-md:py-1 w-28  px-4 py-1 md:text-lg  rounded-md text-center hover:bg-white hover:text-black bg-blue-500 transition-all duration-500 ease">
+                     class="max-md:px-2 max-md:py-1  px-4 py-1 md:text-lg  rounded-md text-center hover:bg-white hover:text-black bg-blue-500 transition-all duration-500 ease">
           {{($i18n.locale==='el') ? 'Περισσότερα': 'More'}}</router-link>
       </FlexMinified>
     </FlexMinified>
