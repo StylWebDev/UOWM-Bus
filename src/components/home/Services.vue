@@ -50,7 +50,7 @@
         <div class="h-0.5 max-sm:w-[92vw] w-[70vw] text-center rounded-full bg-rainbow"/>
         <h3 class="flex justify-center gap-x-1 items-center text-center font-bold text-3xl rainbow">
           <Icon icon="eos-icons:service-instance" class="inline size-12 " />
-          <span class="block uppercase">{{($i18n.locale==='el') ? 'Υπηρεσίες' : 'Services'}}</span>
+          <span class="block uppercase">{{($i18n.locale==='el') ? 'Υπηρεσιες' : 'Services'}}</span>
         </h3>
         <div class="h-0.5 max-sm:w-[92vw] w-[70vw] text-center rounded-full bg-rainbow"/>
       </FlexMinified>

@@ -1,13 +1,53 @@
 {
   "home": {
-    "p1_1": "The Kast-Bus website provides an information gateway for transportation for the",
-    "p1_2": "in the city of Kastoria",
-    "uni": "University of Western Macedonia (UoWM)",
+    "p1_1": "The Kast-Bus website provides an information gateway for urban transportation inside",
+    "p1_2": "the city of Kastoria",
     "p2": "The platform includes the schedule of bus routes that serve the university faculties, as well as routes connecting the city of Kastoria with nearby areas.",
     "p3": "Additionally, you will find information about bus departure/arrival times, along with updates on any changes or delays.",
     "p4": "Kast-Bus is designed to offer a simple and fast experience for students, professors, and university staff, giving them the ability to easily plan their transportation.",
     "btn1": "Routes",
-    "btn2": "Tickets"
+    "btn2": "Tickets",
+    "timeline": {
+      "t0": {
+        "time": "November 26, 1964",
+        "title": "Founding",
+        "description": "The Urban KTEL of Kastoria was founded and has been operating since 26/11/1964, while before that, the transportation of residents was carried out by boats that ran routes across Lake Kastoria."
+      },
+      "t1": {
+        "time": "Years 1967 — 1968",
+        "title": "Unification of KTEL",
+        "description": "In 1967, the two KTEL services of Kastoria — the intercity and the urban — were unified. Subsequently, the licenses of the three boats that handled transportation on the lake were revoked, and in their place, three new licenses for urban buses were issued."
+      },
+      "t2": {
+        "time": "Year 1980",
+        "title": "Expansion and Modernization",
+        "description": "From 1980 onward, many efforts were made to expand, reorganize, and modernize the KTEL."
+      },
+      "t3": {
+        "time": "From 1981 to Today",
+        "title": "Fleet Renewal",
+        "description": "Renewal of the entire fleet with modern buses equipped with ticket-issuing machines."
+      },
+      "t4": {
+        "time": "Mid-2015",
+        "title": "Creation of a New Terminal",
+        "description": "Creation of a new terminal with modern facilities, equipped with ticket-issuing machines and a passenger waiting area."
+      }
+    },
+    "counter": {
+      "c0": {
+        "title": "With more than",
+        "subTitle": "Routes in the Prefecture of Kastoria"
+      },
+      "c1": {
+        "title": "Available",
+        "subTitle": "Days per year"
+      },
+      "c2": {
+        "title": "With more than",
+        "subTitle": "Active Buses"
+      }
+    }
   },
   "header": {
     "route1": "Home",

@@ -49,7 +49,7 @@ onUnmounted(() => window.removeEventListener("resize", update));
         </FlexMinified>
 
         <p class="max-[411px]:text-base max-sm:text-xl text-xl  max-xl:text-center font-light min-[2000px]:text-2xl">
-          {{$t('home.p1_1')}} <strong>{{$t('home.uni')}}</strong> {{$t('home.p1_2')}}.
+          {{$t('home.p1_1')}} {{$t('home.p1_2')}}.
           <span class="max-sm:hidden">{{$t('home.p2')}}</span><br>
           <br class="xl:hidden">
           <span class="max-md:hidden"> {{$t('home.p3')}}</span>

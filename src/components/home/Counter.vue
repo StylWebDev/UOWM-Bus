@@ -1,22 +1,7 @@
 <script setup lang="ts">
 import AnimatedCounter from "vue-animated-counter"
-const counters = ref<{title: string, num: number, subTitle: string}[]>([
-  {
-    title: 'Με πάνω από',
-    num: 18,
-    subTitle: 'Δρομολόγια στον Ν.Καστοριάς'
-  },
-  {
-    title: 'Μαζί σας',
-    num: 365,
-    subTitle: 'Ημέρες τον χρόνο'
-  },
-  {
-    title: 'Με πάνω από',
-    num: 14,
-    subTitle: 'Ενεργά Λεωφορεία'
-  }
-])
+
+const counters = ref<number[]>([18, 365, 14])
 
 </script>
 
@@ -27,11 +12,11 @@ const counters = ref<{title: string, num: number, subTitle: string}[]>([
       items="center"
       justify="center"
       gap-y="2"
-      v-for="(item, index) in counters" :key="index"
+      v-for="(counter, index) in counters" :key="index"
   >
-    <h2 class="text-xl font-semibold">{{item.title}}</h2>
-    <AnimatedCounter :value="item.num" :duration="2000" class="text-3xl font-extrabold rainbow" />
-    <p class="text-lg text-fuchsia-300"> {{item.subTitle}}</p>
+    <h2 class="text-xl font-semibold">{{$t(`home.counter.c${index}.title`)}}</h2>
+    <AnimatedCounter :value="counter" :duration="2000" class="text-3xl font-extrabold rainbow" />
+    <p class="text-lg text-fuchsia-300"> {{$t(`home.counter.c${index}.subTitle`)}}</p>
   </FlexMinified>
 </FlexMinified>
 </template>
