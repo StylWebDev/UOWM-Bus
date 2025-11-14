@@ -30,7 +30,7 @@ onMounted(() => {
 
 
 
-  <div class="h-full overflow-auto pb-8 pt-24  z-10" :class="($route.path === '/busstops') ? `max-md:bg-eggplant-950` : ``">
+  <div class="h-full overflow-auto py-24  z-10" :class="($route.path === '/busstops') ? `max-md:bg-eggplant-950` : ``">
 
     <RouterView v-slot="{Component}">
       <Suspense>
