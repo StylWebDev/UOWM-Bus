@@ -104,7 +104,7 @@ const textSearch = ref("")
   <button
       v-if="geo"
       @click="getLocation"
-      class="absolute bottom-[15vh] right-[5vw] bg-red-500 hover:bg-emerald-600 hover:text-white focus:text-white focus:bg-emerald-600 text-neutral-800 p-3  rounded-full hover:brightness-125 transition-all duration-300 ease-in cursor-pointer">
+      class="fixed bottom-[15vh] right-[5vw] bg-red-500 hover:bg-emerald-600 hover:text-white focus:text-white focus:bg-emerald-600 text-neutral-800 p-3  rounded-full hover:brightness-125 transition-all duration-300 ease-in cursor-pointer">
     <Icon icon="line-md:map-marker-alt-twotone-loop" class="size-7"/></button>
 </template>
 
