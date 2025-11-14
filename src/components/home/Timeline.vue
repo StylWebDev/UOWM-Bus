@@ -61,7 +61,7 @@ const testData = ref<Timeline[]>([
         <div class="h-0.5 max-sm:w-[92vw] w-[70vw] text-center rounded-full bg-rainbow"/>
       </FlexMinified>
 
-    <ol class="relative border-s overflow bg-eggplant-950/80 border-default ml-2 md:ml-5 max-sm:w-[92vw] w-[70vw] pr-5 rounded-r-2xl pb-1">
+    <ol class="relative border-s overflow bg-eggplant-950/80 border-default ml-2 md:ml-5 max-sm:w-[92vw] w-[80vw] pr-5 rounded-r-2xl pb-1">
       <li class="ms-6 overflow-hidden" v-for="(timeline, index) in testData" :key="index">
         <span class="absolute  flex items-center timeline2 justify-center w-6 h-6 bg-brand-softer rounded-full -start-3 bg-blue-600">
           <Icon icon="uim:schedule"/>
