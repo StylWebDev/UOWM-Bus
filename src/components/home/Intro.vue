@@ -29,10 +29,14 @@ const update = () => {
 }
 
 onMounted( () => {
+  window.addEventListener('DOMContentLoaded', update);
   window.addEventListener("resize", update);
 })
 
-onUnmounted(() => window.removeEventListener("resize", update));
+onUnmounted(() => {
+  window.addEventListener('DOMContentLoaded', update);
+  window.removeEventListener("resize", update)
+});
 
 </script>
 
