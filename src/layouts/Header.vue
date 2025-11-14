@@ -12,8 +12,8 @@ defineProps<{
     <RouterLink to="/" class="flex items-center gap-x-2 text-white cursor-pointer"
                 :class="[{'cursor-default': route.fullPath === '/'} ,{'hover:text-blue-700 hover:hue-rotate-90 hover:text-shadow shadow-blue-700' : route.fullPath!=='/'} ,config.trans]"
     >
-      <img class="size-12" src="../assets/logo.webp" alt="logo">
-      <h1 class="font-bold  text-2xl">UOWMBus</h1>
+      <img class="size-12" src="/logo.webp" alt="logo">
+      <h1 class="font-bold  text-2xl">Kast-Bus</h1>
     </RouterLink>
   </FlexMinified>
   <FlexMinified class="max-lg:hidden w-[50%]" justify="center">
