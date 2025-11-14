@@ -45,7 +45,7 @@ onMounted(() => {
       </Suspense>
     </RouterView>
   </div>
-  <Footer class=" z-50 bg-eggplant-950/80 backdrop-blur-2xl w-screen fixed bottom-0 pb-4  "/>
+  <Footer class=" z-50 bg-eggplant-950/80 backdrop-blur-2xl w-screen fixed bottom-0 py-4  "/>
 </template>
 
 <style scoped>
