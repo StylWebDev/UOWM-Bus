@@ -29,6 +29,7 @@ const { trans } = useConfigureStore()
       <TransitionGroup appear enter-from-class="opacity-0 translate-y-full" appear-active-class="transition-all duration-700 ease-linear">
         <Card
             v-for="(area,index) in areas" :key="index"
+            v-once
             color="bg-neutral-800"
             border-color="border-white/35"
             :shadow="true"
