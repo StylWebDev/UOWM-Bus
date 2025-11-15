@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {onUnmounted, ref} from "vue";
+import {exists} from "./types.ts";
 const configureStore = useConfigureStore();
 const i18n = useI18n();
 
@@ -16,26 +17,33 @@ watch(() => i18n.locale.value, () => {
   ])
 }, {immediate: true})
 
-const lastScroll = ref<number>(window.scrollY)
+const lastScroll = ref<number>(0)
+const currentScroll = ref<number>(0)
+const main = ref<HTMLDivElement | null>(null)
 
 const scrollFunc = () => {
-  const currentScroll = window.scrollY;
-  if (currentScroll > lastScroll.value) {
+  currentScroll.value = main.value!.scrollTop;
+  if (currentScroll.value > lastScroll.value) {
     truth.value = false;
-  } else if (currentScroll < lastScroll.value) {
+  } else if (currentScroll.value < lastScroll.value) {
     truth.value = true;
   }
 
-  lastScroll.value = currentScroll;
+  lastScroll.value = currentScroll.value;
 }
+
 
 onMounted(() => {
   configureStore.checkLang();
-  window.addEventListener('scroll', scrollFunc)
+  main.value = document.querySelector('#main') as HTMLDivElement;
+  if (exists(main.value)) {
+    lastScroll.value = main.value.scrollTop;
+    main.value.addEventListener('scroll', scrollFunc);
+  }
 })
 
 onUnmounted(() => {
-  window.removeEventListener("scroll", scrollFunc)
+  if (exists(main.value)) main.value.removeEventListener("scroll", scrollFunc);
 })
 </script>
 
@@ -56,23 +64,26 @@ onUnmounted(() => {
           :class="(configureStore.menu) ? `translate-x-0` : `translate-x-full`"
     />
 
-      <FlexMinified column gap-y="6" class="flex-grow overflow-auto justify-between   pt-24 z-10" :class="($route.path === '/busstops') ? `max-md:bg-eggplant-950` : ``">
+      <div id="main" class="flex-grow flex flex-col overflow-auto justify-between  pt-24 z-10" :class="($route.path === '/busstops') ? `max-md:bg-eggplant-950` : ``">
 
-        <RouterView v-slot="{Component}">
-          <Suspense>
-            <template #default>
-              <div>
-                <Component :is="Component"/>
-              </div>
-            </template>
-            <template #fallback>
-              <SkeletonTickets v-if="$route.fullPath.endsWith('tickets')" />
-            </template>
-          </Suspense>
-        </RouterView>
+        <div class="pb-10">
+          <RouterView v-slot="{Component}">
+            <Suspense>
+              <template #default>
+                <div>
+                  <Component :is="Component"/>
+                </div>
+              </template>
+              <template #fallback>
+                <SkeletonTickets v-if="$route.fullPath.endsWith('tickets')" />
+              </template>
+            </Suspense>
+          </RouterView>
+        </div>
+
         <Footer class=" z-50 bg-eggplant-950/80 backdrop-blur-2xl w-[100vw] relative py-4  "/>
 
-      </FlexMinified>
+      </div>
   </FlexMinified>
 
 </template>
