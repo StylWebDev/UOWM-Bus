@@ -72,7 +72,6 @@ const textSearch = ref("")
                         gap-x="5"
                         items="center"
                         v-for="(stop,index) in filteredStops" :key="stop.code"
-                        v-once
                         :class="(index%2===0) ? `bg-neutral-900/85` : `bg-eggplant-950`"
           >
             <p class="w-20 py-7 text-center font-extrabold black border-2 border-sky-500  bg-eggplant-100 rounded-full">{{ stop.code }}</p>
