@@ -64,25 +64,16 @@ onUnmounted(() => {
           :class="(configureStore.menu) ? `translate-x-0` : `translate-x-full`"
     />
 
-      <div id="main" class="flex-grow flex flex-col overflow-auto justify-between  pt-24 z-10" :class="($route.path === '/busstops') ? `max-md:bg-eggplant-950` : ``">
-
+      <div id="main" class="flex-grow flex flex-col overflow-auto justify-between  pt-24 z-10" :class="($route.path === '/busstops') && `max-md:bg-eggplant-950`">
         <div class="pb-10">
-          <RouterView v-slot="{Component}">
             <Suspense>
-              <template #default>
-                <div>
-                  <Component :is="Component"/>
-                </div>
-              </template>
+              <RouterView/>
               <template #fallback>
-                <SkeletonTickets v-if="$route.fullPath.endsWith('tickets')" />
+                <SkeletonTickets  />
               </template>
             </Suspense>
-          </RouterView>
         </div>
-
         <Footer class=" z-50 bg-eggplant-950/80 backdrop-blur-2xl w-[100vw] relative py-4  "/>
-
       </div>
   </FlexMinified>
 
