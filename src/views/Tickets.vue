@@ -27,6 +27,5 @@ const tickets = ref([zoneA, zoneB]);
     <Transition appear enter-from-class="opacity-0 scale-50" appear-active-class="transition-all duration-700 ease-linear">
       <Zone :tickets="tickets"/>
     </Transition>
-
   </FlexMinified>
 </template>

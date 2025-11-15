@@ -2,7 +2,6 @@
 </script>
 
 <template>
-
     <Transition appear  enter-from-class="-translate-y-full opacity-0"  appear-active-class="transition-all duration-1000 ease-linear">
       <FlexMinified :column="true" items="center" justify="center" class="text-center max-sm:h-full" gap-y="2" >
         <FlexMinified justify="center" gap-x="4" items="center" class="max-sm:flex-col">

@@ -3,19 +3,20 @@
 </script>
 
 <template>
-  <div class="opacity-70">
-    <Transition appear enter-from-class="opacity-0 -translate-y-full" appear-active-class="transition-all duration-700 ease-linear">
-      <FlexMinified :column="true" items="center" class="animate-pulse">
-        <h3 class="flex justify-center gap-x-1 items-center text-center font-bold text-3xl md:text-4xl text-neutral-300">
-          <Icon icon="healthicons:i-schedule-school-date-time" class="size-12 2xl:size-16" />
-          <span class="block uppercase">{{($i18n.locale.toString() === 'el') ? "Δρομολόγια" : "Routes"}}</span>
-        </h3>
-        <div class="h-0.5 w-[70vw] text-center rounded-full bg-neutral-300"/>
-      </FlexMinified>
-    </Transition>
-  </div>
-  <GridMinified columns="1" sm-columns="2" md-columns="2" xl-columns="3"
-                class="mt-5 items-center justify-items-center animate-pulse">
+  <div>
+    <div class="opacity-70">
+      <Transition appear enter-from-class="opacity-0 -translate-y-full" appear-active-class="transition-all duration-700 ease-linear">
+        <FlexMinified :column="true" items="center" class="animate-pulse">
+          <h3 class="flex justify-center gap-x-1 items-center text-center font-bold text-3xl md:text-4xl text-neutral-300">
+            <Icon icon="healthicons:i-schedule-school-date-time" class="size-12 2xl:size-16" />
+            <span class="block uppercase">{{($i18n.locale.toString() === 'el') ? "Δρομολόγια" : "Routes"}}</span>
+          </h3>
+          <div class="h-0.5 w-[70vw] text-center rounded-full bg-neutral-300"/>
+        </FlexMinified>
+      </Transition>
+    </div>
+    <GridMinified columns="1" sm-columns="2" md-columns="2" xl-columns="3"
+                  class="mt-5 items-center justify-items-center animate-pulse">
       <Card
           v-for="area in 6" :key="area"
           color="bg-neutral-800"
@@ -41,7 +42,8 @@
           <div class="h-5 bg-gray-200 rounded-full w-24 mb-4"></div>
         </template>
       </Card>
-  </GridMinified>
+    </GridMinified>
+  </div>
 </template>
 
 <style scoped>

@@ -51,35 +51,38 @@ const nextDeparture = computed(() => {
 </script>
 
 <template>
-  <FlexMinified  :column="true" items="center">
-    <h3 class="flex max-sm:flex-col justify-center gap-x-1 items-center text-center font-bold text-3xl rainbow">
-      <Icon icon="majesticons:map-simple-destination" class="size-12 " />
-      <span class="block">  {{  ($i18n.locale.toString() === 'el') ? data.place.start.el.location : data.place.start.en.location }} - {{  ($i18n.locale.toString() === 'el') ? data.place.end.el.location : data.place.end.en.location }}
+  <div>
+    <FlexMinified  :column="true" items="center">
+      <h3 class="flex max-sm:flex-col justify-center gap-x-1 items-center text-center font-bold text-3xl rainbow">
+        <Icon icon="majesticons:map-simple-destination" class="size-12 " />
+        <span class="block">  {{  ($i18n.locale.toString() === 'el') ? data.place.start.el.location : data.place.start.en.location }} - {{  ($i18n.locale.toString() === 'el') ? data.place.end.el.location : data.place.end.en.location }}
 </span>
-    </h3>
-    <div class="h-0.5 max-sm:w-full w-[70vw] text-center rounded-full bg-rainbow"/>
+      </h3>
+      <div class="h-0.5 max-sm:w-full w-[70vw] text-center rounded-full bg-rainbow"/>
 
-  </FlexMinified>
+    </FlexMinified>
 
-  <GridMinified columns="1" lg-columns="3" gap-x="5"
-                class=" overflow-hidden bg-eggplant-950/80 md:rounded-xl mt-5 md:mx-10 px-5 pt-4 sm:border max-sm:border-y border-white/30"
-  >
-    <Tracking :id="params.id.toString()"
-              :resolved-schedule="($i18n.locale.toString() === 'el') ? data.resolvedSchedule : data.resolvedSchedule_en"
-              :arrivalTime="arrivalTime!.toString()"
-              :departureTime="departureTime!.toString()"
-              :mins="Number(data.mins)" :test="test"
-              :nextArrival="nextArrival!"
-              :nextDeparture="nextDeparture!"
-              :mapURL="data.map_url"/>
+    <GridMinified columns="1" lg-columns="3" gap-x="5"
+                  class=" overflow-hidden bg-eggplant-950/80 md:rounded-xl mt-5 md:mx-10 px-5 pt-4 sm:border max-sm:border-y border-white/30"
+    >
+      <Tracking :id="params.id.toString()"
+                :resolved-schedule="($i18n.locale.toString() === 'el') ? data.resolvedSchedule : data.resolvedSchedule_en"
+                :arrivalTime="arrivalTime!.toString()"
+                :departureTime="departureTime!.toString()"
+                :mins="Number(data.mins)" :test="test"
+                :nextArrival="nextArrival!"
+                :nextDeparture="nextDeparture!"
+                :mapURL="data.map_url"/>
 
-    <ScheduleTable
-        :time-table="timeTable"
-        :arrival-time="arrivalTime!.toString()"
-        :departure-time="departureTime!.toString()"
-        :second-time-table="secondTimeTable"
-        :start-time="(test) ? '00:00' : dataStore.startTime"
-        :mins="Number(data.mins)"/>
+      <ScheduleTable
+          :time-table="timeTable"
+          :arrival-time="arrivalTime!.toString()"
+          :departure-time="departureTime!.toString()"
+          :second-time-table="secondTimeTable"
+          :start-time="(test) ? '00:00' : dataStore.startTime"
+          :mins="Number(data.mins)"/>
 
-  </GridMinified>
+    </GridMinified>
+  </div>
+
 </template>
