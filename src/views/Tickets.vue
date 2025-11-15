@@ -7,6 +7,7 @@ const data = await getTickets();
 const zoneA = reactive(data.zoneA);
 const zoneB = reactive(data.zoneB);
 const tickets = ref([zoneA, zoneB]);
+
 </script>
 
 <template>

@@ -3,15 +3,13 @@
 
 <template>
   <div>
-    <RouterView v-slot="{Component, route}">
-      <Suspense>
-        <Component :is="Component"/>
+      <Suspense suspensible>
+        <RouterView/>
         <template #fallback>
-          <SkeletonSchedules v-if="route.fullPath.endsWith('schedule')"/>
+          <SkeletonSchedules v-if="$route.fullPath.endsWith('schedule')"/>
           <SkeletonSchedulesExact v-else/>
         </template>
       </Suspense>
-    </RouterView>
   </div>
 </template>
 
